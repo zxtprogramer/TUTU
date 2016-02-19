@@ -1,0 +1,76 @@
+<DataBase Name="TUTU_V0">
+  <UserInfoTable>
+    <UserID>INT(6) UNSIGNED AUTO_INCREMENT NOT NULL UNIQUE PRIMARY KEY</UserID>
+    <UserName>CHAR(255) NOT NULL UNIQUE</UserName>
+    <Password>CHAR(255) NOT NULL</Password>
+    <Email>CHAR(255) NOT NULL UNIQUE</Email>
+
+    <Longitude>DOUBLE DEFAULT 0</Longitude>
+    <Latitude>DOUBLE DEFAULT 0</Latitude>
+    <Share>ENUM('A','F','N') DEFAULT 'N'</Share>    <!--	A: every one can see	F: only friend can see	N: not share	-->
+    <SessionID>CHAR(32) NOT NULL DEFAULT '0'</SessionID>
+  </UserInfoTable>
+
+  <PicTable>
+    <PicID>INT(6) UNSIGNED AUTO_INCREMENT NOT NULL UNIQUE PRIMARY KEY</PicID>
+    <UserID>INT(6) UNSIGNED NOT NULL</UserID>
+    <UserName>CHAR(255) NOT NULL</UserName>
+    <PicName>CHAR(255) </PicName>
+	<Width>INT(4) UNSIGNED</Width>
+	<Height>INT(4) UNSIGNED</Height>
+    <Description>VARCHAR(1024) </Description>
+    <PicPath>VARCHAR(1024)</PicPath>
+    <ShootTime>INT(6) UNSIGNED NOT NULL</ShootTime>
+    <UploadTime>INT(6) UNSIGNED NOT NULL</UploadTime>
+    <Longitude>DOUBLE</Longitude>
+    <Latitude>DOUBLE</Latitude>
+    <LikeNum>INT(6) UNSIGNED DEFAULT 0</LikeNum>
+    <AlbumID>INT(4) UNSIGNED DEFAULT 2</AlbumID>
+  </PicTable>
+
+  <AlbumTable>
+    <AlbumID>INT(6) UNSIGNED AUTO_INCREMENT NOT NULL UNIQUE PRIMARY KEY</AlbumID>
+    <UserID>INT(6) UNSIGNED NOT NULL</UserID>
+    <UserName>CHAR(255) NOT NULL</UserName>
+    <AlbumName>CHAR(255)</AlbumName>
+    <Description>VARCHAR(1024) </Description>
+    <CreateTime>INT(6) UNSIGNED</CreateTime>
+	<PicNum>INT(6) UNSIGNED DEFAULT 0</PicNum>
+	<Share>INT(4) UNSIGNED DEFAULT 0</Share></AlbumTable>
+
+  <LikeTable>
+    <LikeID>INT(6) UNSIGNED AUTO_INCREMENT NOT NULL UNIQUE PRIMARY KEY</LikeID>
+    <UserID>INT(6) UNSIGNED</UserID>
+    <UserName>CHAR(255) NOT NULL</UserName>
+    <PicID>INT(6) UNSIGNED</PicID>
+    <CreateTime>INT(6) UNSIGNED</CreateTime>
+  </LikeTable>
+
+  <CommentTable>
+    <ComID>INT(6) UNSIGNED AUTO_INCREMENT NOT NULL UNIQUE PRIMARY KEY</ComID>
+    <UserID>INT(6) UNSIGNED</UserID>
+    <UserName>CHAR(255) NOT NULL</UserName>
+    <PicID>INT(6) UNSIGNED</PicID>
+    <Comment>VARCHAR(1024) </Comment>
+    <CreateTime>INT(6) UNSIGNED</CreateTime>
+  </CommentTable>
+
+  <MessageTable>
+    <MsgID>INT(6) UNSIGNED AUTO_INCREMENT NOT NULL UNIQUE PRIMARY KEY</MsgID>
+    <FromID>INT(6) UNSIGNED</FromID>
+    <ToID>INT(6) UNSIGNED</ToID>
+    <SendTime>INT(6) UNSIGNED</SendTime>
+    <MsgType>INT(4) UNSIGNED</MsgType>
+    <Message>VARCHAR(1024) </Message>
+  </MessageTable>
+
+  <FriendTable>
+    <FriendShipID>INT(6) UNSIGNED AUTO_INCREMENT NOT NULL UNIQUE PRIMARY KEY</FriendShipID>
+    <FromID>INT(6) UNSIGNED</FromID>
+    <ToID>INT(6) UNSIGNED</ToID>
+    <Type>CHAR(1) </Type><!-- N: normal friend  S:special frinend  -->
+    <CreateTime>INT(6) UNSIGNED</CreateTime>
+  </FriendTable>
+
+
+</DataBase>

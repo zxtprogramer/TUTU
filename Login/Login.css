@@ -1,0 +1,113 @@
+body{
+  text-align:center;
+  margin:50px;
+}
+
+.LoginDiv{
+  width:300px;
+  height:280px;
+  display: inline-block;
+  padding: 5px 10px 6px;
+  text-decoration: none;
+  background:#eee;
+  
+  border-radius: 5px;
+  box-shadow: 2px 5px 5px #aaa;
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+  position: relative;
+}
+
+
+.LoginDiv h1{
+font-size:20px;
+font-weight:normal;
+font-style:normal;
+margin:0px;
+text-align:center;
+text-decoration: none;
+
+}
+
+
+.LoginDiv h2{
+font-size:15px;
+font-weight:normal;
+text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+margin:0px;
+text-align:left;
+text-decoration: none;
+}
+
+
+.textinput{
+width: 280px;
+height:30px;    
+line-height: 30px;
+text-align: left;
+color: #000;
+border-radius: 1px;
+border:1px solid black;
+margin:10px 0px;
+position: relative;
+overflow: hidden;
+font-size:15px;
+background:#fff;
+padding: 5px 10px 6px;
+}
+
+.button{
+width: 100%; 
+line-height: 40px;
+text-align: center;
+font-weight: bold;
+color: #fff;
+text-shadow:1px 1px 1px #333;
+border-radius: 5px;
+margin:0 0px 0px 0;
+position: relative;
+overflow: hidden;
+}
+
+.button.blue{
+border:1px solid #1e7db9;
+box-shadow: 0 1px 2px #8fcaee inset,0 -1px 0 #497897 inset,0 -2px 3px #8fcaee inset;
+background: -webkit-linear-gradient(top,#42a4e0,#2e88c0);
+background: -moz-linear-gradient(top,#42a4e0,#2e88c0);
+background: linear-gradient(top,#42a4e0,#2e88c0);
+font-size:20px;
+}
+
+.tags:after{
+font-weight: normal;
+position: absolute;
+display: inline-block;
+content: "FREE";
+top:-3px;
+right: -33px;
+color: #fff;
+text-shadow:none;
+width: 85px;
+height:25px;
+line-height: 28px;
+-webkit-transform:rotate(45deg) scale(.7,.7);
+-moz-transform:rotate(45deg) scale(.7,.7);
+transform:rotate(45deg) scale(.7,.7);
+}
+.blue.tags:after{
+background: #1e7db9;
+border:2px solid #54b1e9;	
+}
+.blue:hover{
+background: -webkit-linear-gradient(top,#70bfef,#4097ce);
+background: -moz-linear-gradient(top,#70bfef,#4097ce);
+background: linear-gradient(top,#70bfef,#4097ce);
+}
+.blue:active{
+top:1px;
+box-shadow: 0 1px 3px #114566 inset,0 3px 0 #fff;
+background: -webkit-linear-gradient(top,#1a71a8,#1976b1);
+background: -moz-linear-gradient(top,#1a71a8,#1976b1);
+background: linear-gradient(top,#1a71a8,#1976b1);
+}
+
