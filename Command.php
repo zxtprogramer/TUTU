@@ -55,35 +55,29 @@ function uploadPic(){
         system($cmd);
 
         $picSize=getimagesize($snapTmp);
-        $picW=(float)($picSize[0]); $picH=(float)($picSize[1]);
 
-        $snap2W=100; $snap2H=100;
-        if($picW<$picH){
-            $snap2W=100;
-            $snap2H=(int)(100.0/$picW*$picH);
-        }else{
-            $snap2H=100;
-            $snap2W=(int)(100.0/$picH*$picW);
-        }
-
-        $snap2Path=$path . "_snap2.jpg";
-        $cmd="convert -resize " . $snap2W. "x" . $snap2H ." ". $snapTmp . " " . $snap2Path;
+        $snapBigPath=$dataPath . "User_" . $userID . "/AlbumSnapBig_" . $picAlbumID . "/". $filename . ".jpg";
+        $snapSmallPath=$dataPath . "User_" . $userID . "/AlbumSnapSmall_" . $picAlbumID . "/". $filename . ".jpg";
+        $cmd="convert -resize 200x200 " . $snapTmp . " " . $snapBigPath;
         system($cmd);
-    
-        $picDes=$_POST['upPicDes'];
-        $picPos=$_POST['upPicPos'];
-
+        $cmd="convert -resize 60x60 " . $snapTmp . " " . $snapSmallPath;
+        system($cmd);
+        
         $lngMax=(float)$_POST['lngMax'];
         $lngMin=(float)$_POST['lngMin'];
         $latMax=(float)$_POST['latMax'];
         $latMin=(float)$_POST['latMin'];
 
-        $picAlbumID=$_POST['upAlbumID'];
+        $picInfo=getPicInfo($snapTmp, $lngMax, $lngMin, $latMax, $latMin);
 
-        $longitude=split(",", $picPos)[0];
-        $latitude=split(",", $picPos)[1];
+        $shootTime=$picInfo[0];
+        $lng=$picInfo[1];
+        $lat=$picInfo[2];
 
-        addPic($userID, $filename,$picSize[0],$picSize[1],$picDes,$path2,shootTime,time(),$longitude,$latitude,0,$picAlbumID);
+        $picDes=$_POST['upPicDes'];
+        
+        addPic($userID, $filename,$picSize[0],$picSize[1],$picDes,$path,$shootTime,time(),$lng,$lat,0,$picAlbumID);
+ 
     }
  
 
@@ -193,7 +187,6 @@ if(isset($_POST['cmd'])){
         	exeSQL($sql);
         	$sql="UPDATE AlbumTable SET PicNum=PicNum-1 WHERE AlbumID=$albumID AND UserID=$userID";
         	exeSQL($sql);
-        	echo $sql;
         	break;
         
         case 'movePic':

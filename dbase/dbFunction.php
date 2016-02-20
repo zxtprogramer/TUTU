@@ -103,7 +103,7 @@ function getAlbumFace($albumID){
     $row=mysql_fetch_array($res);
     $picName=$row['PicName'];
     $userID=$row['UserID'];
-    $facePath="/Data/User_" . $userID . "/Album_" . $albumID . "/" . $picName;
+    $facePath="/Data/User_" . $userID . "/AlbumSnapBig_" . $albumID . "/" . $picName;
     return $facePath;
 }
 

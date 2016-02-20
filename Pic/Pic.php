@@ -58,7 +58,7 @@ printf($gVarHTML);
         <h4 class="modal-title" id="uploadModalLabel">上传</h4>
       </div>
       <div class="modal-body"> 
-        <input id="UploadFile" name="files" type="file" multiple accept="image/*"></input>
+        <input id="UploadFile" name="files" type="file" multiple accept="image/*, video/*"></input>
         <br />
         <ul id="UploadList" class="list-group">
         </ul>
@@ -67,7 +67,7 @@ printf($gVarHTML);
 
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary" onclick="upload();">上传</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="upload();">上传</button>
       </div>
     </div>
   </div>

@@ -25,7 +25,6 @@ function delPic(){
 	xmlhttp.onreadystatechange=function(){
 		if(xmlhttp.readyState==4 && xmlhttp.status==200){
 			res=xmlhttp.responseText;
-			alert(res);
 			fresh();
 		}   
 	};  
@@ -143,6 +142,7 @@ function upload(){
 		xhr.open("POST", url, true);
 		xhr.onreadystatechange=function(){
 			if(xhr.readyState==4 && xhr.status==200){
+				fresh();
 			}
 		};
 		
@@ -200,6 +200,11 @@ function addMarker(){
 		var lat=parseFloat(picArray[i]['Latitude']);
 		var picName=picArray[i]['PicName'];
 		var snapSmallPath="/Data/User_" + userID + "/AlbumSnapSmall_" + albumID + "/" + picName;  
+		var ext=snapSmallPath.substr(snapSmallPath.indexOf('.')+1).toLowerCase();
+	    if(ext=="mp4"){
+		    snapSmallPath=snapSmallPath + ".jpg";
+	    }
+	
 		var markPos=[lng,lat];
 		var marker=new AMap.Marker({
 			map:map,
@@ -236,10 +241,25 @@ function fresh(){
 function showPicDiv(){
 	var picName=picArray[nowPicIndex]['PicName'];
 	var snapBigPath="/Data/User_" + userID + "/AlbumSnapBig_" + albumID + "/" + picName;
+	var ext=snapBigPath.substr(snapBigPath.indexOf('.')+1).toLowerCase();
+	if(ext=="mp4"){
+		snapBigPath=snapBigPath + ".jpg";
+	}
 	var lng=picArray[nowPicIndex]['Longitude'];
 	var lat=picArray[nowPicIndex]['Latitude'];
 	var content=[];
-	var title="TUTU";
+	
+	picNum=picArray.length;
+	nowNum=nowPicIndex+1;
+	
+	if(ext=="mp4"){
+	   title="视频(" + nowNum + "/" + picNum + ")";
+	}
+	else{
+	   title="图片(" + nowNum + "/" + picNum + ")";
+	}
+
+
 
     content.push("<img src=\""+ snapBigPath + "\" />");
 

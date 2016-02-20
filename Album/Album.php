@@ -99,7 +99,7 @@ if($ifLogin==0){
               <div class=\"panel-heading\">$albumName ($timeStr) <span class=\"badge\">$picNum</span></div>
 
               <div class=\"panel-body\">
-                <a href=\"/Pic/Pic.php?AlbumID=$albumID\"><img class=\"img-responsive\" src=\"$facePath\" /></a>
+                <a href=\"/Pic/Pic.php?AlbumID=$albumID\"><img style=\"width:100%;\" class=\"img-responsive\" src=\"$facePath\" /></a>
                 <br />
                 $albumDes
               </div>
