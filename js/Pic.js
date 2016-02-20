@@ -1,8 +1,10 @@
 var map;
 var lngMax,lngMin,latMax,latMin;
+var mouseLng, mouseLat;
 var picArray=new Array();
 var picMarker=new Array();
 var nowPicIndex=0;
+var ifMove=0;
 
 
 function getBounds(){
@@ -16,9 +18,56 @@ function getBounds(){
     latMax=Math.max(parseFloat(ws[1]),parseFloat(en[1]));
 }
 
+function delPic(){
+	var picID=picArray[nowPicIndex]['PicID'];
+	var xmlhttp;
+	xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function(){
+		if(xmlhttp.readyState==4 && xmlhttp.status==200){
+			res=xmlhttp.responseText;
+			alert(res);
+			fresh();
+		}   
+	};  
+
+	xmlhttp.open("POST", "/Command.php",false);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send("cmd=delPic&picID=" + picID);
+
+
+}
+
+function movePic(){
+	ifMove=1;
+}
+
 function _onClick(e){
+    mouseLng=e.lnglat.getLng();
+    mouseLat=e.lnglat.getLat();
+    if(ifMove==1){
+    	var picID=picArray[nowPicIndex]['PicID'];
+		var xmlhttp;
+		xmlhttp=new XMLHttpRequest();
+		xmlhttp.onreadystatechange=function(){
+			if(xmlhttp.readyState==4 && xmlhttp.status==200){
+				res=xmlhttp.responseText;
+				indexTmp=nowPicIndex;
+				fresh();
+				nowPicIndex=indexTmp;
+				showPicDiv();
+			}   
+		};  
+
+		xmlhttp.open("POST", "/Command.php",false);
+		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xmlhttp.send("cmd=movePic&picID=" + picID + "&lng=" + mouseLng + "&lat=" + mouseLat);
+		
+    	ifMove=0;
+    }
+
 	getBounds();
 }
+
 function _onMoveend(e){
 	getBounds();
 }
@@ -176,6 +225,8 @@ function markerClick(e){
 
 function fresh(){
     nowPicIndex=0;
+    map.remove(picMarker);
+    picMarker=new Array();
 	getBounds();
 	picArray=getAlbumPic(albumID);
 	addMarker();

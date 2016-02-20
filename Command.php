@@ -183,6 +183,27 @@ if(isset($_POST['cmd'])){
 	    }
         break;
         
+        case 'delPic':
+        	$picID=(int)($_POST['picID']);
+        	$sql="SELECT AlbumID FROM PicTable WHERE PicID=$picID AND UserID=$userID";
+        	$res=exeSQL($sql);
+        	$row=mysql_fetch_array($res);
+        	$albumID=$row[0];
+        	$sql="DELETE FROM PicTable WHERE PicID=$picID AND UserID=$userID";
+        	exeSQL($sql);
+        	$sql="UPDATE AlbumTable SET PicNum=PicNum-1 WHERE AlbumID=$albumID AND UserID=$userID";
+        	exeSQL($sql);
+        	echo $sql;
+        	break;
+        
+        case 'movePic':
+        	$picID=(int)($_POST['picID']);
+        	$lng=(float)($_POST['lng']);
+        	$lat=(float)($_POST['lat']);
+        	$sql="UPDATE PicTable SET Longitude=$lng, Latitude=$lat WHERE PicID=$picID AND UserID=$userID";
+        	exeSQL($sql);
+        	break;
+        
         case 'getAlbumPic':
         	$albumID=(int)($_POST['albumID']);
 		    $sql="SELECT * FROM PicTable WHERE AlbumID=$albumID ORDER BY ShootTime";

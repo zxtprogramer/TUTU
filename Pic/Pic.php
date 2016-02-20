@@ -85,18 +85,10 @@ printf($gVarHTML);
       
        <div class="btn-group" role="group">
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#uploadModal" id="UploadBtn"><span class="glyphicon glyphicon-open"></span></button>
-        <button type="button" class="btn btn-default" id="MoveBtn"><span class="glyphicon glyphicon-move"></span></button>
-        <button type="button" class="btn btn-default" id="EditBtn"><span class="glyphicon glyphicon-edit"></span></button>
-        <button type="button" class="btn btn-danger" id="DeleteBtn"><span class="glyphicon glyphicon-trash"></span></button>
+        <button type="button" class="btn btn-default" onclick="javascript:movePic()" id="MoveBtn"><span class="glyphicon glyphicon-move"></span></button>
+        <button type="button" class="btn btn-danger" onclick="javascript:delPic()" id="DeleteBtn"><span class="glyphicon glyphicon-trash"></span></button>
        </div>
 
-       <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default" id="SaveBtn"><span class="glyphicon glyphicon-ok"></span></button>
-        <button type="button" class="btn btn-default" id="DropBtn"><span class="glyphicon glyphicon-remove"></span></button>
-       </div>
- 
- 
- 
     </div>
     
     
