@@ -5,6 +5,7 @@ require("../dbase/dbFunction.php");
 session_start();
 $ifLogin=0;
 $userName=""; $userID="";
+$albumName=""; $albumID="";
 
 if(isset($_SESSION['SessionID'])){
 	$sessionID=$_SESSION['SessionID'];
@@ -16,9 +17,23 @@ if(isset($_SESSION['SessionID'])){
 	}
 }
 
+if(isset($_GET['AlbumID'])){
+	$albumID=$_GET['AlbumID'];
+}
+
 if($ifLogin==0){
 	header("Location: ../Login/Login.php");	
 }
+if($albumID==""){
+	header("Location: ../Album/Album.php");	
+}
+
+$gVarHTML="<script type=\"text/javascript\">
+		  var albumID=$albumID;
+		  var userID=$userID;
+		  var userName=$userName;
+		</script>";
+printf($gVarHTML);
 
 ?>
 
