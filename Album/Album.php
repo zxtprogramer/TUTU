@@ -106,6 +106,7 @@ if($ifLogin==0){
 
               <div class=\"panel-footer\">
                 <div class=\"btn-group\" role=\"group\">
+				  <button type=\"button\" class=\"btn btn-default\"><a href=\"/Pic/Pic.php?AlbumID=$albumID\"><span class=\"glyphicon glyphicon-upload\"></span></a></button>
 				  <button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-download-alt\"></span></button>
 				  <button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-pencil\"></span></button>
 				  <button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-trash\" onclick=\"deleteAlbum($albumID)\"></span></button>

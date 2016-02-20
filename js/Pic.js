@@ -2,6 +2,7 @@ var map;
 var lngMax,lngMin,latMax,latMin;
 var picArray=new Array();
 var picMarker=new Array();
+var nowPicIndex=-1;
 
 
 function getBounds(){
@@ -16,20 +17,20 @@ function getBounds(){
 }
 
 function _onClick(e){
-	fresh();
+	getBounds();
 }
 function _onMoveend(e){
-	fresh();
+	getBounds();
 }
 function _onDragend(e){
-	fresh();
+	getBounds();
 }
 function _onZoomend(e){
-	fresh();
+	getBounds();
 }
 
 function _ontouchend(e){
-	fresh();
+	getBounds();
 }
 
 function initMap(){
@@ -170,6 +171,34 @@ function fresh(){
 	getBounds();
 	picArray=getAlbumPic(albumID);
 	addMarker();
+}
+
+function showPicDiv(){
+	var info=[];
+	var picName=picArray[nowPicIndex]['PicName'];
+	var snapBigPath="/Data/User_" + userID + "/AlbumSnapBig_" + albumID + "/" + picName;
+	var lng=picArray[nowPicIndex]['Longitude'];
+	var lat=picArray[nowPicIndex]['Latitude'];
+
+    info.push("<div><div style=\"padding:0px 0px 0px 4px;\"><b>" + "" + "</b>");
+    info.push("<img src=\""+ snapBigPath + "\" /></div></div>");
+    infoWindow = new AMap.InfoWindow({
+        content: info.join("<br/>")  //使用默认信息窗体框样式，显示信息内容
+    });
+    infoWindow.open(map, [lng,lat]);
+	
+}
+
+function nextPic(){
+	var picNum=picArray.length;
+	nowPicIndex=(nowPicIndex+1)%picNum;
+	showPicDiv();
+}
+
+function beforePic(){
+	var picNum=picArray.length;
+	nowPicIndex=(nowPicIndex-1)%picNum;
+	showPicDiv();
 }
 
 

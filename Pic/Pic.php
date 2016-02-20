@@ -79,8 +79,8 @@ printf($gVarHTML);
     <div id="MapContainer" tabindex="0" ></div>
     <div id="ToolBar" tabindex="1">
       <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default" id="BeforeBtn"><span class="glyphicon glyphicon-chevron-left"></span></button>
-        <button type="button" class="btn btn-default" id="NextBtn"><span class="glyphicon glyphicon-chevron-right"></span></button>
+        <button type="button" class="btn btn-default" onclick="javascript:beforePic();" id="BeforeBtn"><span class="glyphicon glyphicon-chevron-left"></span></button>
+        <button type="button" class="btn btn-default" onclick="javascript:nextPic();" id="NextBtn"><span class="glyphicon glyphicon-chevron-right"></span></button>
       </div>
       
        <div class="btn-group" role="group">
