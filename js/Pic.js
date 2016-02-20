@@ -2,7 +2,7 @@ var map;
 var lngMax,lngMin,latMax,latMin;
 var picArray=new Array();
 var picMarker=new Array();
-var nowPicIndex=-1;
+var nowPicIndex=0;
 
 
 function getBounds(){
@@ -168,26 +168,79 @@ function addMarker(){
 }
 
 function fresh(){
+    nowPicIndex=0;
 	getBounds();
 	picArray=getAlbumPic(albumID);
 	addMarker();
+	showPicDiv();
 }
 
 function showPicDiv(){
-	var info=[];
 	var picName=picArray[nowPicIndex]['PicName'];
 	var snapBigPath="/Data/User_" + userID + "/AlbumSnapBig_" + albumID + "/" + picName;
 	var lng=picArray[nowPicIndex]['Longitude'];
 	var lat=picArray[nowPicIndex]['Latitude'];
+	var content=[];
+	var title="TUTU";
 
-    info.push("<div><div style=\"padding:0px 0px 0px 4px;\"><b>" + "" + "</b>");
-    info.push("<img src=\""+ snapBigPath + "\" /></div></div>");
+    content.push("<img src=\""+ snapBigPath + "\" />");
+
     infoWindow = new AMap.InfoWindow({
-        content: info.join("<br/>")  //使用默认信息窗体框样式，显示信息内容
+    	isCustom:true,
+        content: createInfoWindow(title,content.join("<br/>")),
+        offset:new AMap.Pixel(16,-25)
     });
     infoWindow.open(map, [lng,lat]);
+    map.setCenter([lng,lat]);
 	
 }
+
+function createInfoWindow(title, content) {
+    var info = document.createElement("div");
+    info.className = "info";
+
+    //可以通过下面的方式修改自定义窗体的宽高
+    //info.style.width = "400px";
+    // 定义顶部标题
+    var top = document.createElement("div");
+    var titleD = document.createElement("div");
+    var closeX = document.createElement("img");
+    top.className = "info-top";
+    titleD.innerHTML = title;
+    closeX.src = "/images/close2.gif";
+    closeX.onclick = closeInfoWindow;
+
+    top.appendChild(titleD);
+    top.appendChild(closeX);
+    info.appendChild(top);
+
+    // 定义中部内容
+    var middle = document.createElement("div");
+    middle.className = "info-middle";
+    middle.style.backgroundColor = 'white';
+    middle.innerHTML = content;
+    info.appendChild(middle);
+
+    // 定义底部内容
+    var bottom = document.createElement("div");
+    bottom.className = "info-bottom";
+    bottom.style.position = 'relative';
+    bottom.style.top = '0px';
+    bottom.style.margin = '0 auto';
+    var sharp = document.createElement("img");
+    sharp.src = "/images/sharp.png";
+    bottom.appendChild(sharp);
+    info.appendChild(bottom);
+    return info;
+}
+
+//关闭信息窗体
+function closeInfoWindow() {
+    map.clearInfoWindow();
+}
+
+
+
 
 function nextPic(){
 	var picNum=picArray.length;
@@ -197,7 +250,7 @@ function nextPic(){
 
 function beforePic(){
 	var picNum=picArray.length;
-	nowPicIndex=(nowPicIndex-1)%picNum;
+	nowPicIndex=(nowPicIndex + picNum -1)%picNum;
 	showPicDiv();
 }
 
