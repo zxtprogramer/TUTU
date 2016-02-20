@@ -29,8 +29,6 @@ function getPicInfo($picFile, $lngMax, $lngMin, $latMax, $latMin){
 		$shootTime=mktime($hour, $min, $sec, $month, $day, $year);
 	}
 
-	echo $shootTime;
-	
 	if($shootTime==0){$shootTime=time();}
 	if($lng==0 || $lat==0){
 		$lng=rand($lngMax*1e7, $lngMin*1e7)/1e7;

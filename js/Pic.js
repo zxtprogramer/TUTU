@@ -1,6 +1,7 @@
 var map;
 var lngMax,lngMin,latMax,latMin;
 var picArray=new Array();
+var picMarker=new Array();
 
 
 function getBounds(){
@@ -15,20 +16,20 @@ function getBounds(){
 }
 
 function _onClick(e){
-	getBounds();
+	fresh();
 }
 function _onMoveend(e){
-	getBounds();
+	fresh();
 }
 function _onDragend(e){
-	getBounds();
+	fresh();
 }
 function _onZoomend(e){
-	getBounds();
+	fresh();
 }
 
 function _ontouchend(e){
-	getBounds();
+	fresh();
 }
 
 function initMap(){
@@ -92,7 +93,6 @@ function upload(){
 		xhr.open("POST", url, true);
 		xhr.onreadystatechange=function(){
 			if(xhr.readyState==4 && xhr.status==200){
-				alert(xhr.responseText);
 			}
 		};
 		
@@ -143,9 +143,36 @@ function getAlbumPic(albumID){
     return picATmp;
 }
 
-function showMarker(){
-	
+function addMarker(){
+	var i=0;
+	for(i=0;i<picArray.length;i++){
+		var lng=parseFloat(picArray[i]['Longitude']);
+		var lat=parseFloat(picArray[i]['Latitude']);
+		var picName=picArray[i]['PicName'];
+		var snapSmallPath="/Data/User_" + userID + "/AlbumSnapSmall_" + albumID + "/" + picName;  
+		var markPos=[lng,lat];
+		var marker=new AMap.Marker({
+			map:map,
+            position:markPos,
+            icon:snapSmallPath,
+            offset:{x:0,y:0}
+		});
+		picMarker.push(marker);
+	}
+	/*
+	map.plugin(["AMap.MarkerClusterer"], function(){
+		cluster=new AMap.MarkerClusterer(map, picMarker);
+	});
+	*/
 }
+
+function fresh(){
+	getBounds();
+	picArray=getAlbumPic(albumID);
+	addMarker();
+}
+
 
 initMap();
 initUpload();
+fresh();
