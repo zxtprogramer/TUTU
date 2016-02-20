@@ -240,6 +240,7 @@ function fresh(){
 
 function showPicDiv(){
 	var picName=picArray[nowPicIndex]['PicName'];
+	var picPath="/Data/User_" + userID + "/Album_" + albumID + "/" + picName;
 	var snapBigPath="/Data/User_" + userID + "/AlbumSnapBig_" + albumID + "/" + picName;
 	var ext=snapBigPath.substr(snapBigPath.indexOf('.')+1).toLowerCase();
 	if(ext=="mp4"){
@@ -259,9 +260,7 @@ function showPicDiv(){
 	   title="图片(" + nowNum + "/" + picNum + ")";
 	}
 
-
-
-    content.push("<img src=\""+ snapBigPath + "\" />");
+    content.push("<a href=\""+picPath+"\"><img src=\""+ snapBigPath + "\" /></a>");
 
     infoWindow = new AMap.InfoWindow({
     	isCustom:true,
