@@ -158,6 +158,8 @@ function addMarker(){
             icon:snapSmallPath,
             offset:{x:0,y:0}
 		});
+		marker.picIndex=i;
+		marker.on('click',markerClick)
 		picMarker.push(marker);
 	}
 	/*
@@ -165,6 +167,11 @@ function addMarker(){
 		cluster=new AMap.MarkerClusterer(map, picMarker);
 	});
 	*/
+}
+
+function markerClick(e){
+	nowPicIndex=this.picIndex;
+	showPicDiv();
 }
 
 function fresh(){
