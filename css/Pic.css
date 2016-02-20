@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+#MapContainer{
+  width:100%;
+  position:absolute;
+  top:0px;
+  bottom:0px;
+  margin:0px;
+}
+
+#ToolBar{
+	width=100%;
+	position:absolute;
+	bottom:20px;
+	left:20px;
+	margin:0px;
+}
