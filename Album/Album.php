@@ -33,6 +33,10 @@ if($ifLogin==0){
   </head>
 
   <body>
+  
+  <?php 
+    require("AlbumNav.php");
+  ?>
  
 <!-- New Album Modal -->
 <div class="modal fade" id="newAlbumModal" tabindex="-1" role="dialog" aria-labelledby="newAlbumModalLabel">
@@ -64,16 +68,8 @@ if($ifLogin==0){
 
     <div class="container-fluid">
    
-      <div class="row">
-        <div class="col-xs-12">
-            <div class="btn-group" role="group">
-     		  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newAlbumModal"><span class="glyphicon glyphicon-plus" style="font-size:25px;"></span></button>
-	    	  <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-refresh" style="font-size:25px;"></span></button>
-			</div>
-        </div>
-
+      <div class="row" style="height:50px;">
       </div>
-      <br />
 
 
      <?php 
@@ -106,7 +102,7 @@ if($ifLogin==0){
 
               <div class=\"panel-footer\">
                 <div class=\"btn-group\" role=\"group\">
-				  <button type=\"button\" class=\"btn btn-default\"><a href=\"/Pic/Pic.php?AlbumID=$albumID&albumUserID=$userID\"><span class=\"glyphicon glyphicon-upload\"></span></a></button>
+				  <button type=\"button\" class=\"btn btn-default\"><a href=\"/Pic/Pic.php?AlbumID=$albumID&albumUserID=$userID\"><span class=\"glyphicon glyphicon-globe\"></span></a></button>
 				  <button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-download-alt\"></span></button>
 				  <button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-pencil\"></span></button>
 				  <button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-trash\" onclick=\"deleteAlbum($albumID)\"></span></button>

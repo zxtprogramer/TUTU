@@ -22,9 +22,6 @@ if(isset($_GET['AlbumID'])){
 	$albumID=$_GET['AlbumID'];
 }
 
-if($ifLogin==0){
-	header("Location: ../Login/Login.php");	
-}
 if($albumID==""){
 	header("Location: ../Album/Album.php");	
 }
@@ -54,6 +51,7 @@ printf($gVarHTML);
   <body>
   <?php 
     require('PicPanel.php');
+    require('../Nav/Nav.php');
   ?>
   
   
@@ -91,12 +89,20 @@ printf($gVarHTML);
         <button type="button" class="btn btn-default" onclick="javascript:nextPic();" id="NextBtn"><span class="glyphicon glyphicon-chevron-right"></span></button>
       </div>
       
-       <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#uploadModal" id="UploadBtn"><span class="glyphicon glyphicon-open"></span></button>
-        <button type="button" class="btn btn-default" onclick="javascript:movePic()" id="MoveBtn"><span class="glyphicon glyphicon-move"></span></button>
-        <button type="button" class="btn btn-danger" onclick="javascript:delPic()" id="DeleteBtn"><span class="glyphicon glyphicon-trash"></span></button>
-       </div>
+      <?php 
+      if($ifLogin==1 && $albumUserID==$userID){
+      	$editBar='
+			<div class="btn-group" role="group">
+			  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#uploadModal" id="UploadBtn"><span class="glyphicon glyphicon-open"></span></button>
+			  <button type="button" class="btn btn-default" onclick="javascript:movePic()" id="MoveBtn"><span class="glyphicon glyphicon-move"></span></button>
+			  <button type="button" class="btn btn-danger" onclick="javascript:delPic()" id="DeleteBtn"><span class="glyphicon glyphicon-trash"></span></button>
+		    </div>
+		';
+      	print($editBar);
+      	
 
+      }
+      ?>
     </div>
     
     
