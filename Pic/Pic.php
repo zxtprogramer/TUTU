@@ -15,6 +15,7 @@ if(isset($_SESSION['SessionID'])){
 		$userID=$res['UserID'];
 		$ifLogin=1;
 	}
+	$albumUserID=$_GET['albumUserID'];
 }
 
 if(isset($_GET['AlbumID'])){
@@ -30,6 +31,7 @@ if($albumID==""){
 
 $gVarHTML="<script type=\"text/javascript\">
 		  var albumID=$albumID;
+		  var albumUserID=$albumUserID;
 		  var userID=$userID;
 		  var userName=$userName;
 		</script>";
@@ -45,10 +47,16 @@ printf($gVarHTML);
     <link href="../css/bootstrap.min.css" rel='stylesheet' type='text/css' />
     <link href="../css/bootstrap-theme.min.css" rel='stylesheet' type='text/css' />
     <link href="../css/Pic.css" rel='stylesheet' type='text/css' />
+    <link href="../css/PicPanel.css" rel='stylesheet' type='text/css' />
     <title>图片</title>
   </head>
 
   <body>
+  <?php 
+    require('PicPanel.php');
+  ?>
+  
+  
 <!-- Upload Modal -->
 <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel">
   <div class="modal-dialog" role="document">
@@ -98,6 +106,7 @@ printf($gVarHTML);
     <script src="../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=605574e6236d5b46cff5ddfe4ac9f437"></script>
     <script src="../js/Pic.js"></script>
+    <script src="../js/PicPanel.js"></script>
  
   </body>
 </html>

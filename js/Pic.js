@@ -260,7 +260,7 @@ function showPicDiv(){
 	   title="图片(" + nowNum + "/" + picNum + ")";
 	}
 
-    content.push("<a href=\""+picPath+"\"><img src=\""+ snapBigPath + "\" /></a>");
+    content.push("<img onclick=\"javascript:showPanel()\" src=\""+ snapBigPath + "\" />");
 
     infoWindow = new AMap.InfoWindow({
     	isCustom:true,

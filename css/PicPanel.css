@@ -1,0 +1,142 @@
+.PicPanelDiv{
+    width:100%;
+    height:100%;
+    background:#eee;
+    top:0px;
+    right:auto;
+    left:auto;
+    box-shadow:2px 2px 2px #aaa;
+    border:1px solid #666;
+    overflow:hidden;
+    z-index:1000;
+    border-radius:5px;
+    position:absolute;
+}
+
+#ClosePicPanelButton{
+	right:5px;
+    position:absolute;
+}
+
+.PicPanelDiv a{
+    text-decoration:none;
+}
+
+.PicPanelToolDiv{
+    width:100%;
+    height:30px;
+    margin:2px;
+    padding:2px;
+    background:#eee;
+    font-size:12px;
+    position:absolute;
+}
+.PicPanelTool2Div{
+    width:100%;
+    height:30px;
+    margin:0px;
+    padding:0px;
+    background:#eee;
+    position:absolute;
+}
+
+#PicNumText{
+    width:50px;
+}
+
+.PicPanelImgDiv{
+    width:100%;
+    height:50%;
+    background:#666;
+    top:30px;
+    left:0px;
+    position:absolute;
+}
+
+.PicPanelImg{
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+
+.PicPanelVideo{
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+
+.PicInfoDiv{
+	width:100%;
+    background:#fff;
+    left:0px;
+    top:360px;
+    overflow-x:hidden;
+    overflow-y:scroll;
+    position:absolute;
+}
+
+
+.PicPanelCmtDiv{
+    width:100%;
+    height:100%;
+    bottom:0px;
+    left:0px;
+    top:360px;
+    overflow:hidden;
+    border:0px solid #000;
+    border-radius:5px;
+    position:absolute;
+}
+
+.PicCmtContentDiv{
+    width:100%;
+    height:100%;
+    background:#fff;
+    margin:0px;
+    padding:0px;
+    overflow-x:hidden;
+    overflow-y:scroll;
+    position:absolute;
+}
+.PicCmtSendDiv{
+    width:100%;
+    height:40px;
+    background:#eee;
+    margin:2px;
+    padding:2px;
+    position:absolute;
+}
+
+.CmtUserName{
+  color:#00b;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.CmtTime{
+  color:#aaa;
+  font-size:10px;
+}
+
+.CmtStr{
+  color:#000;
+  font-size:15px;
+}
+
+#CmtContentText{
+  width:80%; 
+  height:25px;
+  margin:0px;
+  padding:0px;
+  border-radius:5px;
+}
+
+#PicPanelToolDiv img{
+  width:20px;
+  height:20px;
+}
+
+#CmtSendButton{
+  width:19%;
+  height:30px;
+}
