@@ -4,8 +4,8 @@
 require("../dbase/dbFunction.php");
 session_start();
 $ifLogin=0;
-$userName=""; $userID="";
-$albumName=""; $albumID="";
+$userName="0"; $userID="0";
+$albumName="0"; $albumID="0";
 
 if(isset($_SESSION['SessionID'])){
 	$sessionID=$_SESSION['SessionID'];
@@ -15,11 +15,12 @@ if(isset($_SESSION['SessionID'])){
 		$userID=$res['UserID'];
 		$ifLogin=1;
 	}
-	$albumUserID=$_GET['albumUserID'];
 }
+
 
 if(isset($_GET['AlbumID'])){
 	$albumID=$_GET['AlbumID'];
+    $albumUserID=$_GET['AlbumUserID'];
 }
 
 if($albumID==""){

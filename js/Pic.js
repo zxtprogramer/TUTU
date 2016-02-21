@@ -6,7 +6,6 @@ var picMarker=new Array();
 var nowPicIndex=0;
 var ifMove=0;
 
-
 function getBounds(){
     bounds=map.getBounds().toString();
     bArr=bounds.split(';');
@@ -199,7 +198,7 @@ function addMarker(){
 		var lng=parseFloat(picArray[i]['Longitude']);
 		var lat=parseFloat(picArray[i]['Latitude']);
 		var picName=picArray[i]['PicName'];
-		var snapSmallPath="/Data/User_" + userID + "/AlbumSnapSmall_" + albumID + "/" + picName;  
+		var snapSmallPath="/Data/User_" + albumUserID + "/AlbumSnapSmall_" + albumID + "/" + picName;  
 		var ext=snapSmallPath.substr(snapSmallPath.indexOf('.')+1).toLowerCase();
 	    if(ext=="mp4"){
 		    snapSmallPath=snapSmallPath + ".jpg";
@@ -240,8 +239,8 @@ function fresh(){
 
 function showPicDiv(){
 	var picName=picArray[nowPicIndex]['PicName'];
-	var picPath="/Data/User_" + userID + "/Album_" + albumID + "/" + picName;
-	var snapBigPath="/Data/User_" + userID + "/AlbumSnapBig_" + albumID + "/" + picName;
+	var picPath="/Data/User_" + albumUserID + "/Album_" + albumID + "/" + picName;
+	var snapBigPath="/Data/User_" + albumUserID + "/AlbumSnapBig_" + albumID + "/" + picName;
 	var ext=snapBigPath.substr(snapBigPath.indexOf('.')+1).toLowerCase();
 	if(ext=="mp4"){
 		snapBigPath=snapBigPath + ".jpg";
