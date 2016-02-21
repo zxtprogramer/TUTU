@@ -33,7 +33,7 @@
         <div class="col-xs-8">
           <form action="" method="post">
             <div class="form-group">
-              <h2 class="text-center">登录</h2>
+              <h2 class="text-center"><a href="/Login/Login.php">登录</a>/<a href="/Register/Register.php">注册</a></h2>
 		      <label>邮箱</label>
 		      <input type="text" class="form-control" name="Email" aria-label="邮箱" placeholder="邮箱">
 		      <label>密码</label>

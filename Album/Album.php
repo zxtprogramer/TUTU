@@ -95,14 +95,14 @@ if($ifLogin==0){
               <div class=\"panel-heading\">$albumName ($timeStr) <span class=\"badge\">$picNum</span></div>
 
               <div class=\"panel-body\">
+                $albumDes<br >
                 <a href=\"/Pic/Pic.php?AlbumID=$albumID&AlbumUserID=$userID\"><img style=\"width:100%;\" class=\"img-responsive\" src=\"$facePath\" /></a>
                 <br />
-                $albumDes
               </div>
 
               <div class=\"panel-footer\">
                 <div class=\"btn-group\" role=\"group\">
-				  <button type=\"button\" class=\"btn btn-default\"><a href=\"/Pic/Pic.php?AlbumID=$albumID&albumUserID=$userID\"><span class=\"glyphicon glyphicon-globe\"></span></a></button>
+				  <a type=\"button\" class=\"btn btn-default\" href=\"/Pic/Pic.php?AlbumID=$albumID&AlbumUserID=$userID\"><span class=\"glyphicon glyphicon-globe\"></span></a>
 				  <button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-download-alt\"></span></button>
 				  <button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-pencil\"></span></button>
 				  <button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-trash\" onclick=\"deleteAlbum($albumID)\"></span></button>

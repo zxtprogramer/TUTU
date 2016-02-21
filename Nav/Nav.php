@@ -13,7 +13,7 @@
 			$navHTML="
 			  <a type=\"button\" class=\"btn btn-info\" href=\"\"><span class=\"glyphicon glyphicon-home\"></span> 首页</a>
 			  <a type=\"button\" class=\"btn btn-info\" href=\"/About/About.php\"><span class=\"glyphicon glyphicon-question-sign\"></span> 关于</a>
-			  <a type=\"button\" class=\"btn btn-info\" href=\"/Login/Login.php\"><span class=\"glyphicon glyphicon-log-in\"></span> 登录</a>
+			  <a type=\"button\" class=\"btn btn-info\" href=\"javascript:quickLogin()\" data-toggle=\"modal\" data-target=\"#loginModal\" ><span class=\"glyphicon glyphicon-log-in\"></span> 登录</a>
 			  <a type=\"button\" class=\"btn btn-info\" href=\"/Register/Register.php\"><span class=\"glyphicon glyphicon-user\"></span> 注册</a>
 			";
 		}
