@@ -165,7 +165,6 @@ function upload(){
 			}
 		};
 		
-		
 		var desInput=document.getElementById("des_" + i);
 
 		var fd=new FormData();
@@ -248,6 +247,8 @@ function markerClick(e){
 }
 
 function fresh(){
+	document.title=albumName;
+
     nowPicIndex=0;
     map.remove(picMarker);
     picMarker=new Array();

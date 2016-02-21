@@ -5,7 +5,7 @@ require("../dbase/dbFunction.php");
 session_start();
 $ifLogin=0;
 $userName="0"; $userID="0";
-$albumName="0"; $albumID="0";
+$albumName=""; $albumID="";
 
 if(isset($_SESSION['SessionID'])){
 	$sessionID=$_SESSION['SessionID'];
@@ -21,20 +21,15 @@ if(isset($_SESSION['SessionID'])){
 if(isset($_GET['AlbumID'])){
 	$albumID=$_GET['AlbumID'];
     $albumUserID=$_GET['AlbumUserID'];
+    $sql="SELECT AlbumName FROM AlbumTable WHERE AlbumID='$albumID'";
+    $res=exeSQL($sql);
+    $row=mysql_fetch_array($res);
+    $albumName=$row[0];
 }
 
 if($albumID==""){
 	header("Location: ../Album/Album.php");	
 }
-
-$gVarHTML="<script type=\"text/javascript\">
-		  var albumID=$albumID;
-		  var albumUserID=$albumUserID;
-		  var userID=$userID;
-		  var userName=$userName;
-		</script>";
-printf($gVarHTML);
-
 ?>
 
 <html  xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -50,6 +45,23 @@ printf($gVarHTML);
   </head>
 
   <body>
+
+<?php 
+global $albumID, $albumName, $albumUserID, $userName, $userID;
+$gVarHTML="<script type=\"text/javascript\">
+		  var albumID=$albumID;
+		  var albumUserID=$albumUserID;
+		  var userID=$userID;
+		  var userName='$userName';
+		  var albumName='$albumName';
+		</script>";
+printf($gVarHTML);
+
+?>
+
+  
+  
+  
   <?php 
     require('PicPanel.php');
     require('../Nav/Nav.php');
