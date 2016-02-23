@@ -1,4 +1,4 @@
 <!doctype html>
 <?php
-header("Location: /Login/Login.php");
+header("Location: /Home/Home.php");
 ?>
