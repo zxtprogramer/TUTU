@@ -5,6 +5,7 @@ require("../dbase/dbFunction.php");
 session_start();
 $ifLogin=0;
 $userName=""; $userID="";
+$nowPage='Album';
 
 if(isset($_SESSION['SessionID'])){
 	$sessionID=$_SESSION['SessionID'];
@@ -29,45 +30,21 @@ if($ifLogin==0){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../css/bootstrap.min.css" rel='stylesheet' type='text/css' />
     <link href="../css/bootstrap-theme.min.css" rel='stylesheet' type='text/css' />
+    <link href="../css/Nav.css" rel='stylesheet' type='text/css' />
+    <link href="../css/ToolBar.css" rel='stylesheet' type='text/css' />
     <title>相册</title>
   </head>
 
   <body>
   
   <?php 
-    require("AlbumNav.php");
+    require("../Nav/Nav.php");
+    require("../ToolBar/ToolBar.php");
   ?>
  
-<!-- New Album Modal -->
-<div class="modal fade" id="newAlbumModal" tabindex="-1" role="dialog" aria-labelledby="newAlbumModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">新建相册</h4>
-      </div>
-      <div class="modal-body">
-        <div class="input-group">
-          <span class="input-group-addon">名称</span>
-          <input type="text" class="form-control" id="newAlbumName"></input>
-        </div>
-        <br />
-        <div class="input-group">
-          <span class="input-group-addon">描述</span>
-          <input type="text" class="form-control" id="newAlbumDes"></input>
-        </div>
- 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="newAlbum();">新建</button>
-      </div>
-    </div>
-  </div>
-</div>
 
     <div class="container-fluid">
-   
+
       <div class="row" style="height:50px;">
       </div>
 
@@ -119,6 +96,10 @@ if($ifLogin==0){
     
     ?>
     
+    
+      <div class="row" style="height:50px;">
+      </div>
+
     </div>
     
     

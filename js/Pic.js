@@ -6,25 +6,7 @@ var picMarker=new Array();
 var nowPicIndex=0;
 var ifMove=0;
 
-function quickLogin(){
-	var xmlhttp;
-	xmlhttp=new XMLHttpRequest();
-	xmlhttp.onreadystatechange=function(){
-		if(xmlhttp.readyState==4 && xmlhttp.status==200){
-			res=xmlhttp.responseText;
-			location.reload();
-		}   
-	};  
-	
-	userEmail=document.getElementById("LoginEmail").value;
-	userPassword=document.getElementById("LoginPassword").value;
 
-	xmlhttp.open("POST", "/Login/Login.php",false);
-	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xmlhttp.send("Email=" + userEmail + "&Password=" + userPassword + "&submitLogin=Register");
-
-
-}
 
 function getBounds(){
     bounds=map.getBounds().toString();

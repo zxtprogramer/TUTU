@@ -141,10 +141,13 @@ function applyFun(){
 }
 
 function arrangePanel(){
-    panelH=parseInt($("#PicPanelDiv").height());
-    panelW=parseInt($("#PicPanelDiv").width());
-    toolDivH=30;
-    tool2DivH=30;
+	wH=parseInt($(window).height());
+	wW=parseInt($(window).width());
+	$("#PicPanelDiv").css("height", wH-40);
+    panelH=wH-40;
+    panelW=wW;
+    toolDivH=0;
+    tool2DivH=40;
     imgDivH=parseInt((panelH-60)/3*2);
     cmtDivH=parseInt((panelH-60)/3);
     
@@ -155,7 +158,7 @@ function arrangePanel(){
     $("#PicPanelImgDiv").css("height", imgDivH);
     $("#PicPanelImgDiv").css("top", toolDivH);
 
-    $("#PicPanelTool2Div").css("height", tool2DivH);
+    $("#PicPanelTool2Div").css("height", toolDivH);
     $("#PicPanelTool2Div").css("top", imgDivH+toolDivH);
 
     $("#PicPanelCmtDiv").css("height", cmtDivH);

@@ -6,6 +6,8 @@ session_start();
 $ifLogin=0;
 $userName="0"; $userID="0";
 $albumName=""; $albumID="";
+$nowPage="Pic";
+
 
 if(isset($_SESSION['SessionID'])){
 	$sessionID=$_SESSION['SessionID'];
@@ -41,6 +43,8 @@ if($albumID==""){
     <link href="../css/bootstrap-theme.min.css" rel='stylesheet' type='text/css' />
     <link href="../css/Pic.css" rel='stylesheet' type='text/css' />
     <link href="../css/PicPanel.css" rel='stylesheet' type='text/css' />
+    <link href="../css/Nav.css" rel='stylesheet' type='text/css' />
+    <link href="../css/ToolBar.css" rel='stylesheet' type='text/css' />
     <title>图片</title>
   </head>
 
@@ -62,100 +66,22 @@ printf($gVarHTML);
   
   
   
+   <div id="MapContainer" tabindex="0" ></div>
   <?php 
     require('PicPanel.php');
     require('../Nav/Nav.php');
+    require('../ToolBar/ToolBar.php');
   ?>
   
-  
-  
-  <!-- Login Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="loginModalLabel">登录</h4>
-      </div>
-      <div class="modal-body">
-        <div class="input-group">
-          <span class="input-group-addon">邮箱</span>
-          <input type="text" class="form-control" id="LoginEmail"></input>
-        </div>
-        <br />
-        <div class="input-group">
-          <span class="input-group-addon">密码</span>
-          <input type="password" class="form-control" id="LoginPassword"></input>
-        </div>
- 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="quickLogin();">登录</button>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  
-<!-- Upload Modal -->
-<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="uploadModalLabel">上传</h4>
-      </div>
-      <div class="modal-body"> 
-        <input id="UploadFile" name="files" type="file" multiple accept="image/*, video/*"></input>
-        <br />
-        <ul id="UploadList" class="list-group">
-        </ul>
-        
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="upload();">上传</button>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  
-  
-  
-    <div id="MapContainer" tabindex="0" ></div>
-    <div id="ToolBar" tabindex="1">
-      <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default" onclick="javascript:beforePic();" id="BeforeBtn"><span class="glyphicon glyphicon-chevron-left"></span></button>
-        <button type="button" class="btn btn-default" onclick="javascript:nextPic();" id="NextBtn"><span class="glyphicon glyphicon-chevron-right"></span></button>
-      </div>
       
-      <?php 
-      if($ifLogin==1 && $albumUserID==$userID){
-      	$editBar='
-			<div class="btn-group" role="group">
-			  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#uploadModal" id="UploadBtn"><span class="glyphicon glyphicon-open"></span></button>
-			  <button type="button" class="btn btn-default" onclick="javascript:movePic()" id="MoveBtn"><span class="glyphicon glyphicon-move"></span></button>
-			  <button type="button" class="btn btn-danger" onclick="javascript:delPic()" id="DeleteBtn"><span class="glyphicon glyphicon-trash"></span></button>
-		    </div>
-		';
-      	print($editBar);
-      	
-
-      }
-      ?>
-    </div>
-    
-    
- 
     
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=605574e6236d5b46cff5ddfe4ac9f437"></script>
     <script src="../js/Pic.js"></script>
     <script src="../js/PicPanel.js"></script>
+    <script src="../js/Nav.js"></script>
+    <script src="../js/ToolBar.js"></script>
  
   </body>
 </html>

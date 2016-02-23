@@ -6,7 +6,7 @@ function newAlbum(){
 
     xmlhttp.onreadystatechange=function(){
         if(xmlhttp.readyState==4 && xmlhttp.status==200){
-            newAlbumHide();
+            window.location.reload();
         }
     };  
 
@@ -24,7 +24,7 @@ function deleteAlbum(albumID){
 
     xmlhttp.onreadystatechange=function(){
         if(xmlhttp.readyState==4 && xmlhttp.status==200){
-            newAlbumHide();
+        	window.location.reload();
         }
     };  
 
