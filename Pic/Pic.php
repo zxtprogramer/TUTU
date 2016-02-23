@@ -6,6 +6,7 @@ session_start();
 $ifLogin=0;
 $userName="0"; $userID="0";
 $albumName=""; $albumID="";
+$albumUserID=0;
 $nowPage="Pic";
 
 
@@ -62,9 +63,6 @@ $gVarHTML="<script type=\"text/javascript\">
 printf($gVarHTML);
 
 ?>
-
-  
-  
   
    <div id="MapContainer" tabindex="0" ></div>
   <?php 

@@ -216,6 +216,7 @@ function addMarker(){
 		marker.on('click',markerClick)
 		picMarker.push(marker);
 	}
+
 	/*
 	map.plugin(["AMap.MarkerClusterer"], function(){
 		cluster=new AMap.MarkerClusterer(map, picMarker);

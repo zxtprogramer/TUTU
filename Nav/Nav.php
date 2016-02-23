@@ -2,7 +2,7 @@
 	  <?php 
 		if($ifLogin==1){
 			$navHTML="
-			  <div class=\"NavButton\" >
+			  <div class=\"NavButton\" onclick=\"self.location='/Home/Home.php'\">
 				<span class=\"glyphicon glyphicon-home\"></span> 首页
 			  </div>
 
@@ -21,7 +21,7 @@
 		}
 		else{
 			$navHTML="
-			  <div class=\"NavButton\" >
+			  <div class=\"NavButton\" onclick=\"self.location='/Home/Home.php'\">
 				<span class=\"glyphicon glyphicon-home\"></span> 首页
 			  </div>
 

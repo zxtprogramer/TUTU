@@ -9,6 +9,7 @@ $dbRoot="root";
 $dbRootPwd="1qaz2wsx";
 
 $dataPath="/var/www/html/Data/";
+$rootPath="/var/www/html/";
 
 function createDB(){
     global $dbHost, $dbUser, $dbPwd, $dbName, $dbRoot, $dbRootPwd;
@@ -80,7 +81,7 @@ function init(){
 }
 
 function addUser($userName, $password, $email){
-	global $dataPath;
+	global $dataPath,$rootPath;
     if(checkUser($userName, $email)>0) return;
     $sql="INSERT INTO UserInfoTable (UserName,Password,Email) VALUES('$userName','$password','$email')";
     if(!exeSQL($sql)){return -1;}//printf("add user $userName failed\n");
@@ -93,6 +94,7 @@ function addUser($userName, $password, $email){
     if(!file_exists($dirPath)){
     	mkdir($dirPath);
     }
+    copy($rootPath . "images/UserFace.jpg", $dirPath . '/UserFace.jpg');
     return 0;
 }
 

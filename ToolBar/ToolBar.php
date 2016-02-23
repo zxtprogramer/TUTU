@@ -94,7 +94,7 @@
 	  if($ifLogin==1){
 		  $editBar='
 			<div class="btn-group" role="group">
-			  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newAlbumModal" id="NewAlbumBtn"><span class="glyphicon glyphicon-plus"></span></button>
+			  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newAlbumModal" id="NewAlbumBtn"><span class="glyphicon glyphicon-plus">新建</span></button>
 			</div>
 		';
 		  print($editBar);

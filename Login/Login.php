@@ -10,7 +10,7 @@
 		  $_SESSION['SessionID']=$sessionID;
 		  $sql="UPDATE UserInfoTable SET SessionID='$sessionID' WHERE Email='$email'";
 		  exeSQL($sql);
-		  echo "<script type=text/javascript>window.location=\"/Album/Album.php\";</script>";
+		  echo "<script type=text/javascript>window.location=\"/Home/Home.php\";</script>";
 	  }
   }
 ?>

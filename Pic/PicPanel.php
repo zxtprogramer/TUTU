@@ -1,11 +1,10 @@
     <div id="PicPanelDiv" class="PicPanelDiv">
-      <div id="PicPanelToolDiv" class="PicPanelToolDiv">
-        <a href="javascript:befPic_Panel()"><span style="font-size:20px" class="glyphicon glyphicon-chevron-left"></span></a>
-        <a href="javascript:nextPic_Panel()"><span style="font-size:20px"  class="glyphicon glyphicon-chevron-right"></span></a>
-        <a id="ClosePicPanelButton" href="javascript:closePicPanel()"><span style="font-size:20px"  class="glyphicon glyphicon-remove"></span></a>
+    
+      <div id="PicPanelCloseDiv" class="PicPanelCloseDiv" onclick="closePicPanel()">
+        <span style="font-size:40px" class="glyphicon glyphicon-remove-sign"></span>
       </div>
-
-      <div id="PicPanelImgDiv" class="PicPanelImgDiv">
+    
+      <div id="PicPanelImgDiv" class="PicPanelImgDiv" onclick="hideCmt();">
         <a href="javascript:"><img id="PicPanelImg" class="PicPanelImg" src="" /></a>
         <a href="javascript:"><video id="PicPanelVideo" class="PicPanelVideo" src="" controls="controls"/></a>
       </div>
@@ -25,8 +24,7 @@
 
 
       <div id="PicPanelCmtDiv" class="PicPanelCmtDiv">
-        <div id="PicCmtContentDiv" class="PicCmtContentDiv" >
-        </div>
+        <div id="PicCmtContentDiv" class="PicCmtContentDiv" > </div>
         <div id="PicCmtSendDiv" class="PicCmtSendDiv" >
           <div class="input-group">
             <span class="input-group-addon" onclick="sendCmtFun()">发送</span>

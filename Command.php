@@ -202,6 +202,26 @@ if(isset($_POST['cmd'])){
 		    $sql="SELECT * FROM PicTable WHERE AlbumID=$albumID ORDER BY ShootTime";
 			print(getData($sql));
         	break;
+
+        case 'getAlbumFace':
+        	$albumID=(int)($_POST['albumID']);
+        	print(getAlbumFace($albumID));
+        	break;
+
+        case 'getAlbumList':
+        	$albumUserID=(int)($_POST['albumUserID']);
+        	$scrollNum=(int)($_POST['scrollNum']);
+        	$onceNum=(int)($_POST['onceNum']);
+        	$bgn=$scrollNum*$onceNum;
+
+        	if($albumUserID==0){
+    		    $sql="SELECT * FROM AlbumTable WHERE PicNum>0 ORDER BY CreateTime LIMIT $bgn,$onceNum";
+        	}
+        	else{
+    		    $sql="SELECT * FROM AlbumTable WHERE UserID=$albumUserID ORDER BY CreateTime LIMIT $bgn,$onceNum";
+        	}
+			print(getData($sql));
+        	break;
 	
 	    
 		case 'getPic':

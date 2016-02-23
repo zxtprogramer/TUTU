@@ -1,5 +1,16 @@
+var ifShowCmt=-1;
+
+function hideCmt(){
+	ifShowCmt=-1;
+	arrangePanel();
+}
+
+
 function closePicPanel(){
   $("#PicPanelDiv").hide();
+  $("#PicPanelImg").attr("src","");
+  $("#PicPanelVideo").attr("src","");
+	
 }
 
 
@@ -49,6 +60,8 @@ function showInfo(){
     info.push("位置:" + picArray[nowPicIndex]['Longitude'] + " " + picArray[nowPicIndex]['Latitude']);
     info.push("描述:" + picArray[nowPicIndex]['Description']);
     $("#PicInfoDiv").html(info.join("<br />"));
+    ifShowCmt=1;
+    arrangePanel();
     $("#PicInfoDiv").show();
     $("#PicPanelCmtDiv").hide();
 }
@@ -84,6 +97,8 @@ function showComment(){
     }
     $("#PicCmtContentDiv").html(cmt.join("<br />"));
     $("#PicInfoDiv").hide();
+    ifShowCmt=1;
+	arrangePanel();
     $("#PicPanelCmtDiv").show();
 }
 
@@ -148,8 +163,14 @@ function arrangePanel(){
     panelW=wW;
     toolDivH=0;
     tool2DivH=40;
-    imgDivH=parseInt((panelH-60)/3*2);
-    cmtDivH=parseInt((panelH-60)/3);
+    if(ifShowCmt==1){
+        imgDivH=parseInt((panelH-40)/3*2);
+        cmtDivH=parseInt((panelH-40)/3);
+    }
+    if(ifShowCmt==-1){
+        imgDivH=parseInt((panelH-40));
+        cmtDivH=0;
+    }
     
     
     $("#PicPanelToolDiv").css("height", toolDivH);
@@ -158,19 +179,19 @@ function arrangePanel(){
     $("#PicPanelImgDiv").css("height", imgDivH);
     $("#PicPanelImgDiv").css("top", toolDivH);
 
-    $("#PicPanelTool2Div").css("height", toolDivH);
-    $("#PicPanelTool2Div").css("top", imgDivH+toolDivH);
+    $("#PicPanelTool2Div").css("height", tool2DivH);
+    $("#PicPanelTool2Div").css("top", imgDivH);
 
     $("#PicPanelCmtDiv").css("height", cmtDivH);
-    $("#PicPanelCmtDiv").css("top", imgDivH+toolDivH+tool2DivH);
+    $("#PicPanelCmtDiv").css("top", imgDivH+tool2DivH);
     $("#PicInfoDiv").css("height", cmtDivH);
-    $("#PicInfoDiv").css("top", imgDivH+toolDivH+tool2DivH);
+    $("#PicInfoDiv").css("top", imgDivH+tool2DivH);
 
     $("#PicCmtContentDiv").css("height", cmtDivH-40);
-    $("#PicCmtContentDiv").css("top", 0);
+    $("#PicCmtContentDiv").css("top", 40);
 
-    $("#PicCmtSendDiv").css("height", 30);
-    $("#PicCmtSendDiv").css("top", cmtDivH-40);
+    $("#PicCmtSendDiv").css("height", 40);
+    $("#PicCmtSendDiv").css("top", 0);
 
 }
 
@@ -233,8 +254,6 @@ function freshPanel(){
 	    $("#PicPanelVideo").hide();
 	    $("#PicPanelImg").show();
     }
-
-    showComment();
 
 }
 
