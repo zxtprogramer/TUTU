@@ -124,7 +124,7 @@ function showComment(){
     }
     $("#PicCmtContentDiv").html(cmt.join("<br />"));
     $("#PicInfoDiv").hide();
-    ifShowCmt=1;
+    ifShowCmt=ifShowCmt*(-1);
 	arrangePanel();
     $("#PicPanelCmtDiv").show();
 }
