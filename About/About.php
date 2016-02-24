@@ -1,3 +1,24 @@
+<?php 
+require("../dbase/dbFunction.php");
+session_start();
+$ifLogin=0;
+$userName=""; $userID="";
+$nowPage='Album';
+
+if(isset($_SESSION['SessionID'])){
+	$sessionID=$_SESSION['SessionID'];
+	$res=getUserFromSessionID($sessionID);
+	if(sizeof($res)>1){
+		$userName=$res['UserName'];
+		$userID=$res['UserID'];
+		$ifLogin=1;
+	}
+}
+
+?>
+
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html  xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>

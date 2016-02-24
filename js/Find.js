@@ -235,11 +235,9 @@ function addMarker(){
 	}
 	
 	//map.setFitView();
-	/*
 	map.plugin(["AMap.MarkerClusterer"], function(){
 		cluster=new AMap.MarkerClusterer(map, picMarker);
 	});
-	*/
 }
 
 function markerClick(e){
