@@ -9,14 +9,15 @@
         <video id="PicPanelVideo" class="PicPanelVideo" src="" controls="controls"/>
       </div>
 
-      <div id="PicPanelTool2Div" class="PicPanelTool2Div">
-        <a href="javascript:befPic_Panel()"><span style="font-size:25px" class="glyphicon glyphicon-chevron-left"></span></a>
-        <a href="javascript:nextPic_Panel()"><span style="font-size:25px"  class="glyphicon glyphicon-chevron-right"></span></a>
+      <div id="PicPanelTool2Div" class="PicPanelTool2Div" style="letter-spacing:5px;">
+        <a href="javascript:befPic_Panel()"><span style="font-size:20px" class="glyphicon glyphicon-chevron-left"></span></a>
+        <a href="javascript:nextPic_Panel()"><span style="font-size:20px"  class="glyphicon glyphicon-chevron-right"></span></a>
 
-        <a href="javascript:likeFun()"><span style="font-size:25px" class="glyphicon glyphicon-thumbs-up"></span></a>
+        <a href="javascript:likeFun()"><span style="font-size:20px" class="glyphicon glyphicon-thumbs-up"></span></a>
         <span style="font-size:25px" id="LikeNumLabel">0 </span>
-        <a href="javascript:showComment()"> <span style="font-size:25px" class="glyphicon glyphicon-comment"></span> </a>
-        <a href="javascript:showInfo()"> <span style="font-size:25px" class="glyphicon glyphicon-info-sign"></span> </a>
+        <a href="javascript:showComment()"> <span style="font-size:20px" class="glyphicon glyphicon-comment"></span> </a>
+        <a href="javascript:showInfo()"> <span style="font-size:20px" class="glyphicon glyphicon-info-sign"></span> </a>
+        <a href="javascript:hideComment()"> <span style="font-size:20px" class="glyphicon glyphicon-chevron-down"></span> </a>
       </div>
 
       <div id="PicInfoDiv" class="PicInfoDiv">

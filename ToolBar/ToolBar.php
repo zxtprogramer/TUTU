@@ -56,7 +56,7 @@
 <div id="ToolBar" tabindex="1">
   <div class="btn-group" role="group">
   <?php 
-  if($nowPage=="Pic"){
+  if($nowPage=="Pic" || $nowPage=="Find"){
   	$bar="
 	  <button type=\"button\" class=\"btn btn-default\" onclick=\"javascript:beforePic();\" id=\"BeforeBtn\"><span class=\"glyphicon glyphicon-chevron-left\"></span></button>
 	  <button type=\"button\" class=\"btn btn-default\" onclick=\"javascript:nextPic();\" id=\"NextBtn\"><span class=\"glyphicon glyphicon-chevron-right\"></span></button>

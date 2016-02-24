@@ -23,28 +23,30 @@ function appendAlbum(album){
 	albumUserID=album['UserID'];
 	albumTime=parseInt(album['CreateTime'])*1000;
 
-	var albumUserTitle=document.createElement('div')
+	var albumUserTitle=document.createElement('div');
 	albumUserTitle.setAttribute("class","row UserTitle");
 	albumUserTitle.innerHTML='<a href="/UserPage/UserPage.php?PageUserID='+albumUserID+'"><img src="/Data/User_' + albumUserID + '/UserFace.jpg" class="UserFaceImg"></img></a> ' + 
 	albumUserName + ' (' + myGetTime(albumTime) + ')' + ' <span class="badge">'+albumNum+'</span>';
 
-	var albumTitle=document.createElement('div')
+	var albumTitle=document.createElement('div');
 	albumTitle.setAttribute("class","row AlbumTitle");
 	albumTitle.setAttribute("albumID",albumID);
 	albumTitle.innerHTML='<h5>'+albumName +' <small> '  + albumDes + '</small></h1>';
 	
-	var albumFace=document.createElement('div')
+	var albumFace=document.createElement('div');
 	albumFace.setAttribute("class","row");
 	albumFace.innerHTML='<a href="/Pic/Pic.php?AlbumID='+albumID+'&AlbumUserID='+albumUserID+'"><img style="width:100%;" src="' + albumFacePath +'"/></a>' ;
 
-	var albumSpace=document.createElement('div')
-	albumSpace.setAttribute("class","row AlbumSpace");
-	
-	document.getElementById("HomeMain").appendChild(albumSpace);
+	var albumSpace1=document.createElement('div');
+	albumSpace1.setAttribute("class","row AlbumSpace");
+	var albumSpace2=document.createElement('div');
+	albumSpace2.setAttribute("class","row AlbumSpace");
+
 	document.getElementById("HomeMain").appendChild(albumUserTitle);
-	document.getElementById("HomeMain").appendChild(albumTitle);
 	document.getElementById("HomeMain").appendChild(albumFace);
-	document.getElementById("HomeMain").appendChild(albumSpace);
+	document.getElementById("HomeMain").appendChild(albumTitle);
+	document.getElementById("HomeMain").appendChild(albumSpace1);
+	document.getElementById("HomeMain").appendChild(albumSpace2);
 	
 }
 

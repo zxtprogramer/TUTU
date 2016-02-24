@@ -68,8 +68,11 @@ function appendAlbum(album){
 	albumFace.setAttribute("class","row");
 	albumFace.innerHTML='<a href="/Pic/Pic.php?AlbumID='+albumID+'&AlbumUserID='+albumUserID+'"><img style="width:100%;" src="' + albumFacePath +'"/></a>' ;
 
-	var albumSpace=document.createElement('div')
-	albumSpace.setAttribute("class","row ItemSpace");
+	var albumSpace1=document.createElement('div')
+	albumSpace1.setAttribute("class","row ItemSpace");
+	var albumSpace2=document.createElement('div')
+	albumSpace2.setAttribute("class","row ItemSpace");
+	
 	
 	document.getElementById("UserPageMain").appendChild(albumTitle);
 	document.getElementById("UserPageMain").appendChild(albumFace);
@@ -87,7 +90,8 @@ function appendAlbum(album){
     	document.getElementById("UserPageMain").appendChild(albumEdit);
 	}
 
-	document.getElementById("UserPageMain").appendChild(albumSpace);
+	document.getElementById("UserPageMain").appendChild(albumSpace1);
+	document.getElementById("UserPageMain").appendChild(albumSpace2);
 }
 
 function getAlbumFace(albumID){

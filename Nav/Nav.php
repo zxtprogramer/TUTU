@@ -6,6 +6,10 @@
 				<span class=\"glyphicon glyphicon-home\"></span> 首页
 			  </div>
 
+			  <div class=\"NavButton\" onclick=\"self.location='/Find/Find.php'\">
+				<span class=\"glyphicon glyphicon-globe\"></span> 发现
+			  </div>
+
 			  <div class=\"NavButton\" onclick=\"self.location='/About/About.php'\">
 				<span class=\"glyphicon glyphicon-question-sign\"></span> 帮助
 			  </div>
@@ -23,6 +27,10 @@
 			$navHTML="
 			  <div class=\"NavButton\" onclick=\"self.location='/Home/Home.php'\">
 				<span class=\"glyphicon glyphicon-home\"></span> 首页
+			  </div>
+
+			  <div class=\"NavButton\" onclick=\"self.location='/Find/Find.php'\">
+				<span class=\"glyphicon glyphicon-globe\"></span> 发现
 			  </div>
 
 			  <div class=\"NavButton\" onclick=\"self.location='/About/About.php'\">

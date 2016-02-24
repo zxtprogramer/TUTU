@@ -124,9 +124,13 @@ function showComment(){
     }
     $("#PicCmtContentDiv").html(cmt.join("<br />"));
     $("#PicInfoDiv").hide();
-    ifShowCmt=ifShowCmt*(-1);
+    ifShowCmt=1;
 	arrangePanel();
     $("#PicPanelCmtDiv").show();
+}
+function hideComment(){
+    ifShowCmt=-1;
+	arrangePanel();
 }
 
 function getComment(picID){
@@ -228,8 +232,10 @@ function freshPanel(){
     
     
     fName=picArray[nowPicIndex]['PicName'];
+    var picUserID=picArray[nowPicIndex]['UserID'];
+    var picAlbumID=picArray[nowPicIndex]['AlbumID'];
 
-    picPath="/Data/User_" + albumUserID + "/Album_" + albumID + "/" + fName; 
+    picPath="/Data/User_" + picUserID + "/Album_" + picAlbumID + "/" + fName; 
 
     ext=picPath.substr(picPath.lastIndexOf(".")+1).toLowerCase();
     

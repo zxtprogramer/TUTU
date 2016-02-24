@@ -262,7 +262,8 @@ if(isset($_POST['cmd'])){
 			$index=$picNum*$groupNum;
 			$sql="";
 			switch($selectType){
-					case "All":
+
+     		case "All":
 				$sql="SELECT * FROM PicTable ORDER BY $sortType desc LIMIT $index,$picNum";
 				break;
 			case "AllRange":
