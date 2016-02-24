@@ -154,7 +154,9 @@ function deleteAlbum($albumID){
     }
 	
     $sql="DELETE FROM AlbumTable WHERE AlbumID='$albumID'";
-    if(!exeSQL($sql)){printf("add album $albumName failed");}
+    if(!exeSQL($sql)){printf("delete album $albumName failed");}
+    $sql="DELETE FROM PicTable WHERE AlbumID='$albumID'";
+    if(!exeSQL($sql)){printf("delete album $albumName failed");}
 }
 
 function addComment($userID, $picID, $comment, $createTime){
