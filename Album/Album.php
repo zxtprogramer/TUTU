@@ -45,10 +45,6 @@ if($ifLogin==0){
 
     <div class="container-fluid">
 
-      <div class="row" style="height:50px;">
-      </div>
-
-
      <?php 
     $sql="SELECT * FROM AlbumTable WHERE UserID='$userID'";
     $res=exeSQL($sql);

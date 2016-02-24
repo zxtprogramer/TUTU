@@ -1,7 +1,7 @@
 #ToolBar{
 	width=100%;
 	position:fixed;
-	top:2px;
+	bottom:50px;
 	left:2px;
 	margin:0px;
 	z-index:100;

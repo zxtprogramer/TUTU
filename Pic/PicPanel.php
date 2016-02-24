@@ -5,8 +5,8 @@
       </div>
     
       <div id="PicPanelImgDiv" class="PicPanelImgDiv" onclick="hideCmt();">
-        <a href="javascript:"><img id="PicPanelImg" class="PicPanelImg" src="" /></a>
-        <a href="javascript:"><video id="PicPanelVideo" class="PicPanelVideo" src="" controls="controls"/></a>
+        <img id="PicPanelImg" class="PicPanelImg" src="" />
+        <video id="PicPanelVideo" class="PicPanelVideo" src="" controls="controls"/>
       </div>
 
       <div id="PicPanelTool2Div" class="PicPanelTool2Div">

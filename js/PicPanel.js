@@ -1,4 +1,31 @@
 var ifShowCmt=-1;
+var startX,startY;
+var endX,endY;
+
+function touchStart(event){
+	event.preventDefault();
+	var touch = event.originalEvent.changedTouches[0]; 
+	startX=touch.pageX;
+	startY=touch.pageY;
+}
+
+function touchEnd(event){
+	event.preventDefault();
+	var touch = event.originalEvent.changedTouches[0]; 
+	endX=touch.pageX;
+	endY=touch.pageY;
+	if((endX-startX)>50){
+		befPic_Panel();
+	}
+	if((startX-endX)>50){
+		nextPic_Panel();
+	}
+}
+
+function initTouch(){
+	$(".PicPanelImg").bind("touchstart",touchStart);
+	$(".PicPanelImg").bind("touchend",touchEnd);
+}
 
 function hideCmt(){
 	ifShowCmt=-1;
@@ -269,3 +296,4 @@ function showPanel(){
 }
 
 hidePanel();
+initTouch();

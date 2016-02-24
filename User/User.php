@@ -67,7 +67,7 @@ if($ifLogin==0){
 
       <div class="row UserSpaceBlack"></div>
       
-      <div class="row UserItem">
+      <div class="row UserItem" onclick="self.location='/Album/Album.php'">
         <div class="col-xs-12">
           <span class="glyphicon glyphicon-picture"></span>  相册 
         </div>
