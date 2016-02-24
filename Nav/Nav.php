@@ -6,7 +6,7 @@
 				<span class=\"glyphicon glyphicon-home\"></span> 首页
 			  </div>
 
-			  <div class=\"NavButton\">
+			  <div class=\"NavButton\" onclick=\"self.location='/About/About.php'\">
 				<span class=\"glyphicon glyphicon-question-sign\"></span> 帮助
 			  </div>
 
@@ -25,7 +25,7 @@
 				<span class=\"glyphicon glyphicon-home\"></span> 首页
 			  </div>
 
-			  <div class=\"NavButton\" onclick=\"\">
+			  <div class=\"NavButton\" onclick=\"self.location='/About/About.php'\">
 				<span class=\"glyphicon glyphicon-question-sign\"></span> 帮助
 			  </div>
 

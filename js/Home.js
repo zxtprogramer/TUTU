@@ -42,9 +42,9 @@ function appendAlbum(album){
 	
 	document.getElementById("HomeMain").appendChild(albumSpace);
 	document.getElementById("HomeMain").appendChild(albumUserTitle);
-	document.getElementById("HomeMain").appendChild(albumFace);
 	document.getElementById("HomeMain").appendChild(albumTitle);
-	//document.getElementById("HomeMain").appendChild(albumSpace);
+	document.getElementById("HomeMain").appendChild(albumFace);
+	document.getElementById("HomeMain").appendChild(albumSpace);
 	
 }
 

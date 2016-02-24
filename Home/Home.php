@@ -29,7 +29,7 @@ if(isset($_SESSION['SessionID'])){
     <link href="../css/Nav.css" rel='stylesheet' type='text/css' />
     <link href="../css/ToolBar.css" rel='stylesheet' type='text/css' />
     <link href="../css/Home.css" rel='stylesheet' type='text/css' />
-    <title>相册</title>
+    <title>首页</title>
   </head>
 
   <body>
