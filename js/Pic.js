@@ -20,6 +20,8 @@ function getBounds(){
 }
 
 function delPic(){
+	if(confirm("确定删除?")==false)return;
+
 	var picID=picArray[nowPicIndex]['PicID'];
 	var xmlhttp;
 	xmlhttp=new XMLHttpRequest();

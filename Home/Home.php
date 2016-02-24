@@ -40,8 +40,10 @@ if(isset($_SESSION['SessionID'])){
   ?>
  
 
-    <div class="container-fluid HomeMain" id="HomeMain"> </div>
+    <div class="container-fluid HomeMain" id="HomeMain"> 
+      <div class="row AlbumSpace"></div>
     
+    </div>
     
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>

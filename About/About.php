@@ -19,21 +19,25 @@
   
     <div class="container">
       <div class="row">
-        <div class="col-xs-2"></div>
-        <div class="col-xs-8">
-        <h1>帮助文档</h1>
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+        <h3>帮助文档</h3>
          1. 打开手机相机的GPS定位功能，拍摄照片，这样，照片中就会存放当时的定位信息。上传后，就可自动在地图上定位。 若没有定位信息，只能自己手动定位。视频文件，只能自己手动定位。<br />
          <br />
-         2. 目前只有网页版，没有客户端。网页主要针对手机端，在电脑上显示比较难看。<br />
+         2. 目前只有网页版，没有客户端。网页主要针对手机端，在电脑上显示比较难看, 可以把宽度调小。<br />
          <br />
          3. 电脑上一次可以上传多张图片，手机每次只能传一张。<br />
          <br />
          4. 若显示或者某些功能有问题，建议使用chrome等对HTML5支持较好的浏览器。<br /> 
-          
+         <br />
+         5. 网站还没有起名字，初步打算叫 “途图”、“22网”。。。欢迎提供好的建议。
+         <br />
+         
+         Tong Email:zxt@pku.edu.cn
         
         </div>
 
-        <div class="col-xs-2"></div>
+        <div class="col-xs-1"></div>
       </div>
     </div>
 
