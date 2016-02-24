@@ -10,6 +10,10 @@ function initUploadFace(){
 		for(i=0;i<num;i++){
 		    file=uploadFiles.files[i];
 		    fName=file.name;
+		    processBarHTML=" <div class=\"progress\"> \
+			    <div id=\"progress_" +i+ "\" class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"0\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 0%;\"> \
+			    </div> </div>";
+
 			listHTML=listHTML + "<li id=\"li_" +i + "\" class=\"list-group-item\">" + fName + "<br /><img class=\"img-responsive\" id=\"img_" + i + "\" /></li>";
 			
 			var reader=new FileReader();
@@ -21,9 +25,17 @@ function initUploadFace(){
 			reader.readAsDataURL(file);
 			
 		}
-		uploadList.innerHTML=listHTML;
+		uploadList.innerHTML=listHTML+"<br />"+processBarHTML;
 	},false);
 	
+}
+
+function uploadProgress(event){
+	var index=this.index;
+	if (event.lengthComputable) {
+       var percentComplete = Math.round(event.loaded * 100 / event.total);
+       $("#progress_"+index).css("width",percentComplete +'%');
+    }
 }
 
 
@@ -34,6 +46,9 @@ function uploadFace(){
 	for(i=0;i<num;i++){
 		var xhr=new XMLHttpRequest();
 		xhr.open("POST", url, true);
+		xhr.upload.index=i;
+		xhr.upload.addEventListener("progress", uploadProgress, false); 
+
 		xhr.onreadystatechange=function(){
 			if(xhr.readyState==4 && xhr.status==200){
 				res=xhr.responseText;

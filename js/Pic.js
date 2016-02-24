@@ -134,6 +134,15 @@ function initUpload(){
 	
 }
 
+function uploadProgress(event){
+	var index=this.index;
+	if (event.lengthComputable) {
+       var percentComplete = Math.round(event.loaded * 100 / event.total);
+       $("#progress_"+index).css("width",percentComplete +'%');
+    }
+}
+
+
 function upload(){
 	var url="/Command.php";
 	num=uploadFiles.files.length;	
@@ -141,6 +150,8 @@ function upload(){
 	for(i=0;i<num;i++){
 		var xhr=new XMLHttpRequest();
 		xhr.open("POST", url, true);
+		xhr.upload.index=i;
+		xhr.upload.addEventListener("progress", uploadProgress, false); 
 		xhr.onreadystatechange=function(){
 			if(xhr.readyState==4 && xhr.status==200){
 				fresh();
