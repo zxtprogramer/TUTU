@@ -95,6 +95,7 @@ function addUser($userName, $password, $email){
     	mkdir($dirPath);
     }
     copy($rootPath . "images/UserFace.jpg", $dirPath . '/UserFace.jpg');
+    copy($rootPath . "images/PageFace.jpg", $dirPath . '/PageFace.jpg');
     return 0;
 }
 

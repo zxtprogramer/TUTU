@@ -4,8 +4,10 @@
 require("../dbase/dbFunction.php");
 session_start();
 $ifLogin=0;
-$userName=""; $userID="";
-$nowPage='Album';
+$userName=""; $userID=0;
+$nowPage='UserPage';
+$pageUserID=""; $pageUserName="";
+$ifUserOwn=0;
 
 if(isset($_SESSION['SessionID'])){
 	$sessionID=$_SESSION['SessionID'];
@@ -17,8 +19,11 @@ if(isset($_SESSION['SessionID'])){
 	}
 }
 
-if($ifLogin==0){
-	//header("Location: ../Login/Login.php");	
+$pageUserID=$_GET['PageUserID'];
+$pageUserName=getUserName($pageUserID);
+
+if($pageUserID==$userID){
+	$ifUserOwn=1;
 }
 
 ?>
@@ -32,6 +37,7 @@ if($ifLogin==0){
     <link href="../css/bootstrap-theme.min.css" rel='stylesheet' type='text/css' />
     <link href="../css/Nav.css" rel='stylesheet' type='text/css' />
     <link href="../css/ToolBar.css" rel='stylesheet' type='text/css' />
+    <link href="../css/UserPage.css" rel='stylesheet' type='text/css' />
     <title>相册</title>
   </head>
 
@@ -39,7 +45,16 @@ if($ifLogin==0){
   
   <?php 
     require("../Nav/Nav.php");
-    require("../ToolBar/ToolBar.php");
+
+    global $albumID, $albumName, $albumUserID, $userName, $userID,$pageUserName,$pageUserID;
+    $gVarHTML="<script type=\"text/javascript\">
+    var userID=$userID;
+    var userName='$userName';
+    var pageUserID=$pageUserID;
+    var pageUserName='$pageUserName';
+    var ifUserOwn=$ifUserOwn;
+    </script>";
+    print($gVarHTML);
   ?>
   
   
@@ -70,60 +85,27 @@ if($ifLogin==0){
     </div>
   </div>
 </div>
-  
  
 
-    <div class="container-fluid">
-
-     <?php 
-    $sql="SELECT * FROM AlbumTable WHERE UserID='$userID'";
-    $res=exeSQL($sql);
-    while($row=mysql_fetch_array($res,MYSQL_ASSOC)){
-    	$picNum=intval($row['PicNum']);
-    	$albumName=$row['AlbumName'];
-    	$albumID=$row['AlbumID'];
-    	$albumDes=$row['Description'];
-    	$createTime=intval($row['CreateTime']);
-    	$timeStr=date("Y-m-d H:m:s", $createTime);
-    	$facePath="";
-    	if($picNum>0){
-    		$facePath=getAlbumFace($albumID);
-    	}
-
-    	$albumOutStr="
-		<div class=\"row\">
-          <div class=\"col-xs-12\">
-
-            <div class=\"panel panel-primary\">
-              <div class=\"panel-heading\">$albumName ($timeStr) <span class=\"badge\">$picNum</span></div>
-
-              <div class=\"panel-body\">
-                $albumDes<br >
-                <a href=\"/Pic/Pic.php?AlbumID=$albumID&AlbumUserID=$userID\"><img style=\"width:100%;\" class=\"img-responsive\" src=\"$facePath\" /></a>
-                <br />
-              </div>
-
-              <div class=\"panel-footer\">
-                <div class=\"btn-group\" role=\"group\">
-				  <a type=\"button\" class=\"btn btn-default\" href=\"/Pic/Pic.php?AlbumID=$albumID&AlbumUserID=$userID\"><span class=\"glyphicon glyphicon-globe\"></span></a>
-				  <button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-download-alt\"></span></button>
-				  <button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-pencil\"></span></button>
-				  <button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-trash\" onclick=\"deleteAlbum($albumID)\"></span></button>
-			    </div>
-              </div>
-            </div>
-
-          </div>
-        </div> ";
-    	
-       print($albumOutStr);
-    	
-    }
-    
-    ?>
-    
-    
-      <div class="row" style="height:50px;">
+    <div class="container-fluid UserPageMain" id="UserPageMain"> 
+      <div class="row PageFace">
+      <?php 
+        $str="<div class=\"PageFaceDiv\"><img class=\"PageFaceImg\" src=\"/Data/User_$pageUserID/PageFace.jpg\" ></img></div>" .
+              "<div class=\"UserTitleDiv\">" ;
+        if($ifUserOwn==1){
+        	$str=$str . "<a href=\"/User/User.php\"><img class=\"UserFaceImg\" src=\"/Data/User_$pageUserID/UserFace.jpg\" ></img></a>";
+        }
+        else{
+        	$str=$str . "<img class=\"UserFaceImg\" src=\"/Data/User_$pageUserID/UserFace.jpg\" ></img>";
+        }
+        $str=$str . "<div class=\"UserInfoDiv\" style=\"font-size:20px\"> $pageUserName</div>";  
+        if($ifUserOwn==1){
+        	$str=$str . '
+			     <div id="NewAlbumDiv" style="font-size:50px"><span class="glyphicon glyphicon-camera" data-toggle="modal" data-target="#newAlbumModal" id="NewAlbumBtn" ></span></div>';
+        }
+	    $str=$str . "</div>";
+        print($str);
+      ?>
       </div>
 
     </div>
@@ -131,7 +113,8 @@ if($ifLogin==0){
     
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/Album.js"></script>
+    <script src="../js/Nav.js"></script>
+    <script src="../js/UserPage.js"></script>
  
   </body>
 </html>

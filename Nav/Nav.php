@@ -10,7 +10,7 @@
 				<span class=\"glyphicon glyphicon-question-sign\"></span> 帮助
 			  </div>
 
-			  <div class=\"NavButton\" onclick=\"self.location='/Album/Album.php'\">
+			  <div class=\"NavButton\" onclick=\"self.location='/UserPage/UserPage.php?PageUserID=$userID'\">
 				<span class=\"glyphicon glyphicon-picture\"></span> 相册
 			  </div>
 

@@ -1,6 +1,41 @@
 var albumList=new Array();
 scrollNum=0;
 
+function newAlbum(){
+    var xmlhttp;
+    xmlhttp=new XMLHttpRequest();
+    var albumName=$("#newAlbumName").val();
+    var albumDes=$("#newAlbumDes").val()
+
+    xmlhttp.onreadystatechange=function(){
+        if(xmlhttp.readyState==4 && xmlhttp.status==200){
+            window.location.reload();
+        }
+    };  
+
+    xmlhttp.open("POST", "/Command.php",true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("cmd=newAlbum&AlbumName=" + albumName + "&AlbumDes=" + albumDes);
+}
+
+
+function deleteAlbum(albumID){
+	if(confirm("确定删除相册?")==false)return;
+    var xmlhttp;
+    xmlhttp=new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange=function(){
+        if(xmlhttp.readyState==4 && xmlhttp.status==200){
+        	window.location.reload();
+        }
+    };  
+
+    xmlhttp.open("POST", "/Command.php",true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("cmd=deleteAlbum&AlbumID=" + albumID);
+
+}
+
 function myGetTime(ms){
 	var myD=new Date();
 	myD.setTime(ms);
@@ -23,34 +58,36 @@ function appendAlbum(album){
 	albumUserID=album['UserID'];
 	albumTime=parseInt(album['CreateTime'])*1000;
 
-	var albumUserTitle=document.createElement('div')
-	albumUserTitle.setAttribute("class","row UserTitle");
-	albumUserTitle.innerHTML='<a href="/UserPage/UserPage.php?PageUserID='+albumUserID+'"><img src="/Data/User_' + albumUserID + '/UserFace.jpg" class="UserFaceImg"></img></a> ' + 
-	albumUserName + ' (' + myGetTime(albumTime) + ')' + ' <span class="badge">'+albumNum+'</span>';
-
 	var albumTitle=document.createElement('div')
-	albumTitle.setAttribute("class","row AlbumTitle");
+	albumTitle.setAttribute("class","row WhiteBK");
 	albumTitle.setAttribute("albumID",albumID);
-	albumTitle.innerHTML='<h5>'+albumName +' <small> '  + albumDes + '</small></h1>';
+	albumTitle.innerHTML= myGetTime(albumTime) + ' <span class="badge">'+albumNum+'</span><br />' +
+	                      '<h5>'+albumName +' <small> '  + albumDes + '</small></h1>';
 	
 	var albumFace=document.createElement('div')
 	albumFace.setAttribute("class","row");
 	albumFace.innerHTML='<a href="/Pic/Pic.php?AlbumID='+albumID+'&AlbumUserID='+albumUserID+'"><img style="width:100%;" src="' + albumFacePath +'"/></a>' ;
 
 	var albumSpace=document.createElement('div')
-	albumSpace.setAttribute("class","row AlbumSpace");
+	albumSpace.setAttribute("class","row ItemSpace");
 	
-	document.getElementById("HomeMain").appendChild(albumSpace);
-	document.getElementById("HomeMain").appendChild(albumUserTitle);
-	document.getElementById("HomeMain").appendChild(albumFace);
-	document.getElementById("HomeMain").appendChild(albumTitle);
-	//document.getElementById("HomeMain").appendChild(albumSpace);
+	document.getElementById("UserPageMain").appendChild(albumTitle);
+	document.getElementById("UserPageMain").appendChild(albumFace);
 	
-}
+	if(ifUserOwn==1){
+	    var albumEdit=document.createElement('div')
+	    albumEdit.setAttribute("class","row WhiteBK");
+     	albumEdit.innerHTML=' \
+            <div class=\"btn-group\" role=\"group\"> \
+			  <a type=\"button\" class=\"btn btn-default\" href=\"/Pic/Pic.php?AlbumID=' + albumID + '&AlbumUserID=' + albumUserID + '\"><span class=\"glyphicon glyphicon-globe\"></span></a> \
+			  <button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-download-alt\"></span></button> \
+			  <button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-pencil\"></span></button> \
+			  <button type=\"button\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\" onclick=\"deleteAlbum('+albumID+')\"></span></button> \
+		    </div> ' ;
+    	document.getElementById("UserPageMain").appendChild(albumEdit);
+	}
 
-function getUserName(userID){
-
-	
+	document.getElementById("UserPageMain").appendChild(albumSpace);
 }
 
 function getAlbumFace(albumID){
@@ -102,7 +139,7 @@ function getAlbumList(scrollNum,onceNum,albumUserID){
     xmlhttp.send("cmd=getAlbumList&scrollNum=" +scrollNum + "&onceNum=" + onceNum + "&albumUserID=" + albumUserID);
 }
 
-getAlbumList(0,5,0);
+getAlbumList(0,5,pageUserID);
 
 $(window).scroll(function(){
 	var scrollTop=$(this).scrollTop();

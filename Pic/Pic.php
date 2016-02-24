@@ -9,7 +9,6 @@ $albumName=""; $albumID="";
 $albumUserID=0;
 $nowPage="Pic";
 
-
 if(isset($_SESSION['SessionID'])){
 	$sessionID=$_SESSION['SessionID'];
 	$res=getUserFromSessionID($sessionID);

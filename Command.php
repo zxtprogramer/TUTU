@@ -237,10 +237,10 @@ if(isset($_POST['cmd'])){
         	$bgn=$scrollNum*$onceNum;
 
         	if($albumUserID==0){
-    		    $sql="SELECT * FROM AlbumTable WHERE PicNum>0 ORDER BY CreateTime LIMIT $bgn,$onceNum";
+    		    $sql="SELECT * FROM AlbumTable WHERE PicNum>0 ORDER BY CreateTime DESC LIMIT $bgn,$onceNum";
         	}
         	else{
-    		    $sql="SELECT * FROM AlbumTable WHERE UserID=$albumUserID ORDER BY CreateTime LIMIT $bgn,$onceNum";
+    		    $sql="SELECT * FROM AlbumTable WHERE UserID=$albumUserID ORDER BY CreateTime DESC LIMIT $bgn,$onceNum";
         	}
 			print(getData($sql));
         	break;
