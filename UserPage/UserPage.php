@@ -19,8 +19,16 @@ if(isset($_SESSION['SessionID'])){
 	}
 }
 
-$pageUserID=$_GET['PageUserID'];
-$pageUserName=getUserName($pageUserID);
+if(isset($_GET['PageUserID'])){
+	$pageUserID=$_GET['PageUserID'];
+    $pageUserName=getUserName($pageUserID);
+}
+else{
+	if($ifLogin==1){
+		$pageUserID=$userID;
+	}
+}
+
 
 if($pageUserID==$userID){
 	$ifUserOwn=1;

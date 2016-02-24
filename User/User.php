@@ -51,7 +51,7 @@ if($ifLogin==0){
       <div class="row UserItemBig">
         <div class="col-xs-12">
           <?php 
-            $str='<img data-toggle="modal" data-target="#uploadFaceModal" class="UserFaceImg" src="/Data/User_' . $userID . '/UserFace.jpg"></img>';
+            $str='<img onclick="upItem=0" data-toggle="modal" data-target="#uploadFaceModal" class="UserFaceImg" src="/Data/User_' . $userID . '/UserFace.jpg"></img>';
             print($str);
           ?>
 
@@ -65,11 +65,18 @@ if($ifLogin==0){
         </div>
       </div>
 
-      <div class="row UserSpaceBlack"></div>
-      
-      <div class="row UserItem" onclick="self.location='/Album/Album.php'">
+      <div class="row UserItem" onclick="upItem=1;" data-toggle="modal" data-target="#uploadFaceModal">
         <div class="col-xs-12">
-          <span class="glyphicon glyphicon-picture"></span>  相册 
+          <span class="glyphicon glyphicon-picture"></span>  封面
+        </div>
+      </div>
+
+      <div class="row UserSpaceBlack"></div>
+
+      
+      <div class="row UserItem" onclick="self.location='/UserPage/UserPage.php'">
+        <div class="col-xs-12">
+          <span class="glyphicon glyphicon-th"></span>  相册 
         </div>
       </div>
 
@@ -102,7 +109,7 @@ if($ifLogin==0){
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="uploadFaceModalLabel">上传头像</h4>
+        <h4 class="modal-title" id="uploadFaceModalLabel">上传</h4>
       </div>
       <div class="modal-body"> 
         <input id="UploadFace" name="files" type="file" multiple accept="image/*"></input>

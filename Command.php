@@ -37,7 +37,7 @@ function getPicInfo($picFile, $lngMax, $lngMin, $latMax, $latMin){
 	return [$shootTime, $lng, $lat];
 }
 
-function uploadFace(){
+function uploadFace($upItem){
 	global $userID,$dataPath;
 
 	if ((($_FILES["file"]["type"] == "image/gif")
@@ -48,12 +48,19 @@ function uploadFace(){
 
 				$filename=$_FILES["file"]["name"];
 				$tmpfile=$_FILES["file"]["tmp_name"];
+				
+				if($upItem==0){
+					$pathTmp=$dataPath . "User_" . $userID . "/" .$filename;
+					$path=$dataPath . "User_" . $userID . "/UserFace.jpg";
+					move_uploaded_file($tmpfile, $pathTmp);
+					$cmd="convert -resize 100x100 $pathTmp " . $path;
+					system($cmd);
+				}
+				if($upItem==1){
+					$path=$dataPath . "User_" . $userID . "/PageFace.jpg";
+					move_uploaded_file($tmpfile, $path);
+				}
 
-				$pathTmp=$dataPath . "User_" . $userID . "/" .$filename;
-				$path=$dataPath . "User_" . $userID . "/UserFace.jpg";
-                move_uploaded_file($tmpfile, $pathTmp);
-				$cmd="convert -resize 100x100 $pathTmp " . $path;
-				system($cmd);
 	}
 }
 
@@ -340,7 +347,8 @@ if(isset($_POST['cmd'])){
 			
 		case 'uploadFace':
 			if($ifLogin==1){
-				uploadFace();
+				$upItem=(int)$_POST['upItem'];
+				uploadFace($upItem);
 			}
 			break;
 

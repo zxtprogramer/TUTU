@@ -1,5 +1,6 @@
 var uploadFiles=document.getElementById("UploadFace");
 var uploadList=document.getElementById("UploadList");
+var upItem=0;//0 is UserFace; 1 is PageFace;
 
 function initUploadFace(){
 	uploadFiles.addEventListener("change", function(){
@@ -41,6 +42,7 @@ function uploadFace(){
 		
 		var fd=new FormData();
 		fd.append("cmd","uploadFace");
+		fd.append("upItem",upItem);
 		fd.append("file", uploadFiles.files[i]);
 		
 		xhr.send(fd);
