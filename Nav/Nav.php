@@ -14,8 +14,8 @@
 				<span class=\"glyphicon glyphicon-picture\"></span> 相册
 			  </div>
 
-			  <div class=\"NavButton\">
-				<span class=\"glyphicon glyphicon-user\"></span> 我 
+			  <div class=\"NavButton\" onclick=\"self.location='/User/User.php'\">
+				<span class=\"glyphicon glyphicon-user\"> </span> 我 
 			  </div>
 			";
 		}

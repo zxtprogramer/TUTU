@@ -37,6 +37,28 @@ function getPicInfo($picFile, $lngMax, $lngMin, $latMax, $latMin){
 	return [$shootTime, $lng, $lat];
 }
 
+function uploadFace(){
+	global $userID,$dataPath;
+
+	if ((($_FILES["file"]["type"] == "image/gif")
+			|| ($_FILES["file"]["type"] == "image/jpeg")
+			|| ($_FILES["file"]["type"] == "image/png")
+			|| ($_FILES["file"]["type"] == "image/bmp")
+			|| ($_FILES["file"]["type"] == "image/pjpeg"))){
+
+				$filename=$_FILES["file"]["name"];
+				$tmpfile=$_FILES["file"]["tmp_name"];
+
+				$pathTmp=$dataPath . "User_" . $userID . "/" .$filename;
+				$path=$dataPath . "User_" . $userID . "/UserFace.jpg";
+                move_uploaded_file($tmpfile, $pathTmp);
+				$cmd="convert -resize 100x100 $pathTmp " . $path;
+				system($cmd);
+	}
+}
+
+
+
 function uploadPic(){
     global $userID,$dataPath;
     
@@ -313,6 +335,12 @@ if(isset($_POST['cmd'])){
 				if(!empty($row)){
 				    uploadPic();
 				}
+			}
+			break;
+			
+		case 'uploadFace':
+			if($ifLogin==1){
+				uploadFace();
 			}
 			break;
 
