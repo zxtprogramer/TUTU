@@ -191,11 +191,22 @@ if(isset($_POST['cmd'])){
 
     $cmd=$_POST['cmd'];
     switch($cmd){
+        case 'editAlbum':
+	    if($ifLogin){
+            $albumName=$_POST['AlbumName'];
+		    $albumDes=$_POST['AlbumDes'];
+		    $albumShare=$_POST['AlbumShare'];
+		    $albumID=$_POST['AlbumID'];
+		    editAlbum($userID, $albumName, $albumDes, time(),$albumShare, $albumID);
+	    }
+        break;
+
         case 'newAlbum':
 	    if($ifLogin){
             $albumName=$_POST['AlbumName'];
 		    $albumDes=$_POST['AlbumDes'];
-		    addAlbum($userID, $albumName, $albumDes, time());
+		    $albumShare=$_POST['AlbumShare'];
+		    addAlbum($userID, $albumName, $albumDes, time(),$albumShare);
 	    }
         break;
 
@@ -228,7 +239,19 @@ if(isset($_POST['cmd'])){
         
         case 'getAlbumPic':
         	$albumID=(int)($_POST['albumID']);
-		    $sql="SELECT * FROM PicTable WHERE AlbumID=$albumID ORDER BY ShootTime";
+        	$sql="SELECT UserID FROM AlbumTable WHERE AlbumID='$albumID'";
+        	$res=exeSQL($sql);
+        	$albumUserID=0;
+        	if($row=mysql_fetch_array($res)){
+        		$albumUserID=$row[0];
+        	}
+        	else{return;}
+        	if((int)$albumUserID==(int)$userID){
+		        $sql="SELECT * FROM PicTable WHERE AlbumID=$albumID ORDER BY ShootTime";
+        	}
+        	else{
+		        $sql="SELECT * FROM PicTable WHERE Share='1' AND AlbumID=$albumID ORDER BY ShootTime";
+        	}
 			print(getData($sql));
         	break;
 
@@ -244,10 +267,15 @@ if(isset($_POST['cmd'])){
         	$bgn=$scrollNum*$onceNum;
 
         	if($albumUserID==0){
-    		    $sql="SELECT * FROM AlbumTable WHERE PicNum>0 ORDER BY CreateTime DESC LIMIT $bgn,$onceNum";
+    		    $sql="SELECT * FROM AlbumTable WHERE Share='1' AND PicNum>0 ORDER BY CreateTime DESC LIMIT $bgn,$onceNum";
         	}
         	else{
-    		    $sql="SELECT * FROM AlbumTable WHERE UserID=$albumUserID ORDER BY CreateTime DESC LIMIT $bgn,$onceNum";
+        		if($albumUserID==$userID){
+    		        $sql="SELECT * FROM AlbumTable WHERE UserID=$albumUserID ORDER BY CreateTime DESC LIMIT $bgn,$onceNum";
+        		}
+        		else{
+    		        $sql="SELECT * FROM AlbumTable WHERE Share='1' AND UserID=$albumUserID ORDER BY CreateTime DESC LIMIT $bgn,$onceNum";
+        		}
         	}
 			print(getData($sql));
         	break;
@@ -271,7 +299,7 @@ if(isset($_POST['cmd'])){
 				$latMin=(double)($_POST['latMin']);
 				$lngMax=(double)($_POST['lngMax']);
 				$lngMin=(double)($_POST['lngMin']);
-				$sql="SELECT * FROM PicTable WHERE Longitude<$lngMax AND Longitude>$lngMin AND Latitude<$latMax AND Latitude>$latMin ORDER BY $sortType LIMIT $index,$picNum";
+				$sql="SELECT * FROM PicTable WHERE Share='1' AND Longitude<$lngMax AND Longitude>$lngMin AND Latitude<$latMax AND Latitude>$latMin ORDER BY $sortType LIMIT $index,$picNum";
 				break;
 
 			case "UserRange":

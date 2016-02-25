@@ -111,10 +111,21 @@ function getAlbumFace($albumID){
     return $facePath;
 }
 
-function addAlbum($userID, $albumName, $des, $createTime){
+function editAlbum($userID, $albumName, $des, $createTime,$ifShare,$albumID){
 	global $dataPath;
     $userName=getUserName($userID);
-    $sql="INSERT INTO AlbumTable (UserID,UserName,AlbumName,Description,CreateTime) VALUES('$userID', '$userName', '$albumName', '$des', '$createTime')";
+    $sql="UPDATE AlbumTable SET AlbumName='$albumName',Description='$des',Share='$ifShare' WHERE UserID='$userID' AND AlbumID='$albumID'";
+    if(!exeSQL($sql)){printf("edit album $albumName failed");}
+    $sql="UPDATE PicTable SET Share='$ifShare' WHERE AlbumID='$albumID'";
+    if(!exeSQL($sql)){printf("edit2 album $albumName failed");}
+}
+
+
+
+function addAlbum($userID, $albumName, $des, $createTime,$ifShare){
+	global $dataPath;
+    $userName=getUserName($userID);
+    $sql="INSERT INTO AlbumTable (UserID,UserName,AlbumName,Description,CreateTime,Share) VALUES('$userID', '$userName', '$albumName', '$des', '$createTime', '$ifShare')";
     if(!exeSQL($sql)){printf("add album $albumName failed");}
     $sql="SELECT AlbumID FROM AlbumTable WHERE AlbumName='$albumName'";
     $res=exeSQL($sql);
@@ -182,9 +193,18 @@ function addMessage($fromID, $toID, $sendTime, $msgType, $message){
     if(!exeSQL($sql)){printf("add message failed");}
 }
 
+
 function addPic($userID, $picName, $width, $height, $des, $picPath, $shootTime, $uploadTime, $longitude, $latitude, $likeNum, $albumID){
     $userName=getUserName($userID);
-    $sql="INSERT INTO PicTable (UserID, UserName,  PicName, Width, Height, Description, PicPath, ShootTime, UploadTime, Longitude, Latitude, LikeNum, AlbumID) VALUES($userID, '$userName', '$picName', $width, $height, '$des', '$picPath', $shootTime, $uploadTime, $longitude, $latitude, $likeNum, $albumID)";
+    
+    $sql="SELECT Share FROM AlbumTable WHERE AlbumID='$albumID'";
+    $res=exeSQL($sql);
+    $ifShare=1;
+    if($row=mysql_fetch_array($res)){
+    	$ifShare=$row[0];
+    }
+    
+    $sql="INSERT INTO PicTable (UserID, UserName,  PicName, Width, Height, Description, PicPath, ShootTime, UploadTime, Longitude, Latitude, LikeNum, AlbumID, Share) VALUES($userID, '$userName', '$picName', $width, $height, '$des', '$picPath', $shootTime, $uploadTime, $longitude, $latitude, $likeNum, $albumID,'$ifShare')";
     if(!exeSQL($sql)){printf("add pic error");}
     else{
         $sql="UPDATE AlbumTable SET PicNum=PicNum+1 WHERE AlbumID=$albumID";

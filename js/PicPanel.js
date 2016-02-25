@@ -232,12 +232,17 @@ function freshPanel(){
     
     
     fName=picArray[nowPicIndex]['PicName'];
+    ext=fName.substr(fName.lastIndexOf(".")+1).toLowerCase();
+
     var picUserID=picArray[nowPicIndex]['UserID'];
     var picAlbumID=picArray[nowPicIndex]['AlbumID'];
 
-    picPath="/Data/User_" + picUserID + "/AlbumSnapBig_" + picAlbumID + "/" + fName; 
-
-    ext=picPath.substr(picPath.lastIndexOf(".")+1).toLowerCase();
+    if(ext=="mp4"){
+        picPath="/Data/User_" + picUserID + "/Album_" + picAlbumID + "/" + fName; 
+    }
+    else{
+        picPath="/Data/User_" + picUserID + "/AlbumSnapBig_" + picAlbumID + "/" + fName; 
+    }
     
     picW=parseInt(picArray[nowPicIndex]['Width']);
     

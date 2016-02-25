@@ -1,11 +1,44 @@
-var albumList=new Array();
+var albumArray=new Array();
 scrollNum=0;
+nowIndex=0;
+
+function editAlbum(){
+    var xmlhttp;
+    xmlhttp=new XMLHttpRequest();
+    var albumName=$("#EditAlbumName").val();
+    var albumDes=$("#EditAlbumDes").val();
+    var albumShare=0;
+    var albumID=albumArray[nowIndex]['AlbumID'];
+
+    if(document.getElementById("EditIfShare").checked){
+    	albumShare=1;
+    }
+    else{
+    	albumShare=0;
+    }
+
+    xmlhttp.onreadystatechange=function(){
+        if(xmlhttp.readyState==4 && xmlhttp.status==200){
+            window.location.reload();
+        }
+    };  
+    xmlhttp.open("POST", "/Command.php",true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("cmd=editAlbum&AlbumName=" + albumName + "&AlbumDes=" + albumDes + "&AlbumShare=" + albumShare + "&AlbumID=" + albumID);
+}
 
 function newAlbum(){
     var xmlhttp;
     xmlhttp=new XMLHttpRequest();
     var albumName=$("#newAlbumName").val();
     var albumDes=$("#newAlbumDes").val()
+    var albumShare=0;
+    if(document.getElementById("NewIfShare").checked){
+    	albumShare=1;
+    }
+    else{
+    	albumShare=0;
+    }
 
     xmlhttp.onreadystatechange=function(){
         if(xmlhttp.readyState==4 && xmlhttp.status==200){
@@ -15,7 +48,7 @@ function newAlbum(){
 
     xmlhttp.open("POST", "/Command.php",true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("cmd=newAlbum&AlbumName=" + albumName + "&AlbumDes=" + albumDes);
+    xmlhttp.send("cmd=newAlbum&AlbumName=" + albumName + "&AlbumDes=" + albumDes + "&AlbumShare=" + albumShare);
 }
 
 
@@ -48,7 +81,8 @@ function myGetTime(ms){
 	return y + "年"+m+"月"+d+"日 "+h+":"+min+":"+sec;
 }
 
-function appendAlbum(album){
+function appendAlbum(nowIndex){
+	album=albumArray[nowIndex];
 	albumName=album['AlbumName'];
 	albumDes=album['Description'];
 	albumFacePath=getAlbumFace(album['AlbumID']);
@@ -73,7 +107,6 @@ function appendAlbum(album){
 	var albumSpace2=document.createElement('div')
 	albumSpace2.setAttribute("class","row ItemSpace");
 	
-	
 	document.getElementById("UserPageMain").appendChild(albumTitle);
 	document.getElementById("UserPageMain").appendChild(albumFace);
 	
@@ -84,7 +117,7 @@ function appendAlbum(album){
             <div class=\"btn-group\" role=\"group\"> \
 			  <a type=\"button\" class=\"btn btn-default\" href=\"/Pic/Pic.php?AlbumID=' + albumID + '&AlbumUserID=' + albumUserID + '\"><span class=\"glyphicon glyphicon-globe\"></span></a> \
 			  <button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-download-alt\"></span></button> \
-			  <button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-pencil\"></span></button> \
+			  <button onclick="initEditAlbum('+nowIndex+')" data-toggle="modal" data-target="#editAlbumModal" type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-pencil\"></span></button> \
 			  <button type=\"button\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\" onclick=\"deleteAlbum('+albumID+')\"></span></button> \
 		    </div> ' ;
     	document.getElementById("UserPageMain").appendChild(albumEdit);
@@ -113,6 +146,17 @@ function getAlbumFace(albumID){
     return res;
 }
 
+function initEditAlbum(index){
+	nowIndex=index;
+	$("#EditAlbumName").val(albumArray[index]['AlbumName']);
+	$("#EditAlbumDes").val(albumArray[index]['Description']);
+	if(albumArray[index]['Share']=='1'){
+    	document.getElementById("EditIfShare").checked=true;
+	}
+	else{
+	    document.getElementById("EditIfShare").checked=false;
+	}
+}
 
 function getAlbumList(scrollNum,onceNum,albumUserID){
     var xmlhttp;
@@ -131,10 +175,9 @@ function getAlbumList(scrollNum,onceNum,albumUserID){
 	    	        value=decodeURIComponent(albumInfo[j].split("=")[1]);
 	    	        albumATmp[i][key]=value;
 	    	    }
-	    	    appendAlbum(albumATmp[i]);
+	    	    albumArray.push(albumATmp[i]);
+	    	    appendAlbum(albumArray.length-1);
 	        }
-
-	        albumList=albumList.concat(albumATmp);
 	    }
     };
 
