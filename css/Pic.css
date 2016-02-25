@@ -9,6 +9,7 @@
 }
 
 .info {
+	width:200px;
 	border: solid 1px silver;
 	margin:0px;
 	box-shadow: 0px 0px 0px #000;
@@ -64,5 +65,6 @@ span {
 
 .info-middle img {
 	float: left;
-	margin-right: 6px;
+	margin: 0px;
+	width:198px;
 }

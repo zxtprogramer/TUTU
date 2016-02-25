@@ -235,7 +235,7 @@ function freshPanel(){
     var picUserID=picArray[nowPicIndex]['UserID'];
     var picAlbumID=picArray[nowPicIndex]['AlbumID'];
 
-    picPath="/Data/User_" + picUserID + "/Album_" + picAlbumID + "/" + fName; 
+    picPath="/Data/User_" + picUserID + "/AlbumSnapBig_" + picAlbumID + "/" + fName; 
 
     ext=picPath.substr(picPath.lastIndexOf(".")+1).toLowerCase();
     
