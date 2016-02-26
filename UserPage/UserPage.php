@@ -143,19 +143,18 @@ if($pageUserID==$userID){
       <div class="row PageFace">
       <?php 
         $str="<div class=\"PageFaceDiv\"><img class=\"PageFaceImg\" src=\"/Data/User_$pageUserID/PageFace.jpg\" ></img></div>" .
-              "<div class=\"UserTitleDiv\">" ;
+              "<div class=\"PageUserTitleDiv\">" ;
         if($ifUserOwn==1){
-        	$str=$str . "<a href=\"/User/User.php\"><img class=\"UserFaceImg\" src=\"/Data/User_$pageUserID/UserFace.jpg\" ></img></a>";
+        	$str=$str . "<a href=\"/User/User.php\"><img class=\"PageUserFaceImg\" src=\"/Data/User_$pageUserID/UserFace.jpg\" ></img></a>";
         }
         else{
-        	$str=$str . "<img class=\"UserFaceImg\" src=\"/Data/User_$pageUserID/UserFace.jpg\" ></img>";
+        	$str=$str . "<img class=\"PageUserFaceImg\" src=\"/Data/User_$pageUserID/UserFace.jpg\" ></img>";
         }
-        $str=$str . "<div class=\"UserInfoDiv\" style=\"font-size:20px\"> $pageUserName</div>";  
+        $str=$str . "<div class=\"PageUserInfoDiv\" style=\"font-size:20px;color:white\"> $pageUserName</div></div>";  
         if($ifUserOwn==1){
         	$str=$str . '
 			     <div id="NewAlbumDiv" style="font-size:50px"><span class="glyphicon glyphicon-camera" data-toggle="modal" data-target="#newAlbumModal" id="NewAlbumBtn" ></span></div>';
         }
-	    $str=$str . "</div>";
         print($str);
       ?>
       </div>

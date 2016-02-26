@@ -1,19 +1,55 @@
 @CHARSET "UTF-8";
 
 .UserPageMain{
-	background:#ccc;
+	background:#eee;
 }
 
-.ItemSpace{
+.UserFaceImg{
+	width:40px;
+	height:40px;
+	border:0px;
+	border-radius:5px;
+	margin:5px;
+}
+
+.UserTitle{
+	height:60px;
+	line-height:60px;
+	background:#fff;
+}
+
+.UserFaceImg{
+	width:40px;
+	height:40px;
+	border:0px;
+	border-radius:5px;
+	margin:5px;
+}
+
+.AlbumTimeLabel{
+	right:5px;
+	position:absolute;
+	color:grey;
+	
+}
+
+.AlbumTitle{
+	background:#fff;
+	padding:5px;
+}
+
+.AlbumSpace{
 	height:30px;
 	line-height:30px;
-	background:#ccc;
-	padding:5px;	
+	background:#eee;
+	padding:5px;
 }
 
-.WhiteBK{
+.AlbumSpaceWhite{
+	height:30px;
+	line-height:30px;
 	background:#fff;
-	padding:10px;
+	padding:5px;
 }
 
 .PageFaceDiv{
@@ -22,15 +58,19 @@
 	overflow:hidden;
 	left:0px;
 	top:0px;
-	background:#ccc;
+	background:#eee;
 	
 }
 
 #NewAlbumDiv{
 	width:100%;
+	text-align:right;
+	padding:20px;
+}
+#NewAlbumBtn{
 }
 
-.UserTitleDiv{
+.PageUserTitleDiv{
 	height:100px;
 	float:left;
 	top:-80px;
@@ -38,13 +78,13 @@
 	position:relative;
 }
 
-.UserInfoDiv{
+.PageUserInfoDiv{
 	height:100px;
 	line-height:100px;
 	float:left;
 }
 
-.UserFaceImg{
+.PageUserFaceImg{
 	width:100px;
 	height:100px;
 	margin:5px;

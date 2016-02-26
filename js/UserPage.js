@@ -78,7 +78,8 @@ function myGetTime(ms){
 	h=myD.getHours();
 	min=myD.getMinutes();
 	sec=myD.getSeconds();
-	return y + "年"+m+"月"+d+"日 "+h+":"+min+":"+sec;
+	return y + "年"+m+"月"+d+"日 ";
+//	return y + "年"+m+"月"+d+"日 "+h+":"+min+":"+sec;
 }
 
 function appendAlbum(nowIndex){
@@ -92,27 +93,33 @@ function appendAlbum(nowIndex){
 	albumUserID=album['UserID'];
 	albumTime=parseInt(album['CreateTime'])*1000;
 
-	var albumTitle=document.createElement('div')
-	albumTitle.setAttribute("class","row WhiteBK");
+	var albumUserTitle=document.createElement('div');
+	albumUserTitle.setAttribute("class","row UserTitle");
+	albumUserTitle.innerHTML='<a href="/UserPage/UserPage.php?PageUserID='+albumUserID+'"><img src="/Data/User_' + albumUserID + '/UserFace.jpg" class="UserFaceImg"></img></a> ' + 
+	albumUserName + ' <span class="AlbumTimeLabel">' + myGetTime(albumTime) + '</span>' + ' <span class="badge">'+albumNum+'</span>';
+
+	var albumTitle=document.createElement('div');
+	albumTitle.setAttribute("class","row AlbumTitle");
 	albumTitle.setAttribute("albumID",albumID);
-	albumTitle.innerHTML= myGetTime(albumTime) + ' <span class="badge">'+albumNum+'</span><br />' +
-	                      '<h5>'+albumName +' <small> '  + albumDes + '</small></h1>';
+	albumTitle.innerHTML='<h5>'+albumName +'<br /><br /> <small> '  + albumDes + '</small></h5>';
 	
-	var albumFace=document.createElement('div')
+	var albumFace=document.createElement('div');
 	albumFace.setAttribute("class","row");
 	albumFace.innerHTML='<a href="/Pic/Pic.php?AlbumID='+albumID+'&AlbumUserID='+albumUserID+'"><img style="width:100%;" src="' + albumFacePath +'"/></a>' ;
 
-	var albumSpace1=document.createElement('div')
-	albumSpace1.setAttribute("class","row ItemSpace");
-	var albumSpace2=document.createElement('div')
-	albumSpace2.setAttribute("class","row ItemSpace");
-	
-	document.getElementById("UserPageMain").appendChild(albumTitle);
+	var albumSpace1=document.createElement('div');
+	albumSpace1.setAttribute("class","row AlbumSpace");
+	var albumSpace2=document.createElement('div');
+	albumSpace2.setAttribute("class","row AlbumSpace");
+
+	document.getElementById("UserPageMain").appendChild(albumUserTitle);
 	document.getElementById("UserPageMain").appendChild(albumFace);
+	document.getElementById("UserPageMain").appendChild(albumTitle);
+	
 	
 	if(ifUserOwn==1){
 	    var albumEdit=document.createElement('div')
-	    albumEdit.setAttribute("class","row WhiteBK");
+	    albumEdit.setAttribute("class","row");
      	albumEdit.innerHTML=' \
             <div class=\"btn-group\" role=\"group\"> \
 			  <a type=\"button\" class=\"btn btn-default\" href=\"/Pic/Pic.php?AlbumID=' + albumID + '&AlbumUserID=' + albumUserID + '\"><span class=\"glyphicon glyphicon-globe\"></span></a> \
@@ -122,9 +129,14 @@ function appendAlbum(nowIndex){
 		    </div> ' ;
     	document.getElementById("UserPageMain").appendChild(albumEdit);
 	}
+	else{
+	    var albumSpace1=document.createElement('div')
+		albumSpace1.setAttribute("class","row AlbumSpace");
+    	document.getElementById("UserPageMain").appendChild(albumSpace1);
+		
+	}
 
 	document.getElementById("UserPageMain").appendChild(albumSpace1);
-	document.getElementById("UserPageMain").appendChild(albumSpace2);
 }
 
 function getAlbumFace(albumID){
@@ -177,7 +189,13 @@ function getAlbumList(scrollNum,onceNum,albumUserID){
 	    	    }
 	    	    albumArray.push(albumATmp[i]);
 	    	    appendAlbum(albumArray.length-1);
+
 	        }
+
+			var albumSpace1=document.createElement('div')
+			albumSpace1.setAttribute("class","row AlbumSpace");
+			document.getElementById("UserPageMain").appendChild(albumSpace1);
+	
 	    }
     };
 

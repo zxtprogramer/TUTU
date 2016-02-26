@@ -127,7 +127,7 @@ function addAlbum($userID, $albumName, $des, $createTime,$ifShare){
     $userName=getUserName($userID);
     $sql="INSERT INTO AlbumTable (UserID,UserName,AlbumName,Description,CreateTime,Share) VALUES('$userID', '$userName', '$albumName', '$des', '$createTime', '$ifShare')";
     if(!exeSQL($sql)){printf("add album $albumName failed");}
-    $sql="SELECT AlbumID FROM AlbumTable WHERE AlbumName='$albumName'";
+    $sql="SELECT AlbumID FROM AlbumTable WHERE AlbumName='$albumName' AND UserID='$userID'";
     $res=exeSQL($sql);
     $row=mysql_fetch_array($res);
     $albumID=$row[0];
