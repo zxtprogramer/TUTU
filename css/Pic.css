@@ -37,9 +37,17 @@ div.info-top img {
 div.info-top img:hover {
 	box-shadow: 0px 0px 5px #000;
 }
+
+div.info-middle{
+	width:198px;
+	word-break:break-all;
+	word-wrap:break-word;
+}
+
 div.info-middle img {
 	padding:0px;
 	margin:0px;
+	width:198px;
 }
 div.info-middle {
 	font-size: 12px;

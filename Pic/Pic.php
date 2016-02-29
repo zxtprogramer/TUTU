@@ -5,18 +5,14 @@ require("../dbase/dbFunction.php");
 session_start();
 $ifLogin=0;
 $userName="0"; $userID="0";
-$albumName=""; $albumID="";
+$albumName="0"; $albumID="0";
 $albumUserID=0;
 $nowPage="Pic";
 
-if(isset($_SESSION['SessionID'])){
-	$sessionID=$_SESSION['SessionID'];
-	$res=getUserFromSessionID($sessionID);
-	if(sizeof($res)>1){
-		$userName=$res['UserName'];
-		$userID=$res['UserID'];
-		$ifLogin=1;
-	}
+if(isset($_SESSION['UserID'])){
+    $userName=$_SESSION['UserName'];
+    $userID=$_SESSION['UserID'];
+    $ifLogin=1;
 }
 
 
@@ -29,8 +25,8 @@ if(isset($_GET['AlbumID'])){
     $albumName=$row[0];
 }
 
-if($albumID==""){
-	header("Location: ../Album/Album.php");	
+if($albumID=="0"){
+	header("Location: ../Home/Home.php");	
 }
 ?>
 

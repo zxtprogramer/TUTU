@@ -1,19 +1,23 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
   require("../dbase/dbFunction.php");
+  session_start();
   if(isset($_POST['submitRegister'])){
-      $userName=$_POST['UserName'];
-	  $password=$_POST['Password'];
-	  $email=$_POST['Email'];
-	  if(addUser($userName, $password, $email)==0){
-          header("Location: ../Login/Login.php");
-	  }
-	  else{
-	  	printf("注册失败<br>");
-	  }
+      if($_POST['CheckCode']==$_SESSION['CheckCode']){
+          $userName=$_POST['UserName'];
+          $password=$_POST['Password'];
+          $email=$_POST['Email'];
+
+          if(addUser($userName, $password, $email)==0){
+              printf("1");//succeed
+              exit(0);
+          }
+      }
+      printf("0");//failed
+      exit(0);
   }
 ?>
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html  xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta charset="utf-8">

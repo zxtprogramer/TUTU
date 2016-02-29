@@ -6,8 +6,6 @@ var picMarker=new Array();
 var nowPicIndex=0;
 var ifMove=0;
 
-
-
 function getBounds(){
     bounds=map.getBounds().toString();
     bArr=bounds.split(';');
@@ -256,6 +254,7 @@ function fresh(){
 
 function showPicDiv(){
 	var picName=picArray[nowPicIndex]['PicName'];
+	var picDes=picArray[nowPicIndex]['Description'];
 	var picPath="/Data/User_" + albumUserID + "/Album_" + albumID + "/" + picName;
 	var snapBigPath="/Data/User_" + albumUserID + "/AlbumSnapBig_" + albumID + "/" + picName;
 	var ext=snapBigPath.substr(snapBigPath.indexOf('.')+1).toLowerCase();
@@ -276,7 +275,7 @@ function showPicDiv(){
 	   title="图片(" + nowNum + "/" + picNum + ")";
 	}
 
-    content.push("<img onclick=\"javascript:showPanel()\" src=\""+ snapBigPath + "\" />");
+    content.push("<img onclick=\"javascript:showPanel()\" src=\""+ snapBigPath + "\" /><br />" + picDes);
 
     infoWindow = new AMap.InfoWindow({
     	isCustom:true,

@@ -5,17 +5,13 @@ require("../dbase/dbFunction.php");
 session_start();
 $ifLogin=0;
 $userName=""; $userID="";$userEmail="";
-$nowPage='Album';
+$nowPage='User';
 
-if(isset($_SESSION['SessionID'])){
-	$sessionID=$_SESSION['SessionID'];
-	$res=getUserFromSessionID($sessionID);
-	if(sizeof($res)>1){
-		$userName=$res['UserName'];
-		$userID=$res['UserID'];
-		$userEmail=$res['Email'];
-		$ifLogin=1;
-	}
+if(isset($_SESSION['UserID'])){
+    $userName=$_SESSION['UserName'];
+    $userID=$_SESSION['UserID'];
+    $userEmail=$_SESSION['UserEmail'];
+    $ifLogin=1;
 }
 
 if($ifLogin==0){

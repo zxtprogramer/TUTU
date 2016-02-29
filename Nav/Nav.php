@@ -76,11 +76,20 @@
           <span class="input-group-addon">密码</span>
           <input type="password" class="form-control" id="RegisterPassword"></input>
         </div>
+        <br />
+        <br />
+
+        <img id="checkpic" onclick="changeCheckCode()" src="/CheckCode.php" />
+        <div class="input-group">
+          <span class="input-group-addon">验证码</span>
+          <input type="text" class="form-control" id="CheckCode"></input>
+        </div>
  
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="quickRegister();">注册</button>
+        <button type="button" class="btn btn-primary" onclick="quickRegister();">注册</button>
       </div>
     </div>
   </div>

@@ -4,12 +4,14 @@
   if(isset($_POST['submitLogin'])){
       $email=$_POST['Email'];
       $password=$_POST['Password'];
-      if(checkLogin($email, $password)){
+      $info=checkLogin($email,$password);
+      if($info){
 	      session_start();
-	      $sessionID=md5(time());
-		  $_SESSION['SessionID']=$sessionID;
-		  $sql="UPDATE UserInfoTable SET SessionID='$sessionID' WHERE Email='$email'";
-		  exeSQL($sql);
+		  $_SESSION['UserID']=$info['UserID'];
+		  $_SESSION['UserName']=$info['UserName'];
+		  $_SESSION['UserEmail']=$info['Email'];
+		  $_SESSION['AlbumLimitNum']=$info['AlbumLimitNum'];
+		  $_SESSION['PicLimitNum']=$info['PicLimitNum'];
 		  echo "<script type=text/javascript>window.location=\"/Home/Home.php\";</script>";
 	  }
   }

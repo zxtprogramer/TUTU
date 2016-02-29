@@ -60,7 +60,6 @@ function uploadFace($upItem){
 					$path=$dataPath . "User_" . $userID . "/PageFace.jpg";
 					move_uploaded_file($tmpfile, $path);
 				}
-
 	}
 }
 
@@ -68,6 +67,16 @@ function uploadFace($upItem){
 
 function uploadPic(){
     global $userID,$dataPath;
+    
+    $sql="SELECT PicNum,PicLimitNum FROM UserInfoTable WHERE UserID='$userID'";
+    $res=exeSQL($sql);
+    $row=mysql_fetch_array($res);
+    $picLimitNum=(int)$row['PicLimitNum'];
+    $picNum=(int)$row['PicNum'];
+    if($picNum >= $picLimitNum){
+    	return;
+    }
+   
     
     if ($_FILES["file"]["type"] == "video/mp4"){
         $filename=$_FILES["file"]["name"];
@@ -106,6 +115,9 @@ function uploadPic(){
         $picDes=$_POST['upPicDes'];
         
         addPic($userID, $filename,$picSize[0],$picSize[1],$picDes,$path,$shootTime,time(),$lng,$lat,0,$picAlbumID);
+
+        $sql="UPDATE UserInfoTable SET PicNum=PicNum+1 WHERE UserID='$userID'";
+        exeSQL($sql);
  
     }
  
@@ -152,6 +164,10 @@ function uploadPic(){
         $picDes=$_POST['upPicDes'];
         
         addPic($userID, $filename,$picSize[0],$picSize[1],$picDes,$path,$shootTime,time(),$lng,$lat,0,$picAlbumID);
+
+        $sql="UPDATE UserInfoTable SET PicNum=PicNum+1 WHERE UserID='$userID'";
+        exeSQL($sql);
+        
     }
 }
 
@@ -177,20 +193,27 @@ function getData($sql){
 $ifLogin=0;
 $userName=""; $userID="";
 
-if(isset($_SESSION['SessionID'])){
-	$sessionID=$_SESSION['SessionID'];
-	$res=getUserFromSessionID($sessionID);
-	if(sizeof($res)>1){
-        $userName=$res['UserName'];
-		$userID=$res['UserID'];
-		$ifLogin=1;
-	}
+if(isset($_SESSION['UserID'])){
+    $userName=$_SESSION['UserName'];
+    $userID=$_SESSION['UserID'];
+    $userEmail=$_SESSION['UserEmail'];
+    $ifLogin=1;
 }
 
 if(isset($_POST['cmd'])){
 
     $cmd=$_POST['cmd'];
     switch($cmd){
+    	case 'checkUser':
+    		$uName=$_POST['checkUserName'];
+    		$uEmail=$_POST['checkUserEmail'];
+    		$status="";
+    		$status=$status . checkUserEmail($uEmail);
+			$status=$status . checkUserName($uName);
+    		print $status;
+    		
+    		break;
+
         case 'editAlbum':
 	    if($ifLogin){
             $albumName=$_POST['AlbumName'];
@@ -206,13 +229,30 @@ if(isset($_POST['cmd'])){
             $albumName=$_POST['AlbumName'];
 		    $albumDes=$_POST['AlbumDes'];
 		    $albumShare=$_POST['AlbumShare'];
-		    addAlbum($userID, $albumName, $albumDes, time(),$albumShare);
+		    $sql="SELECT AlbumNum,AlbumLimitNum FROM UserInfoTable WHERE UserID='$userID'";
+		    $res=exeSQL($sql);
+		    $row=mysql_fetch_array($res);
+		    $albumLimitNum=(int)$row['AlbumLimitNum'];
+		    $albumNum=(int)$row['AlbumNum'];
+		    if($albumNum<$albumLimitNum){
+				addAlbum($userID, $albumName, $albumDes, time(),$albumShare);
+				$sql="UPDATE UserInfoTable SET AlbumNum=AlbumNum+1 WHERE UserID=$userID";
+				exeSQL($sql);
+		    }
 	    }
         break;
 
         case 'deleteAlbum':
 	    if($ifLogin){
             $albumID=$_POST['AlbumID'];
+        	$sql="SELECT PicNum FROM AlbumTable WHERE AlbumID=$albumID";
+        	$res=exeSQL($sql);
+        	$row=mysql_fetch_array($res);
+        	$picNum=(int)$row['PicNum'];
+        	$sql="UPDATE UserInfoTable SET PicNum=PicNum-$picNum WHERE UserID=$userID";
+        	exeSQL($sql);
+        	$sql="UPDATE UserInfoTable SET AlbumNum=AlbumNum-1 WHERE UserID=$userID";
+        	exeSQL($sql);
 		    deleteAlbum($albumID);
 	    }
         break;
@@ -226,6 +266,8 @@ if(isset($_POST['cmd'])){
         	$sql="DELETE FROM PicTable WHERE PicID=$picID AND UserID=$userID";
         	exeSQL($sql);
         	$sql="UPDATE AlbumTable SET PicNum=PicNum-1 WHERE AlbumID=$albumID AND UserID=$userID";
+        	exeSQL($sql);
+        	$sql="UPDATE UserInfoTable SET PicNum=PicNum-1 WHERE UserID=$userID";
         	exeSQL($sql);
         	break;
         

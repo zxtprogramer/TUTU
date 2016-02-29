@@ -218,6 +218,22 @@ function addFriend($fromID, $toID, $type, $createTime){
     if(!exeSQL($sql)){printf("add message failed");}
 }
 
+function checkUserEmail($userEmail){
+    $sql="SELECT UserID FROM UserInfoTable WHERE Email='$userEmail'";
+    $result=exeSQL($sql);
+    $row=mysql_fetch_array($result);
+    if(empty($row))return 0;
+    else return 1;
+}
+
+function checkUserName($userName){
+    $sql="SELECT UserID FROM UserInfoTable WHERE UserName='$userName'";
+    $result=exeSQL($sql);
+    $row=mysql_fetch_array($result);
+    if(empty($row))return 0;
+    else return 1;
+}
+
 function checkUser($userName, $email){
     $sql="SELECT UserID FROM UserInfoTable WHERE UserName='$userName' or Email='$email'";
     $result=exeSQL($sql);
@@ -227,11 +243,9 @@ function checkUser($userName, $email){
 }
 
 function checkLogin($email, $password){
-    $sql="SELECT UserID FROM UserInfoTable WHERE Email='$email' AND Password='$password'";
+    $sql="SELECT * FROM UserInfoTable WHERE Email='$email' AND Password='$password'";
     $result=exeSQL($sql);
-    $row=mysql_fetch_array($result);
-    if(empty($row))return 0;
-    else return 1;
+    return mysql_fetch_array($result);
 }
 
 function getUserFromSessionID($sessionID){

@@ -9,7 +9,12 @@
     <Latitude>DOUBLE DEFAULT 0</Latitude>
     <Share>ENUM('A','F','N') DEFAULT 'N'</Share>    <!--	A: every one can see	F: only friend can see	N: not share	-->
     <SessionID>CHAR(32) NOT NULL DEFAULT '0'</SessionID>
-  </UserInfoTable>
+    <AlbumLimitNum>INT(4) UNSIGNED NOT NULL DEFAULT 100</AlbumLimitNum>
+    <PicLimitNum>INT(4) UNSIGNED NOT NULL DEFAULT 10000</PicLimitNum>
+    <AlbumNum>INT(4) UNSIGNED NOT NULL DEFAULT 0</AlbumNum>
+    <PicNum>INT(4) UNSIGNED NOT NULL DEFAULT 0</PicNum>
+    
+</UserInfoTable>
 
   <PicTable>
     <PicID>INT(6) UNSIGNED AUTO_INCREMENT NOT NULL UNIQUE PRIMARY KEY</PicID>

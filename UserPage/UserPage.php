@@ -6,17 +6,14 @@ session_start();
 $ifLogin=0;
 $userName=""; $userID=0;
 $nowPage='UserPage';
-$pageUserID=""; $pageUserName="";
+$pageUserID="0"; $pageUserName="0";
 $ifUserOwn=0;
 
-if(isset($_SESSION['SessionID'])){
-	$sessionID=$_SESSION['SessionID'];
-	$res=getUserFromSessionID($sessionID);
-	if(sizeof($res)>1){
-		$userName=$res['UserName'];
-		$userID=$res['UserID'];
-		$ifLogin=1;
-	}
+if(isset($_SESSION['UserID'])){
+    $userName=$_SESSION['UserName'];
+    $userID=$_SESSION['UserID'];
+    $userEmail=$_SESSION['UserEmail'];
+    $ifLogin=1;
 }
 
 if(isset($_GET['PageUserID'])){

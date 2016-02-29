@@ -111,8 +111,8 @@ function sendCmtFun(){
 
 }
 
-function showComment(){
-    var cmtArray=getComment(picArray[nowPicIndex]['PicID']);
+function freshComment(){
+	var cmtArray=getComment(picArray[nowPicIndex]['PicID']);
     cmt=[];
     for(var i=0;i<cmtArray.length;i++){
         cmtUserName=cmtArray[i]['UserName'];
@@ -123,6 +123,10 @@ function showComment(){
         cmt.push(str);
     }
     $("#PicCmtContentDiv").html(cmt.join("<br />"));
+}
+
+function showComment(){
+	freshComment();
     $("#PicInfoDiv").hide();
     ifShowCmt=1;
 	arrangePanel();
@@ -292,6 +296,7 @@ function freshPanel(){
 	    $("#PicPanelVideo").hide();
 	    $("#PicPanelImg").show();
     }
+    freshComment();
 
 }
 
