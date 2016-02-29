@@ -34,6 +34,19 @@ function closePicPanel(){
 	
 }
 
+function gotoUser(){
+    picUserID=picArray[nowPicIndex]['UserID'];
+    self.location.href="/UserPage/UserPage.php?PageUserID=" + picUserID;
+}
+
+function gotoAlbum(){
+    picUserID=picArray[nowPicIndex]['UserID'];
+    picAlbumID=picArray[nowPicIndex]['AlbumID'];
+    self.location.href="/Pic/Pic.php?AlbumID=" + picAlbumID + "&AlbumUserID=" + picUserID;
+}
+
+
+
 
 function getTimeStr(sec){
     var d=new Date();
@@ -83,6 +96,10 @@ function applyFun(){
 
 function freshPanel(){
     if(picArray.length<=0)return;
+
+    picUserID=picArray[nowPicIndex]['UserID'];
+    picAlbumID=picArray[nowPicIndex]['AlbumID'];
+    $("#PicPanelInfoDiv").html("");
     
     
     fName=picArray[nowPicIndex]['PicName'];

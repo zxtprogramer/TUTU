@@ -13,7 +13,8 @@ function likeFun(){
     xmlhttp=new XMLHttpRequest();
     xmlhttp.onreadystatechange=function(){
         if(xmlhttp.readyState==4 && xmlhttp.status==200){
-            picArray=getAlbumPic(albumID);
+            para="lngMax=" + lngMax + "&lngMin=" + lngMin + "&latMax=" +  latMax + "&latMin=" + latMin;
+            picArray=getPic(picNum, groupNum, sortType, selectType, para);
             showPicDiv();
         }
     };
@@ -33,6 +34,8 @@ function sendComment(){
     xmlhttp.onreadystatechange=function(){
         if(xmlhttp.readyState==4 && xmlhttp.status==200){
             initCommentPanel();
+            para="lngMax=" + lngMax + "&lngMin=" + lngMin + "&latMax=" +  latMax + "&latMin=" + latMin;
+            picArray=getPic(picNum, groupNum, sortType, selectType, para);
             showPicDiv();
         }
     };
@@ -337,14 +340,25 @@ function markerClick(e){
 }
 
 function fresh(){
-    nowPicIndex=0;
+    var picIDTmp=0;
+    if(picArray.length>0){
+        picIDTmp=picArray[nowPicIndex]['PicID'];
+    }
     map.remove(picMarker);
     picMarker=new Array();
 	getBounds();
 	para="lngMax=" + lngMax + "&lngMin=" + lngMin + "&latMax=" +  latMax + "&latMin=" + latMin;
 	picArray=getPic(picNum, groupNum, sortType, selectType, para);
 	addMarker();
-	//showPicDiv();
+    nowPicIndex=0;
+    for(i=0;i<picArray.length;i++){
+        if(picArray[i]['PicID']==picIDTmp){
+            nowPicIndex=i;break
+        }
+    }
+    if(picArray.length>0){
+        showPicDiv();
+    }
 }
 
 function showPicDiv(){
@@ -375,7 +389,7 @@ function showPicDiv(){
        title="图片(" + nowNum + "/" + picNum + ")";
     }   
 
-    numInfo="<div><span class='badge'>赞:"+ picLikeNum + "</span> <span class='badge'>评论:" + picCommentNum + "</span></div>";
+    numInfo="<div><span class='badge'>赞:"+ picLikeNum + "</span> <span class='badge'>评论:" + picCommentNum + "</span></div>"
 
     content.push("<img onclick=\"javascript:showPanel()\" src=\""+ snapBigPath + "\" /><br />" +numInfo+ "<div id='PicDesDiv'>" + picDes + "</div>");
 
