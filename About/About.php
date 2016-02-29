@@ -5,7 +5,7 @@ $ifLogin=0;
 $userName=""; $userID="";
 $nowPage='Album';
 
-if(isset($_SESSION['SessionID'])){
+if(isset($_SESSION['UserID'])){
     $userName=$_SESSION['UserName'];
     $userID=$_SESSION['UserID'];
     $userEmail=$_SESSION['UserEmail'];

@@ -114,7 +114,8 @@ function getAlbumFace($albumID){
 function editAlbum($userID, $albumName, $des, $createTime,$ifShare,$albumID){
 	global $dataPath;
     $userName=getUserName($userID);
-    $sql="UPDATE AlbumTable SET AlbumName='$albumName',Description='$des',Share='$ifShare' WHERE UserID='$userID' AND AlbumID='$albumID'";
+    $tmp=time();
+    $sql="UPDATE AlbumTable SET AlbumName='$albumName',Description='$des',Share='$ifShare' EditTime='$tmp' WHERE UserID='$userID' AND AlbumID='$albumID'";
     if(!exeSQL($sql)){printf("edit album $albumName failed");}
     $sql="UPDATE PicTable SET Share='$ifShare' WHERE AlbumID='$albumID'";
     if(!exeSQL($sql)){printf("edit2 album $albumName failed");}
@@ -125,7 +126,7 @@ function editAlbum($userID, $albumName, $des, $createTime,$ifShare,$albumID){
 function addAlbum($userID, $albumName, $des, $createTime,$ifShare){
 	global $dataPath;
     $userName=getUserName($userID);
-    $sql="INSERT INTO AlbumTable (UserID,UserName,AlbumName,Description,CreateTime,Share) VALUES('$userID', '$userName', '$albumName', '$des', '$createTime', '$ifShare')";
+    $sql="INSERT INTO AlbumTable (UserID,UserName,AlbumName,Description,CreateTime,Share,EditTime) VALUES('$userID', '$userName', '$albumName', '$des', '$createTime', '$ifShare', '$createTime')";
     if(!exeSQL($sql)){printf("add album $albumName failed");}
     $sql="SELECT AlbumID FROM AlbumTable WHERE AlbumName='$albumName' AND UserID='$userID'";
     $res=exeSQL($sql);
@@ -207,7 +208,8 @@ function addPic($userID, $picName, $width, $height, $des, $picPath, $shootTime, 
     $sql="INSERT INTO PicTable (UserID, UserName,  PicName, Width, Height, Description, PicPath, ShootTime, UploadTime, Longitude, Latitude, LikeNum, AlbumID, Share) VALUES($userID, '$userName', '$picName', $width, $height, '$des', '$picPath', $shootTime, $uploadTime, $longitude, $latitude, $likeNum, $albumID,'$ifShare')";
     if(!exeSQL($sql)){printf("add pic error");}
     else{
-        $sql="UPDATE AlbumTable SET PicNum=PicNum+1 WHERE AlbumID=$albumID";
+    	$tmp=time();
+        $sql="UPDATE AlbumTable SET PicNum=PicNum+1,EditTime='$tmp' WHERE AlbumID=$albumID";
         exeSQL($sql);
     }
  

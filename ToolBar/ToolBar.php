@@ -1,3 +1,32 @@
+<!-- Modify Pic Modal -->
+<div class="modal fade" id="editPicModal" tabindex="-1" role="dialog" aria-labelledby="editPicModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="editPicModalLabel">修改</h4>
+      </div>
+
+      <div class="modal-body"> 
+      
+        <div class="input-group">
+          <span class="input-group-addon">描述</span>
+          <input type="text" class="form-control" id="EditPicDes"></input>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onclick="editPic();">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 <!-- Upload Modal -->
 <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel">
   <div class="modal-dialog" role="document">
@@ -82,6 +111,7 @@
 			<div class="btn-group" role="group">
 			  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#uploadModal" id="UploadBtn"><span class="glyphicon glyphicon-open"></span></button>
 			  <button type="button" class="btn btn-default" onclick="javascript:movePic()" id="MoveBtn"><span class="glyphicon glyphicon-move"></span></button>
+			  <button type="button" class="btn btn-default" onclick="javascript:initEditPic()" data-toggle="modal" data-target="#editPicModal" id="EditBtn"><span class="glyphicon glyphicon-pencil"></span></button>
 			  <button type="button" class="btn btn-danger" onclick="javascript:delPic()" id="DeleteBtn"><span class="glyphicon glyphicon-trash"></span></button>
 			</div>
 		';
@@ -90,17 +120,5 @@
   }
   
   
-   if($nowPage=="Album"){
-	  if($ifLogin==1){
-		  $editBar='
-			<div class="btn-group" role="group">
-			  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newAlbumModal" id="NewAlbumBtn"><span class="glyphicon glyphicon-plus">新建</span></button>
-			</div>
-		';
-		  print($editBar);
-	  }
-  }
- 
-
   ?>
 </div>

@@ -171,12 +171,14 @@ function befPic_Panel(){
     nowPicIndex=(nowPicIndex-1);
     if(nowPicIndex<0){nowPicIndex=nums-1;}
     freshPanel();
+    befPic();
 }
 
 function nextPic_Panel(){
     nums=picArray.length;
     nowPicIndex=(nowPicIndex+1)%nums;
     freshPanel();
+    nextPic();
 }
 
 function nextGroup(){

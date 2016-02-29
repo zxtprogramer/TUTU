@@ -41,7 +41,8 @@
     <Description>VARCHAR(1024) </Description>
     <CreateTime>INT(6) UNSIGNED</CreateTime>
 	<PicNum>INT(6) UNSIGNED DEFAULT 0</PicNum>
-	<Share>INT(4) UNSIGNED DEFAULT 1</Share></AlbumTable>
+	<Share>INT(4) UNSIGNED DEFAULT 1</Share>
+	<EditTime>INT(6) UNSIGNED</EditTime></AlbumTable>
 
   <LikeTable>
     <LikeID>INT(6) UNSIGNED AUTO_INCREMENT NOT NULL UNIQUE PRIMARY KEY</LikeID>

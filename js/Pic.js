@@ -6,6 +6,19 @@ var picMarker=new Array();
 var nowPicIndex=0;
 var ifMove=0;
 
+function initEditPic(){
+	var picDes=picArray[nowPicIndex]['Description'];
+	$("#EditPicDes").val(picDes);
+}
+function editPic(){
+	des=$("#EditPicDes").val();
+	var picID=picArray[nowPicIndex]['PicID'];
+	$.post("/Command.php",{"cmd":"editPic", "PicID":picID, "Description":des},function(text,status){
+		location.reload();
+	})
+	
+}
+
 function getBounds(){
     bounds=map.getBounds().toString();
     bArr=bounds.split(';');
@@ -33,9 +46,8 @@ function delPic(){
 	xmlhttp.open("POST", "/Command.php",false);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("cmd=delPic&picID=" + picID);
-
-
 }
+
 
 function movePic(){
 	ifMove=1;

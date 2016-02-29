@@ -224,6 +224,17 @@ if(isset($_POST['cmd'])){
 	    }
         break;
 
+        case 'editPic':
+	    if($ifLogin){
+		    $picID=$_POST['PicID'];
+		    $picDes=$_POST['Description'];
+		    $sql="UPDATE PicTable SET Description='$picDes' WHERE UserID='$userID' AND PicID='$picID'";
+		    exeSQL($sql);
+	    }
+        break;
+
+
+
         case 'newAlbum':
 	    if($ifLogin){
             $albumName=$_POST['AlbumName'];
@@ -309,14 +320,14 @@ if(isset($_POST['cmd'])){
         	$bgn=$scrollNum*$onceNum;
 
         	if($albumUserID==0){
-    		    $sql="SELECT * FROM AlbumTable WHERE Share='1' AND PicNum>0 ORDER BY CreateTime DESC LIMIT $bgn,$onceNum";
+    		    $sql="SELECT * FROM AlbumTable WHERE Share='1' AND PicNum>0 ORDER BY EditTime DESC LIMIT $bgn,$onceNum";
         	}
         	else{
         		if($albumUserID==$userID){
-    		        $sql="SELECT * FROM AlbumTable WHERE UserID=$albumUserID ORDER BY CreateTime DESC LIMIT $bgn,$onceNum";
+    		        $sql="SELECT * FROM AlbumTable WHERE UserID=$albumUserID ORDER BY EditTime DESC LIMIT $bgn,$onceNum";
         		}
         		else{
-    		        $sql="SELECT * FROM AlbumTable WHERE Share='1' AND UserID=$albumUserID ORDER BY CreateTime DESC LIMIT $bgn,$onceNum";
+    		        $sql="SELECT * FROM AlbumTable WHERE Share='1' AND UserID=$albumUserID ORDER BY EditTime DESC LIMIT $bgn,$onceNum";
         		}
         	}
 			print(getData($sql));
