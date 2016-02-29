@@ -10,11 +10,14 @@ function initEditPic(){
 	var picDes=picArray[nowPicIndex]['Description'];
 	$("#EditPicDes").val(picDes);
 }
+
 function editPic(){
 	des=$("#EditPicDes").val();
 	var picID=picArray[nowPicIndex]['PicID'];
 	$.post("/Command.php",{"cmd":"editPic", "PicID":picID, "Description":des},function(text,status){
-		location.reload();
+	    $("#PicDesDiv").html(des);
+	    picArray[nowPicIndex]['Description']=des;
+	    $("#editPicModal").modal('hide');
 	})
 	
 }
@@ -287,7 +290,7 @@ function showPicDiv(){
 	   title="图片(" + nowNum + "/" + picNum + ")";
 	}
 
-    content.push("<img onclick=\"javascript:showPanel()\" src=\""+ snapBigPath + "\" /><br />" + picDes);
+    content.push("<img onclick=\"javascript:showPanel()\" src=\""+ snapBigPath + "\" /><br /><div id='PicDesDiv'>" + picDes + "</div>");
 
     infoWindow = new AMap.InfoWindow({
     	isCustom:true,
