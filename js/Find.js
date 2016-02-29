@@ -8,6 +8,97 @@ var ifMove=0;
 
 var picNum=500, groupNum=0, sortType="ShootTime", selectType="AllRange", para="";
 
+function likeFun(){
+    var xmlhttp;
+    xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function(){
+        if(xmlhttp.readyState==4 && xmlhttp.status==200){
+            picArray=getAlbumPic(albumID);
+            showPicDiv();
+        }
+    };
+
+    xmlhttp.open("POST", "/Command.php",false);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    cmtContent=encodeURIComponent($("#CmtContentText").val());
+    picID=picArray[nowPicIndex]["PicID"];
+    xmlhttp.send("cmd=addLike&picID=" + picID);
+}
+
+
+//----------------------------comment panel-----------------------------------------
+function sendComment(){
+    var xmlhttp;
+    xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function(){
+        if(xmlhttp.readyState==4 && xmlhttp.status==200){
+            initCommentPanel();
+            showPicDiv();
+        }
+    };
+
+    xmlhttp.open("POST", "/Command.php",false);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    cmtContent=encodeURIComponent($("#CommentInput").val());
+    if(cmtContent.length<=0){
+        return;
+    }
+    picID=picArray[nowPicIndex]["PicID"];
+    xmlhttp.send("cmd=sendComment&picID=" + picID + "&cmt=" + cmtContent);
+}
+
+function initCommentPanel(){
+    var cmtArray=getComment(picArray[nowPicIndex]['PicID']);
+    cmt=[];
+    str="";
+    $("#CommentInput").val("");
+    for(var i=0;i<cmtArray.length;i++){
+        cmtUserName=cmtArray[i]['UserName'];
+        cmtTime=getTimeStr(cmtArray[i]['CreateTime']);
+        cmtStr=cmtArray[i]['Comment'];
+        cmtUserID=cmtArray[i]['UserID'];
+        str='<li class="list-group-item"><span class="CmtUserName"><a href="/UserPage/UserPage.php?PageUserID='+ cmtUserID +'">' + cmtUserName + "</a></span>" + '<span class="CmtTime"> (' + cmtTime + "): </span><br />" + '<span class="CmtStr">' + cmtStr + '</span></li>';
+
+        cmt.push(str);
+    }
+    $("#CommentList").html(cmt.join("<br />"));
+
+}
+
+
+
+function getComment(picID){
+    var xmlhttp;
+    cmtATmp=new Array();
+    xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function(){
+        if(xmlhttp.readyState==4 && xmlhttp.status==200){
+            res=xmlhttp.responseText;
+            if(res.length<=0)return;
+            cmtList=res.split("#");
+            for(var i=0;i<cmtList.length;i++){
+                cmtATmp[i]=new Array();
+                cmtInfo=cmtList[i].split(" ");
+                for(var j=0;j<cmtInfo.length;j++){
+                    key=decodeURIComponent(cmtInfo[j].split("=")[0]);
+                    value=decodeURIComponent(cmtInfo[j].split("=")[1]);
+                    cmtATmp[i][key]=value;
+                }
+            }
+        }
+    };
+
+    xmlhttp.open("POST", "/Command.php",false);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("cmd=getComment&picID=" + picID);
+    return cmtATmp;
+}
+
+//------------------------comment panel------------------------------------------------
+
+
+
+
 
 
 function getBounds(){
@@ -257,39 +348,44 @@ function fresh(){
 }
 
 function showPicDiv(){
-	var picName=picArray[nowPicIndex]['PicName'];
-	var picUserID=picArray[nowPicIndex]['UserID'];
-	var picAlbumID=picArray[nowPicIndex]['AlbumID'];
+    var picName=picArray[nowPicIndex]['PicName'];
+    var picLikeNum=picArray[nowPicIndex]['LikeNum'];
+    var picCommentNum=picArray[nowPicIndex]['CommentNum'];
+    var picDes=picArray[nowPicIndex]['Description'];
+    var picUserID=picArray[nowPicIndex]['UserID'];
+    var picAlbumID=picArray[nowPicIndex]['AlbumID'];
 
-	var picPath="/Data/User_" + picUserID + "/Album_" + picAlbumID + "/" + picName;
-	var snapBigPath="/Data/User_" + picUserID + "/AlbumSnapBig_" + picAlbumID + "/" + picName;
-	var ext=snapBigPath.substr(snapBigPath.indexOf('.')+1).toLowerCase();
-	if(ext=="mp4"){
-		snapBigPath=snapBigPath + ".jpg";
-	}
-	var lng=picArray[nowPicIndex]['Longitude'];
-	var lat=picArray[nowPicIndex]['Latitude'];
-	var content=[];
-	
-	picNum=picArray.length;
-	nowNum=nowPicIndex+1;
-	
-	if(ext=="mp4"){
-	   title="视频(" + nowNum + "/" + picNum + ")";
-	}
-	else{
-	   title="图片(" + nowNum + "/" + picNum + ")";
-	}
+    var picPath="/Data/User_" + picUserID + "/Album_" + picAlbumID + "/" + picName;
+    var snapBigPath="/Data/User_" + picUserID + "/AlbumSnapBig_" + picAlbumID + "/" + picName;
+    var ext=snapBigPath.substr(snapBigPath.indexOf('.')+1).toLowerCase();
+    if(ext=="mp4"){
+        snapBigPath=snapBigPath + ".jpg";
+    }   
+    var lng=picArray[nowPicIndex]['Longitude'];
+    var lat=picArray[nowPicIndex]['Latitude'];
+    var content=[];
+    
+    var picNum=picArray.length;
+    var nowNum=nowPicIndex+1;
+    
+    if(ext=="mp4"){
+       title="视频(" + nowNum + "/" + picNum + ")";
+    }   
+    else{
+       title="图片(" + nowNum + "/" + picNum + ")";
+    }   
 
-    content.push("<img onclick=\"javascript:showPanel()\" src=\""+ snapBigPath + "\" />");
+    numInfo="<div><span class='badge'>赞:"+ picLikeNum + "</span> <span class='badge'>评论:" + picCommentNum + "</span></div>";
+
+    content.push("<img onclick=\"javascript:showPanel()\" src=\""+ snapBigPath + "\" /><br />" +numInfo+ "<div id='PicDesDiv'>" + picDes + "</div>");
 
     infoWindow = new AMap.InfoWindow({
-    	isCustom:true,
+        isCustom:true,
         content: createInfoWindow(title,content.join("<br/>")),
         offset:new AMap.Pixel(16,-25)
-    });
+    }); 
     infoWindow.open(map, [lng,lat]);
-    //map.setCenter([lng,lat]);
+    map.setCenter([lng,lat]);
 	
 }
 
