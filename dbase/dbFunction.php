@@ -175,6 +175,10 @@ function addComment($userID, $picID, $comment, $createTime){
     $userName=getUserName($userID);
     $sql="INSERT INTO CommentTable (UserID,UserName,PicID, Comment, CreateTime) VALUES('$userID', '$userName', '$picID', '$comment', '$createTime')";
     if(!exeSQL($sql)){printf("add comment failed");}
+    else{
+        $sql="UPDATE PicTable SET CommentNum=CommentNum+1 WHERE PicID=$picID";
+        if(!exeSQL($sql)){printf("add comment failed");}
+    }
 }
 
 function addLike($userID, $picID, $createTime){

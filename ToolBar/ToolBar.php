@@ -1,3 +1,31 @@
+<!-- Comment Modal -->
+<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="commentModalLabel">评论</h4>
+      </div>
+
+      <div class="modal-body"> 
+        <ul class="list-group" id="CommentList">
+        </ul>
+      
+      </div>
+
+      <div class="modal-footer">
+        <div class="input-group">
+          <span class="input-group-addon" onclick="sendComment()">发布</span>
+          <input type="text" class="form-control" id="CommentInput"></input>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 <!-- Modify Pic Modal -->
 <div class="modal fade" id="editPicModal" tabindex="-1" role="dialog" aria-labelledby="editPicModalLabel">
   <div class="modal-dialog" role="document">
@@ -89,14 +117,8 @@
   	$bar="
 	  <button type=\"button\" class=\"btn btn-default\" onclick=\"javascript:beforePic();\" id=\"BeforeBtn\"><span class=\"glyphicon glyphicon-chevron-left\"></span></button>
 	  <button type=\"button\" class=\"btn btn-default\" onclick=\"javascript:nextPic();\" id=\"NextBtn\"><span class=\"glyphicon glyphicon-chevron-right\"></span></button>
-	  ";
-  	print($bar);
-  }
-  
-   if($nowPage=="Album"){
-  	$bar="
-	  <button type=\"button\" class=\"btn btn-default\" onclick=\"javascript:beforeAlbum();\" id=\"BeforeAlbumBtn\"><span class=\"glyphicon glyphicon-chevron-left\"></span></button>
-	  <button type=\"button\" class=\"btn btn-default\" onclick=\"javascript:nextAlbum();\" id=\"NextAlbumBtn\"><span class=\"glyphicon glyphicon-chevron-right\"></span></button>
+	  <button type=\"button\" class=\"btn btn-default\" onclick=\"javascript:likeFun();\" id=\"LikeBtn\"><span class=\"glyphicon glyphicon-thumbs-up\"></span></button>
+	  <button type=\"button\" class=\"btn btn-default\" onclick=\"javascript:initCommentPanel();\" data-toggle=\"modal\" data-target=\"#commentModal\" id=\"CmtBtn\"><span class=\"glyphicon glyphicon-comment\"></span></button>
 	  ";
   	print($bar);
   }

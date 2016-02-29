@@ -30,6 +30,7 @@
     <Longitude>DOUBLE</Longitude>
     <Latitude>DOUBLE</Latitude>
     <LikeNum>INT(6) UNSIGNED DEFAULT 0</LikeNum>
+    <CommentNum>INT(6) UNSIGNED DEFAULT 0</CommentNum>
     <AlbumID>INT(4) UNSIGNED DEFAULT 2</AlbumID>
     <Share>INT(4) UNSIGNED DEFAULT 1</Share></PicTable>
 

@@ -6,6 +6,98 @@ var picMarker=new Array();
 var nowPicIndex=0;
 var ifMove=0;
 
+function likeFun(){
+    var xmlhttp;
+    xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function(){
+        if(xmlhttp.readyState==4 && xmlhttp.status==200){
+            picArray=getAlbumPic(albumID);
+            showPicDiv();
+        }   
+    };  
+
+    xmlhttp.open("POST", "/Command.php",false);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    cmtContent=encodeURIComponent($("#CmtContentText").val());
+    picID=picArray[nowPicIndex]["PicID"];
+    xmlhttp.send("cmd=addLike&picID=" + picID);
+}
+
+
+//----------------------------comment panel-----------------------------------------
+function sendComment(){
+    var xmlhttp;
+    xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function(){
+        if(xmlhttp.readyState==4 && xmlhttp.status==200){
+            initCommentPanel();
+            picArray=getAlbumPic(albumID);
+            showPicDiv();
+        }
+    };
+
+    xmlhttp.open("POST", "/Command.php",false);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    cmtContent=encodeURIComponent($("#CommentInput").val());
+    picID=picArray[nowPicIndex]["PicID"];
+    xmlhttp.send("cmd=sendComment&picID=" + picID + "&cmt=" + cmtContent);
+    return cmtATmp;
+
+}
+
+function initCommentPanel(){
+    var cmtArray=getComment(picArray[nowPicIndex]['PicID']);
+    cmt=[];
+    str="";
+    $("#CommentInput").val("");
+    for(var i=0;i<cmtArray.length;i++){
+        cmtUserName=cmtArray[i]['UserName'];
+        cmtTime=getTimeStr(cmtArray[i]['CreateTime']);
+        cmtStr=cmtArray[i]['Comment'];
+        str='<li class="list-group-item"><span class="CmtUserName">' + cmtUserName + "</span>" + '<span class="CmtTime"> (' + cmtTime + "): </span><br />" + '<span class="CmtStr">' + cmtStr + '</span></li>';
+     
+        cmt.push(str);
+    }
+    $("#CommentList").html(cmt.join("<br />"));
+
+}
+
+function getComment(picID){
+    var xmlhttp;
+    cmtATmp=new Array();
+    xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function(){
+        if(xmlhttp.readyState==4 && xmlhttp.status==200){
+            res=xmlhttp.responseText;
+            if(res.length<=0)return;
+            cmtList=res.split("#");
+            for(var i=0;i<cmtList.length;i++){
+                cmtATmp[i]=new Array();
+                cmtInfo=cmtList[i].split(" ");
+                for(var j=0;j<cmtInfo.length;j++){
+                    key=decodeURIComponent(cmtInfo[j].split("=")[0]);
+                    value=decodeURIComponent(cmtInfo[j].split("=")[1]);
+                    cmtATmp[i][key]=value;
+                }   
+            }   
+        }   
+    };  
+
+    xmlhttp.open("POST", "/Command.php",false);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("cmd=getComment&picID=" + picID);
+    return cmtATmp;
+}
+
+//------------------------comment panel------------------------------------------------
+
+
+
+
+
+
+
+
 function initEditPic(){
 	var picDes=picArray[nowPicIndex]['Description'];
 	$("#EditPicDes").val(picDes);
@@ -81,7 +173,9 @@ function _onClick(e){
     }
 
 	getBounds();
+    closePicPanel();
 }
+
 
 function _onMoveend(e){
 	getBounds();
@@ -269,6 +363,8 @@ function fresh(){
 
 function showPicDiv(){
 	var picName=picArray[nowPicIndex]['PicName'];
+	var picLikeNum=picArray[nowPicIndex]['LikeNum'];
+	var picCommentNum=picArray[nowPicIndex]['CommentNum'];
 	var picDes=picArray[nowPicIndex]['Description'];
 	var picPath="/Data/User_" + albumUserID + "/Album_" + albumID + "/" + picName;
 	var snapBigPath="/Data/User_" + albumUserID + "/AlbumSnapBig_" + albumID + "/" + picName;
@@ -290,7 +386,9 @@ function showPicDiv(){
 	   title="图片(" + nowNum + "/" + picNum + ")";
 	}
 
-    content.push("<img onclick=\"javascript:showPanel()\" src=\""+ snapBigPath + "\" /><br /><div id='PicDesDiv'>" + picDes + "</div>");
+    numInfo="<div><span class='badge'>赞:"+ picLikeNum + "</span> <span class='badge'>评论:" + picCommentNum + "</span></div>";
+
+    content.push("<img onclick=\"javascript:showPanel()\" src=\""+ snapBigPath + "\" /><br />" +numInfo+ "<div id='PicDesDiv'>" + picDes + "</div>");
 
     infoWindow = new AMap.InfoWindow({
     	isCustom:true,
@@ -347,18 +445,18 @@ function closeInfoWindow() {
 }
 
 
-
-
 function nextPic(){
 	var picNum=picArray.length;
 	nowPicIndex=(nowPicIndex+1)%picNum;
 	showPicDiv();
+    freshPanel();
 }
 
 function beforePic(){
 	var picNum=picArray.length;
 	nowPicIndex=(nowPicIndex + picNum -1)%picNum;
 	showPicDiv();
+    freshPanel();
 }
 
 
