@@ -24,7 +24,6 @@ function likeFun(){
 }
 
 
-/*
 //----------------------------comment panel-----------------------------------------
 function sendComment(){
     var xmlhttp;
@@ -100,8 +99,6 @@ function getComment(picID){
 //------------------------comment panel------------------------------------------------
 
 
-
-*/
 
 
 
