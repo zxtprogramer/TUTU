@@ -249,6 +249,11 @@ if(isset($_POST['cmd'])){
 				addAlbum($userID, $albumName, $albumDes, time(),$albumShare);
 				$sql="UPDATE UserInfoTable SET AlbumNum=AlbumNum+1 WHERE UserID=$userID";
 				exeSQL($sql);
+				$sql="SELECT AlbumID FROM AlbumTable WHERE UserID=$userID ORDER BY AlbumID DESC LIMIT 0,1";
+                $res=exeSQL($sql);
+                if($row=mysql_fetch_array($res)){
+                    print $row['AlbumID'];
+                }
 		    }
 	    }
         break;
@@ -321,6 +326,10 @@ if(isset($_POST['cmd'])){
         	$scrollNum=(int)($_POST['scrollNum']);
         	$onceNum=(int)($_POST['onceNum']);
         	$bgn=$scrollNum*$onceNum;
+             
+        	if($albumUserID==-1){
+                $albumUserID=$userID;
+            }
 
         	if($albumUserID==0){
     		    $sql="SELECT * FROM AlbumTable WHERE Share='1' AND PicNum>0 ORDER BY EditTime DESC LIMIT $bgn,$onceNum";

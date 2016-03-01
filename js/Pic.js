@@ -269,7 +269,7 @@ function upload(){
 		xhr.upload.addEventListener("progress", uploadProgress, false); 
 		xhr.onreadystatechange=function(){
 			if(xhr.readyState==4 && xhr.status==200){
-                self.location.reload();
+                self.location.href="/Pic/Pic.php?AlbumID="+albumID;
 			}
 		};
 		

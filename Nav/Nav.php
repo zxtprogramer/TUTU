@@ -10,8 +10,8 @@
 				<span class=\"glyphicon glyphicon-globe\"></span> 发现
 			  </div>
 
-			  <div class=\"NavButton\" onclick=\"self.location='/About/About.php'\">
-				<span class=\"glyphicon glyphicon-question-sign\"></span> 帮助
+			  <div class=\"NavButton\" data-toggle=\"modal\" data-target=\"#quickUploadModal\" onclick=\"initQuickUpload()\">
+				<span class=\"glyphicon glyphicon-camera\"></span> 上传
 			  </div>
 
 			  <div class=\"NavButton\" onclick=\"self.location='/UserPage/UserPage.php?PageUserID=$userID'\">
@@ -124,3 +124,53 @@
   </div>
 </div>
   
+
+
+<!-- QuickUpload Modal -->
+<div class="modal fade" id="quickUploadModal" tabindex="-1" role="dialog" aria-labelledby="quickUploadModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="quickUploadModalLabel">快速上传</h4>
+      </div>
+      <div class="modal-body"> 
+        选择相册
+        <select onchange="selectChange()" class="form-control" id="AlbumList_QU">
+           <option value="-1">新建相册</option>
+        </select>
+        <br />
+
+        <div id="NewAlbum_QU">
+        新建相册
+            <div class="input-group">
+              <span class="input-group-addon">名称</span>
+              <input type="text" class="form-control" id="newAlbumName_QU"></input>
+            </div>
+            <br />
+            <div class="input-group">
+              <span class="input-group-addon">描述</span>
+              <input type="text" class="form-control" id="newAlbumDes_QU"></input>
+            </div>
+            <br />
+                
+            <div class="checkbox">
+              <label>
+              <input id="NewIfShare_QU" type="checkbox" checked="checked"> 公开
+              </label>
+            </div>
+        </div>
+
+        <br />
+        
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onclick="quickUpload();">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -73,5 +73,94 @@ function quickLogin(){
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("Email=" + userEmail + "&Password=" + userPassword + "&submitLogin=Register");
 
+}
+
+
+//------------for quick upload---------------------
+
+var albumArray_QU=new Array();
+
+function gotoPicUpload(aID){
+    self.location.href="/Pic/Pic.php?cmd=QuickUpLoad&AlbumID="+aID;
+}
+
+
+function quickUpload(){
+    var selVal=parseInt($("#AlbumList_QU").val());
+    if(selVal==-1){
+        var xmlhttp;
+        xmlhttp=new XMLHttpRequest();
+        var albumName=$("#newAlbumName_QU").val();
+        var albumDes=$("#newAlbumDes_QU").val()
+        var albumShare=0;
+        if(document.getElementById("NewIfShare_QU").checked){
+            albumShare=1;
+        }   
+        else{
+            albumShare=0;
+        }   
+
+        xmlhttp.onreadystatechange=function(){
+            if(xmlhttp.readyState==4 && xmlhttp.status==200){
+                res=xmlhttp.responseText;
+                var albumID=parseInt(res);
+                gotoPicUpload(albumID);
+               
+            }   
+        };  
+
+        xmlhttp.open("POST", "/Command.php",true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send("cmd=newAlbum&AlbumName=" + albumName + "&AlbumDes=" + albumDes + "&AlbumShare=" + albumShare);
+
+    }
+    else{
+        gotoPicUpload(selVal);
+    }
 
 }
+
+function selectChange(){
+    var selVal=parseInt($("#AlbumList_QU").val());
+    if(selVal!=-1){
+        $("#NewAlbum_QU").hide();
+    }
+    else{
+        $("#NewAlbum_QU").show();
+    }
+}
+
+function initQuickUpload(){
+    var xmlhttp;
+    var albumArray_QU=new Array();
+    xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function(){
+        if(xmlhttp.readyState==4 && xmlhttp.status==200){
+            res=xmlhttp.responseText;
+            if(res.length<=0)return;
+            albumList=res.split("#");
+            for(var i=0;i<albumList.length;i++){
+                albumArray_QU[i]=new Array();
+                albumInfo=albumList[i].split(" ");
+                for(var j=0;j<albumInfo.length;j++){
+                    key=decodeURIComponent(albumInfo[j].split("=")[0]);
+                    value=decodeURIComponent(albumInfo[j].split("=")[1]);
+                    albumArray_QU[i][key]=value;
+                }
+            }
+            for(i=0;i<albumArray_QU.length;i++){
+                var albumName=albumArray_QU[i]['AlbumName'];
+                var albumID=albumArray_QU[i]['AlbumID'];
+                $("#AlbumList_QU").append("<option value='" + albumID +"'>" + albumName + "</option>");
+            }
+
+        }
+    };  
+
+    xmlhttp.open("POST", "/Command.php",false);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("cmd=getAlbumList&scrollNum=0&onceNum=500&albumUserID=-1");
+
+
+}
+///////////////////////////////////////////////////

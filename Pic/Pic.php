@@ -18,11 +18,11 @@ if(isset($_SESSION['UserID'])){
 
 if(isset($_GET['AlbumID'])){
 	$albumID=$_GET['AlbumID'];
-    $albumUserID=$_GET['AlbumUserID'];
-    $sql="SELECT AlbumName FROM AlbumTable WHERE AlbumID='$albumID'";
+    $sql="SELECT AlbumName,UserID FROM AlbumTable WHERE AlbumID='$albumID'";
     $res=exeSQL($sql);
     $row=mysql_fetch_array($res);
-    $albumName=$row[0];
+    $albumName=$row['AlbumName'];
+    $albumUserID=$row['UserID'];
 }
 
 if($albumID=="0"){
@@ -75,6 +75,22 @@ printf($gVarHTML);
     <script src="../js/PicPanel.js"></script>
     <script src="../js/Nav.js"></script>
     <script src="../js/ToolBar.js"></script>
+
+<?php
+if(isset($_GET['cmd'])){
+    switch($_GET['cmd']){
+        case 'QuickUpLoad':
+            $cmd='<script type="text/javascript">
+                   $("#uploadModal").modal("show");
+                  </script>';
+            print $cmd;
+        break;
+        default:break;
+    }
+}
+
+
+?>
  
   </body>
 </html>

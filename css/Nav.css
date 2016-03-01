@@ -4,8 +4,9 @@
 	height:40px;	
 	left:0px;
 	bottom:0px;
-	background-color:#eef;
+	background-color:#fff;
 	z-index:1000;
+    border:1px solid #ccc;
 }
 
 .NavButton{
