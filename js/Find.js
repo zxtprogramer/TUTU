@@ -5,8 +5,18 @@ var picArray=new Array();
 var picMarker=new Array();
 var nowPicIndex=0;
 var ifMove=0;
+var ifShowPicDiv=0;
 
-var picNum=500, groupNum=0, sortType="ShootTime", selectType="AllRange", para="";
+var picNumOnce=500, groupNum=0, sortType="ShootTime DESC", selectType="AllRange", para="";
+
+function setFind(){
+    sortType=$("input[name='SortType']:checked").val() + " " + $("input[name='UpOrDown']:checked").val();
+    picNumOnce=parseInt($("#PicNumOnce").val());
+    fresh();
+    $("#findSetModal").modal('hide');
+}
+
+
 
 function likeFun(){
     var xmlhttp;
@@ -14,7 +24,7 @@ function likeFun(){
     xmlhttp.onreadystatechange=function(){
         if(xmlhttp.readyState==4 && xmlhttp.status==200){
             para="lngMax=" + lngMax + "&lngMin=" + lngMin + "&latMax=" +  latMax + "&latMin=" + latMin;
-            picArray=getPic(picNum, groupNum, sortType, selectType, para);
+            picArray=getPic(picNumOnce, groupNum, sortType, selectType, para);
             showPicDiv();
         }
     };
@@ -26,6 +36,7 @@ function likeFun(){
     xmlhttp.send("cmd=addLike&picID=" + picID);
 }
 
+/*
 
 //----------------------------comment panel-----------------------------------------
 function sendComment(){
@@ -35,7 +46,7 @@ function sendComment(){
         if(xmlhttp.readyState==4 && xmlhttp.status==200){
             initCommentPanel();
             para="lngMax=" + lngMax + "&lngMin=" + lngMin + "&latMax=" +  latMax + "&latMin=" + latMin;
-            picArray=getPic(picNum, groupNum, sortType, selectType, para);
+            picArray=getPic(picNumOnce, groupNum, sortType, selectType, para);
             showPicDiv();
         }
     };
@@ -98,6 +109,7 @@ function getComment(picID){
 }
 
 //------------------------comment panel------------------------------------------------
+*/
 
 
 
@@ -330,6 +342,10 @@ function addMarker(){
 	
 	//map.setFitView();
 	map.plugin(["AMap.MarkerClusterer"], function(){
+		cluster.clearMarkers();
+	});
+
+	map.plugin(["AMap.MarkerClusterer"], function(){
 		cluster=new AMap.MarkerClusterer(map, picMarker);
 	});
 }
@@ -348,7 +364,8 @@ function fresh(){
     picMarker=new Array();
 	getBounds();
 	para="lngMax=" + lngMax + "&lngMin=" + lngMin + "&latMax=" +  latMax + "&latMin=" + latMin;
-	picArray=getPic(picNum, groupNum, sortType, selectType, para);
+    picArray=new Array();
+	picArray=getPic(picNumOnce, groupNum, sortType, selectType, para);
 	addMarker();
     nowPicIndex=0;
     for(i=0;i<picArray.length;i++){
@@ -357,7 +374,7 @@ function fresh(){
         }
     }
     if(picArray.length>0){
-        showPicDiv();
+        //showPicDiv();
     }
 }
 
@@ -399,7 +416,7 @@ function showPicDiv(){
         offset:new AMap.Pixel(16,-25)
     }); 
     infoWindow.open(map, [lng,lat]);
-    map.setCenter([lng,lat]);
+    //map.setCenter([lng,lat]);
 	
 }
 
@@ -454,12 +471,14 @@ function nextPic(){
 	var picNum=picArray.length;
 	nowPicIndex=(nowPicIndex+1)%picNum;
 	showPicDiv();
+    freshPanel();
 }
 
 function beforePic(){
 	var picNum=picArray.length;
 	nowPicIndex=(nowPicIndex + picNum -1)%picNum;
 	showPicDiv();
+    freshPanel();
 }
 
 

@@ -115,7 +115,7 @@ function editAlbum($userID, $albumName, $des, $createTime,$ifShare,$albumID){
 	global $dataPath;
     $userName=getUserName($userID);
     $tmp=time();
-    $sql="UPDATE AlbumTable SET AlbumName='$albumName',Description='$des',Share='$ifShare' EditTime='$tmp' WHERE UserID='$userID' AND AlbumID='$albumID'";
+    $sql="UPDATE AlbumTable SET AlbumName='$albumName',Description='$des',Share='$ifShare', EditTime='$tmp' WHERE UserID='$userID' AND AlbumID='$albumID'";
     if(!exeSQL($sql)){printf("edit album $albumName failed");}
     $sql="UPDATE PicTable SET Share='$ifShare' WHERE AlbumID='$albumID'";
     if(!exeSQL($sql)){printf("edit2 album $albumName failed");}

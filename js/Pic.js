@@ -24,6 +24,7 @@ function likeFun(){
 }
 
 
+/*
 //----------------------------comment panel-----------------------------------------
 function sendComment(){
     var xmlhttp;
@@ -56,13 +57,18 @@ function initCommentPanel(){
         cmtTime=getTimeStr(cmtArray[i]['CreateTime']);
         cmtStr=cmtArray[i]['Comment'];
         cmtUserID=cmtArray[i]['UserID'];
-        str='<li class="list-group-item"><span class="CmtUserName"><a href="/UserPage/UserPage.php?PageUserID='+ cmtUserID +'">' + cmtUserName + "</a></span>" + '<span class="CmtTime"> (' + cmtTime + "): </span><br />" + '<span class="CmtStr">' + cmtStr + '</span></li>';
+        str='<li onclick="replyFun(\''+cmtUserName+'\')" class="list-group-item"><span class="CmtUserName"><a href="/UserPage/UserPage.php?PageUserID='+ cmtUserID +'">' + cmtUserName + "</a></span>" + '<span class="CmtTime"> (' + cmtTime + "): </span><br />" + '<span class="CmtStr">' + cmtStr + '</span></li>';
      
         cmt.push(str);
     }
     $("#CommentList").html(cmt.join("<br />"));
-
 }
+
+function replyFun(uName){
+oldVal=$("#CommentInput").val()
+$("#CommentInput").val("回复"+uName+":"+oldVal);
+}
+
 
 function getComment(picID){
     var xmlhttp;
@@ -95,6 +101,7 @@ function getComment(picID){
 
 
 
+*/
 
 
 
@@ -340,6 +347,11 @@ function addMarker(){
 	}
 	
 	map.setFitView();
+
+	map.plugin(["AMap.MarkerClusterer"], function(){
+		cluster.clearMarkers();
+	});
+
 
 	map.plugin(["AMap.MarkerClusterer"], function(){
 		cluster=new AMap.MarkerClusterer(map, picMarker);

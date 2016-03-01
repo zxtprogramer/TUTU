@@ -1,3 +1,49 @@
+<!-- Find Setting Modal -->
+<div class="modal fade" id="findSetModal" tabindex="-1" role="dialog" aria-labelledby="findSetModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="findSetModalLabel">设置</h4>
+      </div>
+
+      <div class="modal-body"> 
+        <form class="form-inline">
+          <label>排序方式</label>
+          <div class="radio">
+            <label> <input type="radio" name="SortType" value="ShootTime" checked> 时间 </label>
+            <label> <input type="radio" name="SortType" value="LikeNum" > 点赞 </label>
+            <label> <input type="radio" name="SortType" value="CommentNum" > 评论 </label>
+          </div>
+          <div class="radio">
+            <label> <input type="radio" name="UpOrDown" value="DESC" checked> 降序 </label>
+            <label> <input type="radio" name="UpOrDown" value="ASC" > 升序 </label>
+          </div>
+
+          <div class="form-group">
+              <label>单次最大数目</label>
+              <input type="text" class="form-control" id="PicNumOnce" value="500">
+          </div>
+        </form>
+
+
+      </div>
+
+      <div class="modal-footer">
+        <div class="input-group">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" onclick="setFind();">确定</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
 <!-- Comment Modal -->
 <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel">
   <div class="modal-dialog" role="document">
@@ -139,6 +185,20 @@
 		';
 		  print($editBar);
 	  }
+      
+  }
+  if($nowPage=="Find"){
+      $editBar='
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#findSetModal" onclick="javascript:" id="SetFindBtn"><span class="glyphicon glyphicon-cog"></span></button>
+        </div>
+    ';
+      print($editBar);
+
+
+
+
+
   }
   
   

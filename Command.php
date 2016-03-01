@@ -347,6 +347,7 @@ if(isset($_POST['cmd'])){
      		case "All":
 				$sql="SELECT * FROM PicTable ORDER BY $sortType desc LIMIT $index,$picNum";
 				break;
+
 			case "AllRange":
 				$latMax=(double)($_POST['latMax']);
 				$latMin=(double)($_POST['latMin']);

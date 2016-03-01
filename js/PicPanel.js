@@ -14,10 +14,10 @@ function touchEnd(event){
 	endX=touch.pageX;
 	endY=touch.pageY;
 	if((endX-startX)>50){
-		befPic_Panel();
+		beforePic();
 	}
 	if((startX-endX)>50){
-		nextPic_Panel();
+		nextPic();
 	}
 }
 
@@ -66,21 +66,6 @@ function getTimeStr(sec){
 }
 
 
-function befPic_Panel(){
-    nums=picArray.length;
-    nowPicIndex=(nowPicIndex-1+nums)%nums;
-    freshPanel();
-    befPic();
-}
-
-
-
-function nextPic_Panel(){
-    nums=picArray.length;
-    nowPicIndex=(nowPicIndex+1)%nums;
-    freshPanel();
-    nextPic();
-}
 
 function nextGroup(){
     groupNum=groupNum + 1;
