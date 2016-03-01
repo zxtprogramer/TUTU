@@ -9,10 +9,23 @@
 	background:#fff;
 }
 
+.AlbumHr{
+    height:1px;
+    border:none;
+    border-top:1px dashed #ddd;
+    margin:5px;
+}
+
 .AlbumTitle{
+	background:#fff;
+	padding:0px 10px 0px 10px;
+}
+
+.AlbumNumInfo{
 	background:#fff;
 	padding:5px;
 }
+
 
 .AlbumSpace{
 	height:30px;

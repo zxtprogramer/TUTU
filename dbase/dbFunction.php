@@ -178,6 +178,15 @@ function addComment($userID, $picID, $comment, $createTime){
     else{
         $sql="UPDATE PicTable SET CommentNum=CommentNum+1 WHERE PicID=$picID";
         if(!exeSQL($sql)){printf("add comment failed");}
+
+        $sql="SELECT AlbumID FROM PicTable WHERE PicID=$picID";
+        if($res=exeSQL($sql)){
+            $row=mysql_fetch_array($res);
+            $albumID=$row['AlbumID'];
+            $sql="UPDATE AlbumTable SET CommentNum=CommentNum+1 WHERE AlbumID=$albumID";
+            exeSQL($sql);
+        }
+
     }
 }
 
@@ -188,6 +197,13 @@ function addLike($userID, $picID, $createTime){
     else{
         $sql="UPDATE PicTable SET LikeNum=LikeNum+1 WHERE PicID=$picID";
         if(!exeSQL($sql)){printf("update LikeNum failed");}
+        $sql="SELECT AlbumID FROM PicTable WHERE PicID=$picID";
+        if($res=exeSQL($sql)){
+            $row=mysql_fetch_array($res);
+            $albumID=$row['AlbumID'];
+            $sql="UPDATE AlbumTable SET LikeNum=LikeNum+1 WHERE AlbumID=$albumID";
+            exeSQL($sql);
+        }
     }
 }
 

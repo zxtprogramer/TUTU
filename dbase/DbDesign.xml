@@ -42,6 +42,8 @@
     <Description>VARCHAR(1024) </Description>
     <CreateTime>INT(6) UNSIGNED</CreateTime>
 	<PicNum>INT(6) UNSIGNED DEFAULT 0</PicNum>
+	<LikeNum>INT(6) UNSIGNED DEFAULT 0</LikeNum>
+	<CommentNum>INT(6) UNSIGNED DEFAULT 0</CommentNum>
 	<Share>INT(4) UNSIGNED DEFAULT 1</Share>
 	<EditTime>INT(6) UNSIGNED</EditTime></AlbumTable>
 

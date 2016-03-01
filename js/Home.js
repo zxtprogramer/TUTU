@@ -22,6 +22,8 @@ function appendAlbum(album){
 	albumID=album['AlbumID'];
 	albumUserName=album['UserName'];
 	albumUserID=album['UserID'];
+	albumCommentNum=album['CommentNum'];
+	albumLikeNum=album['LikeNum'];
 	albumTime=parseInt(album['CreateTime'])*1000;
 
 	var albumUserTitle=document.createElement('div');
@@ -38,6 +40,11 @@ function appendAlbum(album){
 	albumFace.setAttribute("class","row");
 	albumFace.innerHTML='<a href="/Pic/Pic.php?AlbumID='+albumID+'&AlbumUserID='+albumUserID+'"><img style="width:100%;" src="' + albumFacePath +'"/></a>' ;
 
+	var albumNumInfo=document.createElement('div');
+	albumNumInfo.setAttribute("class","row AlbumNumInfo");
+	albumNumInfo.innerHTML="<hr class='AlbumHr'  /><span class='badge'>"+ albumLikeNum + "人喜欢 </span> <span class='badge'>" + albumCommentNum + "条评论</span>";
+
+
 	var albumSpace1=document.createElement('div');
 	albumSpace1.setAttribute("class","row AlbumSpace");
 	var albumSpace2=document.createElement('div');
@@ -46,6 +53,7 @@ function appendAlbum(album){
 	document.getElementById("HomeMain").appendChild(albumUserTitle);
 	document.getElementById("HomeMain").appendChild(albumFace);
 	document.getElementById("HomeMain").appendChild(albumTitle);
+	document.getElementById("HomeMain").appendChild(albumNumInfo);
 	document.getElementById("HomeMain").appendChild(albumSpace1);
 	
 }
