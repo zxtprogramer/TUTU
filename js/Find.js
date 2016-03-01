@@ -26,6 +26,7 @@ function likeFun(){
             para="lngMax=" + lngMax + "&lngMin=" + lngMin + "&latMax=" +  latMax + "&latMin=" + latMin;
             picArray=getPic(picNumOnce, groupNum, sortType, selectType, para);
             showPicDiv();
+            freshPanel();
         }
     };
 
@@ -47,6 +48,7 @@ function sendComment(){
             para="lngMax=" + lngMax + "&lngMin=" + lngMin + "&latMax=" +  latMax + "&latMin=" + latMin;
             picArray=getPic(picNumOnce, groupNum, sortType, selectType, para);
             showPicDiv();
+            freshPanel();
         }
     };
 

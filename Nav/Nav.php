@@ -2,48 +2,48 @@
 	  <?php 
 		if($ifLogin==1){
 			$navHTML="
-			  <div class=\"NavButton\" onclick=\"self.location='/Home/Home.php'\">
+			  <button class=\"NavButton\" onclick=\"self.location='/Home/Home.php'\">
 				<span class=\"glyphicon glyphicon-home\"></span> 首页
-			  </div>
+			  </button>
 
-			  <div class=\"NavButton\" onclick=\"self.location='/Find/Find.php'\">
+			  <button class=\"NavButton\" onclick=\"self.location='/Find/Find.php'\">
 				<span class=\"glyphicon glyphicon-globe\"></span> 发现
-			  </div>
+			  </button>
 
-			  <div class=\"NavButton\" data-toggle=\"modal\" data-target=\"#quickUploadModal\" onclick=\"initQuickUpload()\">
+			  <button class=\"NavButton\" data-toggle=\"modal\" data-target=\"#quickUploadModal\" onclick=\"initQuickUpload()\">
 				<span class=\"glyphicon glyphicon-camera\"></span> 上传
-			  </div>
+			  </button>
 
-			  <div class=\"NavButton\" onclick=\"self.location='/UserPage/UserPage.php?PageUserID=$userID'\">
+			  <button class=\"NavButton\" onclick=\"self.location='/UserPage/UserPage.php?PageUserID=$userID'\">
 				<span class=\"glyphicon glyphicon-picture\"></span> 相册
-			  </div>
+			  </button>
 
-			  <div class=\"NavButton\" onclick=\"self.location='/User/User.php'\">
+			  <button class=\"NavButton\" onclick=\"self.location='/User/User.php'\">
 				<span class=\"glyphicon glyphicon-user\"> </span> 我 
-			  </div>
+			  </button>
 			";
 		}
 		else{
 			$navHTML="
-			  <div class=\"NavButton\" onclick=\"self.location='/Home/Home.php'\">
+			  <button class=\"NavButton\" onclick=\"self.location='/Home/Home.php'\">
 				<span class=\"glyphicon glyphicon-home\"></span> 首页
-			  </div>
+			  </button>
 
-			  <div class=\"NavButton\" onclick=\"self.location='/Find/Find.php'\">
+			  <button class=\"NavButton\" onclick=\"self.location='/Find/Find.php'\">
 				<span class=\"glyphicon glyphicon-globe\"></span> 发现
-			  </div>
+			  </button>
 
-			  <div class=\"NavButton\" onclick=\"self.location='/About/About.php'\">
+			  <button class=\"NavButton\" onclick=\"self.location='/About/About.php'\">
 				<span class=\"glyphicon glyphicon-question-sign\"></span> 帮助
-			  </div>
+			  </button>
 
-			  <div class=\"NavButton\" data-toggle=\"modal\" data-target=\"#loginModal\">
+			  <button class=\"NavButton\" data-toggle=\"modal\" data-target=\"#loginModal\">
 				<span class=\"glyphicon glyphicon-log-in\"></span> 登录
-			  </div>
+			  </button>
 
-			  <div class=\"NavButton\" data-toggle=\"modal\" data-target=\"#registerModal\">
+			  <button class=\"NavButton\" data-toggle=\"modal\" data-target=\"#registerModal\">
 				<span class=\"glyphicon glyphicon-user\"></span> 注册
-			  </div>
+			  </button>
 			";
 		}
 

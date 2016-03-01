@@ -13,6 +13,7 @@ function likeFun(){
         if(xmlhttp.readyState==4 && xmlhttp.status==200){
             picArray=getAlbumPic(albumID);
             showPicDiv();
+            freshPanel();
         }   
     };  
 
@@ -33,6 +34,7 @@ function sendComment(){
             initCommentPanel();
             picArray=getAlbumPic(albumID);
             showPicDiv();
+            freshPanel();
         }
     };
 
@@ -60,7 +62,7 @@ function initCommentPanel(){
      
         cmt.push(str);
     }
-    $("#CommentList").html(cmt.join("<br />"));
+    $("#CommentList").html(cmt.join(" "));
 }
 
 function replyFun(uName){
@@ -179,7 +181,6 @@ function _onClick(e){
     }
 
 	getBounds();
-    closePicPanel();
 }
 
 
