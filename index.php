@@ -7,21 +7,8 @@
     <title>首页</title>
   </head>
   <body>
-  
-  目前只有移动端网站。<br />
-  为显示效果好，最好选择手机端观看。<br />
-  电脑端建议把窗口调窄。<br />
-  <br />
-  <br />
-  <br />
-  马上为您跳转
-
-
   <script type="text/javascript">
-    function gotoHome(){
-        window.location.href="Home/Home.php";
-    }
-    setTimeout("gotoHome()",5000);
+    window.location.href="Home/Home.php";
   </script>
  
   </body>

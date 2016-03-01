@@ -97,13 +97,13 @@ function appendAlbum(nowIndex){
 
 	var albumUserTitle=document.createElement('div');
 	albumUserTitle.setAttribute("class","row UserTitle");
-	albumUserTitle.innerHTML='<a href="/UserPage/UserPage.php?PageUserID='+albumUserID+'"><img src="/Data/User_' + albumUserID + '/UserFace.jpg" class="UserFaceImg"></img></a> ' + 
-	albumUserName + ' <span class="AlbumTimeLabel">' + myGetTime(albumTime) + '</span>' + ' <span class="badge">'+albumNum+'</span>';
+	albumUserTitle.innerHTML='<div class="col-xs-12"><a href="/UserPage/UserPage.php?PageUserID='+albumUserID+'"><img src="/Data/User_' + albumUserID + '/UserFace.jpg" class="UserFaceImg"></img></a> ' + 
+	albumUserName + ' <span class="AlbumTimeLabel">' + myGetTime(albumTime) + '</span>' + ' <span class="badge">'+albumNum+'</span></div>';
 
 	var albumTitle=document.createElement('div');
 	albumTitle.setAttribute("class","row AlbumTitle");
 	albumTitle.setAttribute("albumID",albumID);
-	albumTitle.innerHTML='<h5>'+albumName +'<br /><br /> <small> '  + albumDes + '</small></h5>';
+	albumTitle.innerHTML='<div class="col-xs-12"><h5>'+albumName +' <small> '  + albumDes + '</small></h5></div>';
 	
 	var albumFace=document.createElement('div');
 	albumFace.setAttribute("class","row");
@@ -111,7 +111,7 @@ function appendAlbum(nowIndex){
 
    var albumNumInfo=document.createElement('div');
     albumNumInfo.setAttribute("class","row AlbumNumInfo");
-    albumNumInfo.innerHTML="<hr class='AlbumHr'  /><span class='badge'>"+ albumLikeNum + "人喜欢 </span> <span class='badge'>" + albumCommentNum + "条评论</span>";
+    albumNumInfo.innerHTML="<hr class='AlbumHr'  /><span class='badge'>"+ albumLikeNum + "个喜欢 </span> <span class='badge'>" + albumCommentNum + "条评论</span>";
 
 
 	var albumSpace1=document.createElement('div');

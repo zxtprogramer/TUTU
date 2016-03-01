@@ -41,7 +41,7 @@ if($ifLogin==0){
   ?>
  
 
-    <div class="container-fluid HomeMain" id="UserMain"> 
+    <div class="container-fluid UserMain" id="UserMain"> 
       <div class="row UserSpaceWhite"></div>
 
       <div class="row UserItemBig">

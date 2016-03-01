@@ -270,13 +270,16 @@ if(isset($_POST['cmd'])){
         
         case 'delPic':
         	$picID=(int)($_POST['picID']);
-        	$sql="SELECT AlbumID FROM PicTable WHERE PicID=$picID AND UserID=$userID";
+        	$sql="SELECT * FROM PicTable WHERE PicID=$picID AND UserID=$userID";
         	$res=exeSQL($sql);
         	$row=mysql_fetch_array($res);
-        	$albumID=$row[0];
+        	$albumID=$row['AlbumID'];
+        	$picLikeNum=$row['LikeNum'];
+        	$picCommentNum=$row['CommentNum'];
+
         	$sql="DELETE FROM PicTable WHERE PicID=$picID AND UserID=$userID";
         	exeSQL($sql);
-        	$sql="UPDATE AlbumTable SET PicNum=PicNum-1 WHERE AlbumID=$albumID AND UserID=$userID";
+        	$sql="UPDATE AlbumTable SET PicNum=PicNum-1,LikeNum=LikeNum-$picLikeNum, CommentNum=CommentNum-$picCommentNum WHERE AlbumID=$albumID AND UserID=$userID";
         	exeSQL($sql);
         	$sql="UPDATE UserInfoTable SET PicNum=PicNum-1 WHERE UserID=$userID";
         	exeSQL($sql);

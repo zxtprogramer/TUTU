@@ -37,7 +37,7 @@ if(isset($_SESSION['UserID'])){
   ?>
  
 
-    <div class="container-fluid HomeMain" id="HomeMain"> 
+    <div class="container HomeMain" id="HomeMain"> 
       <div class="row AlbumSpace"></div>
     
     </div>

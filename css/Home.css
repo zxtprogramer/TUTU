@@ -1,6 +1,10 @@
 @CHARSET "UTF-8";
+body{
+	background:#eee;
+}
 .HomeMain{
 	background:#eee;
+    max-width:800px;
 }
 
 .UserTitle{
@@ -50,8 +54,7 @@
 }
 
 .AlbumTimeLabel{
-	right:5px;
-	position:absolute;
 	color:grey;
-	
+    right:10px;
+    position:absolute;
 }
