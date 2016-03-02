@@ -58,11 +58,6 @@ function appendAlbum(album){
 	
 }
 
-function getUserName(userID){
-
-	
-}
-
 function getAlbumFace(albumID){
     var xmlhttp;
     albumATmp=new Array();

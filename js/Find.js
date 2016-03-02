@@ -76,7 +76,7 @@ function initCommentPanel(){
 
         cmt.push(str);
     }       
-    $("#CommentList").html(cmt.join("<br />"));
+    $("#CommentList").html(cmt.join(""));
 }
 
 function replyFun(uName){
@@ -114,9 +114,6 @@ function getComment(picID){
 }
 
 //------------------------comment panel------------------------------------------------
-
-
-
 
 
 

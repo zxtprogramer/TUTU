@@ -29,6 +29,7 @@ if($ifLogin==0){
     <link href="../css/bootstrap-theme.min.css" rel='stylesheet' type='text/css' />
     <link href="../css/Nav.css" rel='stylesheet' type='text/css' />
     <link href="../css/ToolBar.css" rel='stylesheet' type='text/css' />
+    <link href="../css/Modal.css" rel='stylesheet' type='text/css' />
     <link href="../css/User.css" rel='stylesheet' type='text/css' />
     <title>相册</title>
   </head>
@@ -36,6 +37,7 @@ if($ifLogin==0){
   <body>
   
   <?php 
+    require("../Modal/Modal.php");
     require("../Nav/Nav.php");
     //require("../ToolBar/ToolBar.php");
   ?>

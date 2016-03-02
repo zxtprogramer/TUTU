@@ -42,6 +42,7 @@ if($pageUserID==$userID){
     <link href="../css/bootstrap-theme.min.css" rel='stylesheet' type='text/css' />
     <link href="../css/Nav.css" rel='stylesheet' type='text/css' />
     <link href="../css/ToolBar.css" rel='stylesheet' type='text/css' />
+    <link href="../css/Modal.css" rel='stylesheet' type='text/css' />
     <link href="../css/UserPage.css" rel='stylesheet' type='text/css' />
     <title>相册</title>
   </head>
@@ -49,6 +50,7 @@ if($pageUserID==$userID){
   <body>
   
   <?php 
+    require("../Modal/Modal.php");
     require("../Nav/Nav.php");
 
     global $albumID, $albumName, $albumUserID, $userName, $userID,$pageUserName,$pageUserID;
@@ -62,79 +64,6 @@ if($pageUserID==$userID){
     print($gVarHTML);
   ?>
   
-  
-    <!-- Edit Album Modal -->
-<div class="modal fade" id="editAlbumModal" tabindex="-1" role="dialog" aria-labelledby="editAlbumModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="editAlbumModalLabel">修改相册</h4>
-      </div>
-      <div class="modal-body">
-        <div class="input-group">
-          <span class="input-group-addon">名称</span>
-          <input type="text" class="form-control" id="EditAlbumName"></input>
-        </div>
-        <br />
-        <div class="input-group">
-          <span class="input-group-addon">描述</span>
-          <input type="text" class="form-control" id="EditAlbumDes"></input>
-        </div>
-        <br />
-        
-        <div class="checkbox">
-          <label>
-          <input id="EditIfShare" type="checkbox" checked="checked"></input> 公开
-          </label>
-        </div>
- 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="editAlbum();">确定</button>
-      </div>
-    </div>
-  </div>
-</div>
- 
-  
-  
-  <!-- New Album Modal -->
-<div class="modal fade" id="newAlbumModal" tabindex="-1" role="dialog" aria-labelledby="newAlbumModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="newAlbumModalLabel">新建相册</h4>
-      </div>
-      <div class="modal-body">
-        <div class="input-group">
-          <span class="input-group-addon">名称</span>
-          <input type="text" class="form-control" id="newAlbumName"></input>
-        </div>
-        <br />
-        <div class="input-group">
-          <span class="input-group-addon">描述</span>
-          <input type="text" class="form-control" id="newAlbumDes"></input>
-        </div>
-        <br />
-        
-        <div class="checkbox">
-          <label>
-          <input id="NewIfShare" type="checkbox" checked="checked"> 公开
-          </label>
-        </div>
- 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="newAlbum();">新建</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- --------------------------------------------------------------------------------------------------------- --> 
 
     <div class="container-fluid UserPageMain" id="UserPageMain"> 
       <div class="row PageFace">

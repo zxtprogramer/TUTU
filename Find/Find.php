@@ -43,6 +43,7 @@ else{
     <link href="../css/PicPanel.css" rel='stylesheet' type='text/css' />
     <link href="../css/Nav.css" rel='stylesheet' type='text/css' />
     <link href="../css/ToolBar.css" rel='stylesheet' type='text/css' />
+    <link href="../css/Modal.css" rel='stylesheet' type='text/css' />
     <title>图片</title>
   </head>
 
@@ -63,6 +64,7 @@ printf($gVarHTML);
   
    <div id="MapContainer" tabindex="0" ></div>
   <?php 
+    require('../Modal/Modal.php');
     require('../Pic/PicPanel.php');
     require('../Nav/Nav.php');
     require('../ToolBar/ToolBar.php');

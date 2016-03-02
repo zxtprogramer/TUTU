@@ -1,4 +1,4 @@
-    <div id="PicPanelDiv" class="container PicPanelDiv">
+<div id="PicPanelDiv" class="container PicPanelDiv">
 
-    </div>
+</div>
 
