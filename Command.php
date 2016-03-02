@@ -211,17 +211,16 @@ if(isset($_POST['cmd'])){
     		$status=$status . checkUserEmail($uEmail);
 			$status=$status . checkUserName($uName);
     		print $status;
-    		
-    		break;
+        break;
 
         case 'editAlbum':
-	    if($ifLogin){
-            $albumName=$_POST['AlbumName'];
-		    $albumDes=$_POST['AlbumDes'];
-		    $albumShare=$_POST['AlbumShare'];
-		    $albumID=$_POST['AlbumID'];
-		    editAlbum($userID, $albumName, $albumDes, time(),$albumShare, $albumID);
-	    }
+            if($ifLogin){
+                $albumName=$_POST['AlbumName'];
+                $albumDes=$_POST['AlbumDes'];
+                $albumShare=$_POST['AlbumShare'];
+                $albumID=$_POST['AlbumID'];
+                editAlbum($userID, $albumName, $albumDes, time(),$albumShare, $albumID);
+            }
         break;
 
         case 'editPic':

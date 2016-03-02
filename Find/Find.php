@@ -44,7 +44,7 @@ else{
     <link href="../css/Nav.css" rel='stylesheet' type='text/css' />
     <link href="../css/ToolBar.css" rel='stylesheet' type='text/css' />
     <link href="../css/Modal.css" rel='stylesheet' type='text/css' />
-    <title>图片</title>
+    <title>发现</title>
   </head>
 
   <body>

@@ -25,6 +25,7 @@ if(isset($_SESSION['UserID'])){
     <link href="../css/bootstrap.min.css" rel='stylesheet' type='text/css' />
     <link href="../css/bootstrap-theme.min.css" rel='stylesheet' type='text/css' />
     <link href="../css/Nav.css" rel='stylesheet' type='text/css' />
+    <link href="../css/Modal.css" rel='stylesheet' type='text/css' />
     <title></title>
   </head>
 
@@ -32,6 +33,7 @@ if(isset($_SESSION['UserID'])){
   
   <?php 
     require("../Nav/Nav.php");
+    require("../Modal/Modal.php");
   ?>
    
   
