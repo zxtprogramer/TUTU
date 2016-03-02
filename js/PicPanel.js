@@ -58,6 +58,7 @@ function freshPanel(){
 
     var picUserID=picArray[nowPicIndex]['UserID'];
     var picID=picArray[nowPicIndex]['PicID'];
+    var picName=picArray[nowPicIndex]['PicName'];
     var picUserName=picArray[nowPicIndex]['UserName'];
     var picAlbumID=picArray[nowPicIndex]['AlbumID'];
     var picW=parseInt(picArray[nowPicIndex]['Width']);
@@ -89,7 +90,7 @@ function freshPanel(){
         
     var picNumInfoDiv=document.createElement('div');
     picNumInfoDiv.setAttribute("class","row PicNumInfo");
-    picNumInfoDiv.innerHTML="<hr class='PicHr'  /><span class='badge'>"+ picLikeNum + "个喜欢 </span> <span class='badge'>" + picCommentNum + "条评论</span>";    
+    picNumInfoDiv.innerHTML="<hr class='PicHr'  /><span class='badge'>"+ picLikeNum + "个喜欢 </span> <span class='badge'>" + picCommentNum + "条评论</span>" + "<a href='/Data/User_"+ picUserID + "/Album_"+picAlbumID+"/"+picName+"'" + "><span class='badge'>原图</span></a>";    
 
     divH=parseFloat($("#PicPanelDiv").height());
     divW=parseFloat($("#PicPanelDiv").width());
