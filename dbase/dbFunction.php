@@ -264,10 +264,14 @@ function checkUser($userName, $email){
     else return 1;
 }
 
-function checkLogin($email, $password){
-    $sql="SELECT * FROM UserInfoTable WHERE Email='$email' AND Password='$password'";
+function checkLogin($email, $password, $rnd){
+    $sql="SELECT * FROM UserInfoTable WHERE Email='$email'";
     $result=exeSQL($sql);
-    return mysql_fetch_array($result);
+    $row=mysql_fetch_array($result);
+    $md5pwd=$row['Password'];
+    $pwd=md5($md5pwd . $rnd);
+    if($pwd==$password)return $row;
+    return false;
 }
 
 function getUserFromSessionID($sessionID){

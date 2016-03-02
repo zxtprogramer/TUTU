@@ -35,7 +35,8 @@ function quickRegister(){
                     alert("用户已存在");
                     break;
                 case "00":
-                    $.post("/Register/Register.php",{"UserName":userName, "Email":userEmail, "Password":userPassword,"submitRegister":"Register","CheckCode":checkCode },
+                    md5pwd=$.md5(userPassword);
+                    $.post("/Register/Register.php",{"UserName":userName, "Email":userEmail, "Password":md5pwd,"submitRegister":"Register","CheckCode":checkCode },
 					function(Rtext,Rstatus){
                     	res=parseInt(Rtext);
                         if(res==0){
@@ -68,10 +69,12 @@ function quickLogin(){
 	
 	userEmail=document.getElementById("LoginEmail").value;
 	userPassword=document.getElementById("LoginPassword").value;
+	loginRnd=document.getElementById("LoginRnd").value;
+    md5pwd=$.md5($.md5(userPassword) + loginRnd);
 
 	xmlhttp.open("POST", "/Login/Login.php",false);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xmlhttp.send("Email=" + userEmail + "&Password=" + userPassword + "&submitLogin=Register");
+	xmlhttp.send("Email=" + userEmail + "&Password=" + md5pwd + "&submitLogin=Register");
 
 }
 

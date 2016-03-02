@@ -89,6 +89,7 @@ if($pageUserID==$userID){
     
     
     <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.md5.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/Nav.js"></script>
     <script src="../js/UserPage.js"></script>

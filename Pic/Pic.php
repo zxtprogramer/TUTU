@@ -71,6 +71,7 @@ printf($gVarHTML);
       
     
     <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.md5.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=605574e6236d5b46cff5ddfe4ac9f437"></script>
     <script src="../js/Pic.js"></script>

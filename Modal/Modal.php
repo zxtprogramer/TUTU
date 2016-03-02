@@ -60,7 +60,9 @@
         <div class="input-group">
           <span class="input-group-addon">密码</span>
           <input type="password" class="form-control" id="LoginPassword"></input>
+          <input type="hidden" id="LoginRnd" value="<?php session_start();$rnd=rand(0,9999);$_SESSION['LoginRnd']=$rnd;print $rnd; ?>" ></input>
         </div>
+
  
       </div>
       <div class="modal-footer">

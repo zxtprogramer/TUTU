@@ -45,6 +45,7 @@ if(isset($_SESSION['UserID'])){
     </div>
     
     <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.md5.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/Nav.js"></script>
     <script src="../js/Home.js"></script>
