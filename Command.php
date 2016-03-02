@@ -236,6 +236,19 @@ if(isset($_POST['cmd'])){
 
         case 'newAlbum':
 	    if($ifLogin){
+
+            if(!isset($_SESSION['AddAlbumTime'])){
+                $_SESSION['AddAlbumTime']=time();
+            }
+            else{
+                if((time()-$_SESSION['AddAlbumTime'])<10){
+                    print "TimeLimit";
+                    return;
+                }
+                $_SESSION['AddAlbumTime']=time();
+            }
+
+
             $albumName=$_POST['AlbumName'];
 		    $albumDes=$_POST['AlbumDes'];
 		    $albumShare=$_POST['AlbumShare'];
@@ -410,11 +423,21 @@ if(isset($_POST['cmd'])){
 
 		case 'sendComment':
 			if($ifLogin==1){
+                if(!isset($_SESSION['AddCmtTime'])){
+                    $_SESSION['AddCmtTime']=time();
+                }
+                else{
+                    if((time()-$_SESSION['AddCmtTime'])<10){
+                        print "TimeLimit";
+                        return;
+                    }
+                    $_SESSION['AddCmtTime']=time();
+                }
+
+
 				$cmt=$_POST['cmt'];
 				$picID=$_POST['picID'];
-				addComment($userID, $picID, $cmt, time());
-			}
-			else{
+                addComment($userID, $picID, $cmt, time());
 			}
 			break;
 
