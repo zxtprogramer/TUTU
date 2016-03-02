@@ -90,7 +90,7 @@ function freshPanel(){
         
     var picNumInfoDiv=document.createElement('div');
     picNumInfoDiv.setAttribute("class","row PicNumInfo");
-    picNumInfoDiv.innerHTML="<hr class='PicHr'  /><span class='badge'>"+ picLikeNum + "个喜欢 </span> <span class='badge'>" + picCommentNum + "条评论</span>" + "<a href='/Data/User_"+ picUserID + "/Album_"+picAlbumID+"/"+picName+"'" + "><span class='badge'>原图</span></a>";    
+    picNumInfoDiv.innerHTML="<hr class='PicHr'  /><span class='badge'>"+ picLikeNum + "个喜欢 </span> <span class='badge'>" + picCommentNum + "条评论</span>" + "<a href='/Data/User_"+ picUserID + "/Album_"+picAlbumID+"/"+picName+"'" + "> <span class='badge'>查看原图</span></a>";    
 
     divH=parseFloat($("#PicPanelDiv").height());
     divW=parseFloat($("#PicPanelDiv").width());
