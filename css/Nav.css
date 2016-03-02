@@ -6,7 +6,7 @@
 	bottom:0px;
 	background-color:#fff;
 	z-index:1000;
-    border:1px solid #ccc;
+    border:0px solid #ccc;
 }
 
 .NavButton{
@@ -15,4 +15,5 @@
 	text-align:center;
 	width:20%;
 	float:left;
+    border:0px solid #ccc;
 }

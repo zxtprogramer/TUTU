@@ -75,12 +75,12 @@ function freshPanel(){
 
     var picPanelCloseDiv=document.createElement('div');
     picPanelCloseDiv.setAttribute("class","row");
-    picPanelCloseDiv.innerHTML='<div class="col-xs-12 text-right" style="padding:5px;background:#ccc"><a href="javascript:closePicPanel()">关闭</a></div>';
+    picPanelCloseDiv.innerHTML='<div class="col-xs-12 text-right" style="padding:5px;background:#ccc"><a href="javascript:closePicPanel()"><span class="glyphicon glyphicon-remove" /></a></div>';
 
     var picUserTitleDiv=document.createElement('div');
     picUserTitleDiv.setAttribute("class","row PicUserTitle");
     picUserTitleDiv.innerHTML='<div class="col-xs-12"><a href="/UserPage/UserPage.php?PageUserID='+picUserID+'"><img src="/Data/User_' + picUserID + '/UserFace.jpg" class="UserFaceImg"></img></a> ' + 
-    picUserName + '<span class="PicTimeLabel">' + getTimeStr(picTime) + '</span><hr class="PicHr"  /></div>';
+    picUserName + ' (<a href="/Pic/Pic.php?AlbumID='+picAlbumID+'">前往相册</a>)' + '<span class="PicTimeLabel">' + getTimeStr(picTime) + '</span><hr class="PicHr"  /></div>';
 
     var picTitleDiv=document.createElement('div');
     picTitleDiv.setAttribute("class","row PicTitle");
