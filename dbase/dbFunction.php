@@ -101,7 +101,7 @@ function addUser($userName, $password, $email){
 
 function getAlbumFace($albumID){
 	global $dataPath;
-    $sql="SELECT PicName,UserID FROM PicTable WHERE AlbumID='$albumID' LIMIT 0,1";
+    $sql="SELECT PicName,UserID FROM PicTable WHERE AlbumID='$albumID' ORDER BY PicID DESC LIMIT 0,1";
     $res=exeSQL($sql);
     $row=mysql_fetch_array($res);
     $picName=$row['PicName'];
