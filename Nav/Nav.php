@@ -11,7 +11,7 @@
 			  </button>
 
 			  <button class=\"NavButton\" data-toggle=\"modal\" data-target=\"#quickUploadModal\" onclick=\"initQuickUpload()\">
-				<span class=\"glyphicon glyphicon-camera\"></span> 上传
+				<span style='color:#228A05;font-size:30px' class=\"glyphicon glyphicon-camera\"></span> 
 			  </button>
 
 			  <button class=\"NavButton\" onclick=\"self.location='/UserPage/UserPage.php?PageUserID=$userID'\">
