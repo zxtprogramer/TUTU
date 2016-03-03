@@ -126,7 +126,8 @@ function editAlbum($userID, $albumName, $des, $createTime,$ifShare,$albumID){
 function addAlbum($userID, $albumName, $des, $createTime,$ifShare){
 	global $dataPath;
     $userName=getUserName($userID);
-    $sql="INSERT INTO AlbumTable (UserID,UserName,AlbumName,Description,CreateTime,Share,EditTime) VALUES('$userID', '$userName', '$albumName', '$des', '$createTime', '$ifShare', '$createTime')";
+    $shareCode=md5(time());
+    $sql="INSERT INTO AlbumTable (UserID,UserName,AlbumName,Description,CreateTime,Share,EditTime,ShareCode) VALUES('$userID', '$userName', '$albumName', '$des', '$createTime', '$ifShare', '$createTime','$shareCode')";
     if(!exeSQL($sql)){printf("add album $albumName failed");}
     $sql="SELECT AlbumID FROM AlbumTable WHERE AlbumName='$albumName' AND UserID='$userID'";
     $res=exeSQL($sql);

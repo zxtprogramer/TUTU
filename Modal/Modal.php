@@ -320,3 +320,66 @@
 </div>
 <!-- --------------------------------------------------------------------------------------------------------- --> 
 
+  <!-- Edit ShareCode Modal -->
+<div class="modal fade" id="editShareCodeModal" tabindex="-1" role="dialog" aria-labelledby="editShareCodeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="editShareCodeModalLabel">设置分享码</h4>
+      </div>
+
+      <div class="modal-body">
+        <div class="input-group">
+          <span class="input-group-addon">分享地址</span>
+          <input type="text" class="form-control" id="ShareURLInput"></input>
+        </div>
+        <br />
+ 
+        <div class="input-group">
+          <span class="input-group-addon">分享码</span>
+          <input type="text" class="form-control" id="ShareCodeInput"></input>
+          <input type="hidden" class="form-control" id="AlbumIDInput"></input>
+        </div>
+        <br />
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="setShareCode();">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- --------------------------------------------------------------------------------------------------------- --> 
+
+
+<!---Check ShareCode Modal-->
+<div class="modal fade" id="checkShareCodeModal" tabindex="-1" role="dialog" aria-labelledby="checkShareCodeModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="checkShareCodeModalLabel">输入分享码</h4>
+      </div>
+
+      <div class="modal-body">
+        <div class="input-group">
+          <span class="input-group-addon">分享码</span>
+          <input type="text" class="form-control" id="CheckShareCodeInput"></input>
+        </div>
+        <br />
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="checkShareCode();">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!----------------------------------------------------------------------------------------------------------- -->
+
+
+
+

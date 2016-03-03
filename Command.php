@@ -204,6 +204,25 @@ if(isset($_POST['cmd'])){
 
     $cmd=$_POST['cmd'];
     switch($cmd){
+        case 'setShareCode':
+            if($ifLogin){
+                $albumID=$_POST['AlbumID'];
+                $shareCode=$_POST['ShareCode'];
+                $userID=$_SESSION['UserID'];
+                $sql="UPDATE AlbumTable SET ShareCode='$shareCode' WHERE UserID='$userID' AND AlbumID='$albumID'";
+                exeSQL($sql);
+            }
+        break;
+
+        case 'checkShareCode':
+            $albumID=$_POST['AlbumID'];
+            $shareCode=$_POST['ShareCode'];
+            session_start();
+            $_SESSION['ShareCode_' . $albumID]=$shareCode;
+        break;
+
+
+
     	case 'checkUser':
     		$uName=$_POST['checkUserName'];
     		$uEmail=$_POST['checkUserEmail'];
@@ -311,19 +330,27 @@ if(isset($_POST['cmd'])){
         	break;
         
         case 'getAlbumPic':
+            exeSQL($sql);
+            session_start();
         	$albumID=(int)($_POST['albumID']);
-        	$sql="SELECT UserID FROM AlbumTable WHERE AlbumID='$albumID'";
+        	$sql="SELECT UserID,ShareCode FROM AlbumTable WHERE AlbumID='$albumID'";
         	$res=exeSQL($sql);
         	$albumUserID=0;
         	if($row=mysql_fetch_array($res)){
         		$albumUserID=$row[0];
+                $shareCode=$row['ShareCode'];
         	}
         	else{return;}
         	if((int)$albumUserID==(int)$userID){
 		        $sql="SELECT * FROM PicTable WHERE AlbumID=$albumID ORDER BY ShootTime";
         	}
         	else{
-		        $sql="SELECT * FROM PicTable WHERE Share='1' AND AlbumID=$albumID ORDER BY ShootTime";
+                if(isset($_SESSION["ShareCode_" . $albumID]) && $_SESSION["ShareCode_".$albumID]==$shareCode){
+                    $sql="SELECT * FROM PicTable WHERE AlbumID=$albumID ORDER BY ShootTime";
+                }
+                else{
+                    $sql="SELECT * FROM PicTable WHERE Share='1' AND AlbumID=$albumID ORDER BY ShootTime";
+                }
         	}
 			print(getData($sql));
         	break;
@@ -435,7 +462,7 @@ if(isset($_POST['cmd'])){
                 }
 
 
-				$cmt=$_POST['cmt'];
+				$cmt=htmlspecialchars($_POST['cmt']);
 				$picID=$_POST['picID'];
                 addComment($userID, $picID, $cmt, time());
 			}

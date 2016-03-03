@@ -27,6 +27,7 @@ function editAlbum(){
     xmlhttp.send("cmd=editAlbum&AlbumName=" + albumName + "&AlbumDes=" + albumDes + "&AlbumShare=" + albumShare + "&AlbumID=" + albumID);
 }
 
+
 function newAlbum(){
     var xmlhttp;
     xmlhttp=new XMLHttpRequest();
@@ -82,6 +83,8 @@ function myGetTime(ms){
 //	return y + "年"+m+"月"+d+"日 "+h+":"+min+":"+sec;
 }
 
+
+
 function appendAlbum(nowIndex){
 	album=albumArray[nowIndex];
 	albumName=album['AlbumName'];
@@ -131,7 +134,7 @@ function appendAlbum(nowIndex){
      	albumEdit.innerHTML=' \
             <div class=\"btn-group\" role=\"group\"> \
 			  <a type=\"button\" class=\"btn btn-default\" href=\"/Pic/Pic.php?AlbumID=' + albumID + '&AlbumUserID=' + albumUserID + '\"><span class=\"glyphicon glyphicon-globe\"></span></a> \
-			  <button type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-download-alt\"></span></button> \
+			  <button onclick="initShareCodeModal(' + nowIndex + ')" data-toggle="modal" data-target="#editShareCodeModal" type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-share\"></span></button> \
 			  <button onclick="initEditAlbum('+nowIndex+')" data-toggle="modal" data-target="#editAlbumModal" type=\"button\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-pencil\"></span></button> \
 			  <button type=\"button\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-trash\" onclick=\"deleteAlbum('+albumID+')\"></span></button> \
 		    </div> ' ;
@@ -146,6 +149,8 @@ function appendAlbum(nowIndex){
 
 	document.getElementById("UserPageMain").appendChild(albumSpace1);
 }
+
+
 
 function getAlbumFace(albumID){
     var xmlhttp;
@@ -212,6 +217,21 @@ function getAlbumList(scrollNum,onceNum,albumUserID){
     xmlhttp.send("cmd=getAlbumList&scrollNum=" +scrollNum + "&onceNum=" + onceNum + "&albumUserID=" + albumUserID);
 }
 
+
+function initShareCodeModal(albumIndex){
+    var albumID=albumArray[albumIndex]['AlbumID'];
+    var albumSCode=albumArray[albumIndex]['ShareCode'];
+    $("#AlbumIDInput").val(albumID);
+    $("#ShareCodeInput").val(albumSCode);
+    $("#ShareURLInput").val(window.location.hostname + "/Share/Share.php?AlbumID=" + albumID);
+}
+
+function setShareCode(){
+    sCode=$("#ShareCodeInput").val();
+    albumID=$("#AlbumIDInput").val();
+    $.post("/Command.php",{"cmd":"setShareCode", "AlbumID": albumID, "ShareCode":sCode},function(text,status){$("#setShareCodeModal").modal("hide")});
+}
+
 getAlbumList(0,5,pageUserID);
 
 $(window).scroll(function(){
@@ -223,4 +243,5 @@ $(window).scroll(function(){
 		getAlbumList(scrollNum,5,0);
 	}
 	
-})
+});
+

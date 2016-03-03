@@ -45,6 +45,7 @@
 	<LikeNum>INT(6) UNSIGNED DEFAULT 0</LikeNum>
 	<CommentNum>INT(6) UNSIGNED DEFAULT 0</CommentNum>
 	<Share>INT(4) UNSIGNED DEFAULT 1</Share>
+    <ShareCode>CHAR(255) NOT NULL DEFAULT '8dbfa05f9b92961051c53c134175237'</ShareCode>
 	<EditTime>INT(6) UNSIGNED</EditTime></AlbumTable>
 
   <LikeTable>
