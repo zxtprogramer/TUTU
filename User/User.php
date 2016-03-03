@@ -112,7 +112,7 @@ if($ifLogin==0){
       <div class="modal-body"> 
         <input id="UploadFace" name="files" type="file" multiple accept="image/*"></input>
         <br />
-		<ul id="UploadList" class="list-group">
+		<ul id="UploadFaceList" class="list-group">
         </ul>
       </div>
 

@@ -229,7 +229,9 @@ function initShareCodeModal(albumIndex){
 function setShareCode(){
     sCode=$("#ShareCodeInput").val();
     albumID=$("#AlbumIDInput").val();
-    $.post("/Command.php",{"cmd":"setShareCode", "AlbumID": albumID, "ShareCode":sCode},function(text,status){$("#setShareCodeModal").modal("hide")});
+    $.post("/Command.php",{"cmd":"setShareCode", "AlbumID": albumID, "ShareCode":sCode},function(text,status){
+        $("#setShareCodeModal").modal("hide");
+    });
 }
 
 getAlbumList(0,5,pageUserID);

@@ -1,5 +1,5 @@
 var uploadFiles=document.getElementById("UploadFace");
-var uploadList=document.getElementById("UploadList");
+var uploadList=document.getElementById("UploadFaceList");
 var upItem=0;//0 is UserFace; 1 is PageFace;
 
 function initUploadFace(){
